@@ -22,6 +22,7 @@ lyac:
     notfound:
       title: Участник не найден!
       message: Участник с таким позывным не найден.
+    lastlogs: Последние полученные отчёты
 menu:
   rounds: Туры
   results: Результаты
@@ -31,3 +32,7 @@ menu:
 searchform:
   placeholder: Введите позывной
   submit: Вперёд
+term:
+  date: Дата
+  qso: QSO
+  round: Тур
