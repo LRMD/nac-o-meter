@@ -22,13 +22,17 @@ lyac:
     notfound:
       title: Participant not found!
       message: We do not have any information about this callsign.
+    lastlogs: Last reports received
 menu:
   rounds: Rounds
   results: Results
   awards: Awards
   reports: Reports
   archive: Archive
-
 searchform:
   placeholder: Enter callsign
   submit: Submit
+term:
+  date: Date
+  qso: QSO
+  round: Round

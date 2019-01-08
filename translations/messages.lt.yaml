@@ -22,13 +22,17 @@ lyac:
     notfound:
       title: Dalyvis nerastas!
       message: Dalyvio tokiu šaukiniu nėra.
+    lastlogs: Paskutinės gautos ataskaitos
 menu:
   rounds: Turai
   results: Rezultatai
   awards: Pasiekimai
   reports: Ataskaitos
   archive: Archyvas
-
 searchform:
   placeholder: Įveskite šaukinį
   submit: Pirmyn
+term:
+  date: Data
+  qso: QSO
+  round: Turas
