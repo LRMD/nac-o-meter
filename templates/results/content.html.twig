@@ -6,30 +6,33 @@
     {% if table is not empty %}
     <h6 class="card-subtitle mb-2 text-muted">{{ year }}/{{ band }}</h6>
 
-    <table class="table table-sm">
-    <thead>
-        <tr>
-        <th scope="col">{% trans %}lyac.results.callsign{% endtrans %}</th>
-        {% for m in 1..12 %}
-        <th>{{ date('2020-' ~ m ~ '-01') | date("M") }}</th>
-        {% endfor %}
-        <th scope="col">{% trans %}lyac.results.total{% endtrans %}</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for t in table %}
-        <tr>
-        {% if t | first is not empty %}
-            <td scope="row">
-            <a href="{{ path( 'call_search', {'callsign': t|first } ) }}">{{ t | first }}</a></td>
-            {% for m in t | slice(1,12) %}
-                <td><small>{{ m }}</small></td>
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                <th scope="col">{% trans %}lyac.results.callsign{% endtrans %}</th>
+                {% for m in 1..12 %}
+                <th>{{ date('2020-' ~ m ~ '-01') | localizeddate('short', 'none', app.request.locale, null, 'MMM') }}</th>
+                {% endfor %}
+                <th scope="col">{% trans %}lyac.results.total{% endtrans %}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for t in table %}
+                <tr>
+                {% if t | first is not empty %}
+                    <td scope="row">
+                    <a href="{{ path( 'call_search', {'callsign': t|first } ) }}">{{ t | first }}</a></td>
+                    {% for m in t | slice(1,12) %}
+                        <td><small>{{ m }}</small></td>
+                    {% endfor %}
+                    <td scope="row"><b><small>{{ t | last }}</small></b></td>
+                {% endif %}
+                </tr>
             {% endfor %}
-            <td scope="row"><b><small>{{ t | last }}</small></b></td>
-        {% endif %}
-        </tr>
-    {% endfor %}
-    </tbody>
+            </tbody>
+        </table>
+    </div>
     {% else %}
     <h6 class="card-subtitle mb-2 text-muted">{% trans %}lyac.results.selection{% endtrans %}</h6>
     {% endif %}
