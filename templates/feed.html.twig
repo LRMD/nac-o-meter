@@ -30,8 +30,8 @@
 
     {% for date,nolog in logsNotReceived  %}
       {% if nolog is not empty %}
-            <h5 class="card-title">{{ lastRounds[loop.index-1].name }}
-            <small class="card-subtitle mb-2 text-muted"> {{ date |date('Y-m-d') }} </small></h5>
+            <h6 class="card-title"><a href="{{ path('round', { 'date': date |date('Y-m-d') }) }}">{{ date |date('Y-m-d') }}</a>
+            <small class="card-subtitle mb-2 text-muted"> ({{ lastRounds[loop.index-1].name }})</small></h6>
             <p class="card-text text-danger">
             {% for call in nolog %}
                 {{ call['callsign'] }}{% if not loop.last %}, {% endif %}
