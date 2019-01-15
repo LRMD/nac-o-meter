@@ -5,6 +5,7 @@
         "php": "^7.1.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "beberlei/DoctrineExtensions": "^1.1",
         "deployer/deployer": "^6.3",
         "league/csv": "^9.1",
         "sensio/framework-extra-bundle": "^5.2",

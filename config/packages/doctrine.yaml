@@ -33,3 +33,6 @@ doctrine:
         dql:
             string_functions:
                 qrb: App\Utils\QRBFunction
+            datetime_functions:
+                date_format: DoctrineExtensions\Query\Mysql\DateFormat
+                year: DoctrineExtensions\Query\Mysql\Year

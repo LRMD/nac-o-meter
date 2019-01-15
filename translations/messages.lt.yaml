@@ -5,7 +5,7 @@ lyac:
     subtitle: Geriausius rezultatus pareiškė:
   results:
     title: LYAC rezultatai
-    subtitle: Išteisėjauti rezultatai pagal metus/turą:
+    subtitle: Išteisėjauti pagal metus/turą:
     callsign: Šaukinys
     total: Viso
     selection: Kairiajame meniu pasirinkite metus ir turą
@@ -19,10 +19,17 @@ lyac:
     title: Šaukinio informacija
     participant: Dalyvio
     information: informacija
+    reports: Viso ataskaitų
+    wwls: Dirbta iš skirtingų kvadratų
     notfound:
       title: Dalyvis nerastas!
       message: Dalyvio tokiu šaukiniu nėra.
     lastlogs: Paskutinės gautos ataskaitos
+  rounds:
+    title: Aktyvūs LYAC turai
+    subtitle: Pagal metus
+    participants: Dalyvių
+    qso: Ryšių
 menu:
   rounds: Turai
   results: Rezultatai

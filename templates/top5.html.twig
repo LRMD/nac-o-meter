@@ -6,8 +6,8 @@
 
     {% for date, topFive in topFiveScores %}
     {% if topFive is not empty %}
-      <h6>{{ lastRounds[loop.index-1].name }}
-      <small class="card-subtitle mb-2 text-muted">{{ date |date('Y-m-d') }} </small>
+      <h6><a href="{{ path('round', { 'date': date |date('Y-m-d') }) }}">{{ date |date('Y-m-d') }}</a>
+      <small class="card-subtitle mb-2 text-muted"> ({{ lastRounds[loop.index-1].name }})</small>
       </h6>
       <table class="table table-sm">
         <tbody>

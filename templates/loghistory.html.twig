@@ -17,7 +17,7 @@
     {% for l in loghistory %}
     <tr>
       <th scope="row">{{ loop.index }}</th>
-      <td>{{ l.date | date('Y-m-d') }}</td>
+      <td><a href="{{ path('round', { 'date': l.date |date('Y-m-d') }) }}">{{ l.date |date('Y-m-d') }}</a></td>
       <td>{{ l.count }}</td>
       <td>{{ l.band }}</td>
     </tr>
