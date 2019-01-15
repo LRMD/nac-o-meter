@@ -29,7 +29,6 @@ class RoundController extends AbstractController
                 continue;
             }
         }
-        dump($allRoundYears);
         if (empty($year) || empty($validYear)) {
             return $this->redirectToRoute(
                 'rounds',
