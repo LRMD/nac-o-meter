@@ -53,6 +53,11 @@ class Round
         return $this->name;
     }
 
+    public function getGroupBands()
+    {
+        return $this->groupBands;
+    }
+
     public function getRoundId()
     {
         return $this->roundid;
