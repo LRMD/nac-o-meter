@@ -47,8 +47,32 @@ class RoundController extends AbstractController
     /**
      * @Route("/round/{date}", name="round", defaults={"date"=""})
      */
-    public function round()
+    public function round($date)
     {
+        $roundRepository = $this->getDoctrine()->getRepository(Round::class);
+        $logRepository = $this->getDoctrine()->getRepository(Log::class);
+        $callsignSearchForm = $this->createForm(CallsignSearch::class);
+        $lastDate = $logRepository->findLastDate()[1];
+
+        $roundCheck = $roundRepository->findBy(
+            array('date' => new \DateTime($date) )
+        );
+
+        $allRoundYears = $roundRepository->findAllRoundYears();
+
+        if (empty($roundCheck) && !empty($date)) {
+            return $this->redirectToRoute(
+                'round',
+                array( 'date' => $lastDate )
+            );
+          }
+
+        return $this->render('rounds/round.html.twig', [
+            'round_years' => $allRoundYears,
+            'round_date' => $date,
+            'controller_name' => 'RoundController',
+            'callSearch' => $callsignSearchForm->createView(),
+        ]);
 
     }
 }
