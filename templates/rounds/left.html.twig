@@ -1,0 +1,14 @@
+<div class="card">
+
+  <div class="card-body">
+    <h5 class="card-title">{% trans %}lyac.rounds.title{% endtrans %}</h5>
+    <p class="card-text">{% trans %}lyac.rounds.subtitle{% endtrans %}:</p>
+      <div class="btn-group-vertical">
+      {% for year in round_years %}
+        <button type="button" class="btn btn-lg btn-light">
+        <a class="button" href="{{ path('rounds', { 'year': year['y'] } )}}">{{ year['y'] }}</a>
+        <small>({{ year['c'] }})</small></button>
+      {% endfor %}
+    </div>
+  </div>
+</div>

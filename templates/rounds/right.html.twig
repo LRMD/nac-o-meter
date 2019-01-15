@@ -1,0 +1,32 @@
+
+<div class="row">
+
+{% for round in round_count %}
+<div class="col col-lg-3">
+    <div class="card p-2 mb-2">
+    <div class="card-body">
+
+
+        <h5 class="card-title"><a href="{{
+            path('round', { 'date': round[0].date |date('Y-m-d') } )
+        }}">
+        {{ round[0].date |date('Y-m-d') }}
+        </a> <small class="card-subtitle mb-2 text-muted">
+        {{ round[0].name }}
+        </small></h6>
+
+        <div class="card-text">{% trans %}lyac.rounds.participants{% endtrans %}: {{ round.c }}</div>
+        <div class="card-text">{% trans %}lyac.rounds.qso{% endtrans %}: {{ round.cq }}</div>
+    </div>
+    <div class="card-footer">
+
+        {% set stars = ( round.cq / 200 ) + 1 %}
+        {% for i in 1..stars|number_format %}
+        <small class="text-muted"><i class="far fa-star"></i></small>
+        {% endfor %}
+    </div>
+    </div>
+</div>
+{% endfor %}
+
+</div>
