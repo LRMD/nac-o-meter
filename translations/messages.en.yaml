@@ -23,6 +23,11 @@ lyac:
       title: Participant not found!
       message: We do not have any information about this callsign.
     lastlogs: Last reports received
+  rounds:
+    title: Active LYAC rounds
+    subtitle: By year
+    participants: Reports
+    qso: QSOs
 menu:
   rounds: Rounds
   results: Results
