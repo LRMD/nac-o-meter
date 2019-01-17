@@ -102,14 +102,14 @@ class LogRepository extends ServiceEntityRepository
     public function findLastMonthStats($date)
     {
         return $this->createQueryBuilder('l')
-        ->select('count(l.logid) as count')
-        ->leftJoin('App\Entity\Band', 'b', 'WITH', 'b.bandid=l.bandid')
-        ->addSelect('b.bandFreq')
-        ->where('l.date > :since')
-        ->setParameter('since', $this->subtractOneMonth($date))
-        ->groupBy('b.bandid')
-        ->getQuery()
-        ->getResult()
+            ->select('count(l.logid) as count')
+            ->leftJoin('App\Entity\Band', 'b', 'WITH', 'b.bandid=l.bandid')
+            ->addSelect('b.bandFreq')
+            ->where('l.date > :since')
+            ->setParameter('since', $this->subtractOneMonth($date))
+            ->groupBy('b.bandid')
+            ->getQuery()
+            ->getResult()
         ;
     }
 }
