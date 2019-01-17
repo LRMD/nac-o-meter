@@ -19,10 +19,17 @@ lyac:
     title: Информация о позывном
     participant: Информация об
     information: участнике
+    reports: Всего отчетов
+    wwls: Уникальные квадраты
     notfound:
       title: Участник не найден!
       message: Участник с таким позывным не найден.
     lastlogs: Последние полученные отчёты
+  rounds:
+    title: LYAC Туры
+    subtitle: Выберите год
+    participants: Участников
+    qso: QSO
 menu:
   rounds: Туры
   results: Результаты
@@ -36,3 +43,5 @@ term:
   date: Дата
   qso: QSO
   round: Тур
+  callsign: Позывной
+  band: Диапазон

@@ -17,8 +17,10 @@ lyac:
     notreceived: Logs not received (LY only):
   callsign:
     title: Callsign information
-    participant: Participant's
-    information: information
+    participant: Summary of
+    information: activity
+    reports: Total reports
+    wwls: "# of unique WWLs"
     notfound:
       title: Participant not found!
       message: We do not have any information about this callsign.
@@ -41,3 +43,5 @@ term:
   date: Date
   qso: QSO
   round: Round
+  callsign: Callsign
+  band: Band
