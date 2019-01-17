@@ -87,4 +87,26 @@ class QsoRecordRepository extends ServiceEntityRepository
             ->getArrayResult()
             ;
     }
+
+    public function getRoundLogByCallsign($date,$callsign)
+    {
+        return $this->createQueryBuilder('q')
+            ->select(
+                    'q.callsign',
+                    'SUBSTRING(w.wwl,1,4) as w_wwl',
+                    'SUBSTRING(q.gridsquare,1,4) as q_wwl',
+                    'QRB(q.gridsquare, w.wwl) as qrb'
+            )
+            ->leftJoin('App\Entity\Log', 'l', 'WITH', 'l.logid=q.logid')
+            ->leftJoin('App\Entity\Callsign', 'c', 'WITH', 'l.callsignid=c.callsignid')
+            ->leftJoin('App\Entity\Wwl', 'w', 'WITH', 'l.wwlid=w.wwlid')
+            ->leftJoin('App\Entity\Round', 'r', 'WITH', 'l.date=r.date')
+            ->where('r.date = :date', 'c.callsign = :callsign')
+            ->setParameter('date', $date)
+            ->setParameter('callsign', $callsign)
+            ->orderBy('qrb', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+}
 }

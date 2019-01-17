@@ -1,8 +1,31 @@
 <div class="card">
 
   <div class="card-body">
-    <h5 class="card-title">{{ round_date }}</h5>
-    <p class="card-text text-danger">Under construction.</p>
+    <h5 class="card-title">{% trans %}term.round{% endtrans %}: {{ round_date }}
+    <small class="text-muted">({{ round_name }})</small></h5>
+    <h6 class="card-subtitle text-muted">{% trans %}lyac.rounds.participants{% endtrans %}: {{ round_participants|length }} </h6>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">{% trans %}term.callsign{% endtrans %}</th>
+          <th scope="col">WWL</th>
+          <th scope="col">{% trans %}term.band{% endtrans %}</th>
+          <th scope="col">{% trans %}lyac.rounds.qso{% endtrans %}</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for entry in round_participants %}
+    <tr>
+      <th scope="row">{{ loop.index }}</th>
+      <td><a href="{{ path( 'call_search', {'callsign': entry.callsign} ) }}">{{ entry.callsign }}</a></td>
+      <td>{{ entry.wwl }}</td>
+      <td>{{ entry.band }}</td>
+      <td><a href="{{ path( 'round_details', {'callsign': entry.callsign, 'date': round_date} ) }}">{{ entry.count }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
   </div>
 
 </div>

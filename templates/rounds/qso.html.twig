@@ -1,0 +1,29 @@
+<div class="card">
+
+  <div class="card-body">
+    <h4 class="card-title">{% trans %}term.callsign{% endtrans %}: {{ round_callsign }} @ {{ round_log[0].w_wwl }}</h1>
+    <h6 class="card-title text-muted">{% trans %}term.round{% endtrans %}: {{ round_date }}</h6>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">{% trans %}term.callsign{% endtrans %}</th>
+          <th scope="col">WWL</th>
+          <th scope="col">QRB</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for entry in round_log %}
+    <tr>
+      <th scope="row">{{ loop.index }}</th>
+      <td><a href="{{ path( 'call_search', {'callsign': entry.callsign} ) }}">{{ entry.callsign }}</a></td>
+      <td> {{ entry.q_wwl }} </td>
+      <td> {{ entry.qrb }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+  </div>
+
+</div>

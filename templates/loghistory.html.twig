@@ -18,7 +18,7 @@
     <tr>
       <th scope="row">{{ loop.index }}</th>
       <td><a href="{{ path('round', { 'date': l.date |date('Y-m-d') }) }}">{{ l.date |date('Y-m-d') }}</a></td>
-      <td>{{ l.count }}</td>
+      <td><a href="{{ path( 'round_details', {'callsign': callsign | upper, 'date': l.date |date('Y-m-d')} ) }}">{{ l.count }}</td>
       <td>{{ l.band }}</td>
     </tr>
     {% endfor %}
