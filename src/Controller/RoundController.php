@@ -39,6 +39,7 @@ class RoundController extends AbstractController
 
         return $this->render('rounds/index.html.twig', [
             'round_years' => $allRoundYears,
+            'year' => $year,
             'round_count' => $roundRepository->getAllWithLogCount($validYear),
             'controller_name' => 'RoundController',
             'callSearch' => $callsignSearchForm->createView(),
