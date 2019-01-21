@@ -4,7 +4,7 @@
 {% if year is defined %}
   {% trans %}lyac.rounds.title{% endtrans %} - {{ year }}
 {% elseif round_date is defined %}
-  {% trans %}term.round{% endtrans %} {{ round_date }}
+  {% trans %}term.round{% endtrans %} {{ round_date }} ({{ round_name }})
   {% if round_callsign is defined %} - {{ round_callsign }}{% endif %}
 {% else %}
   {% trans %}lyac.rounds.title{% endtrans %}
