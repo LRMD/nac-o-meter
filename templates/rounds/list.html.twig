@@ -21,6 +21,7 @@
           <th scope="col">WWL</th>
           <th scope="col">{% trans %}term.band{% endtrans %}</th>
           <th scope="col">{% trans %}lyac.rounds.qso{% endtrans %}</th>
+          <th scope="col">ODX</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +32,7 @@
       <td>{{ entry.wwl }}</td>
       <td>{{ entry.band }}</td>
       <td><a href="{{ path( 'round_details', {'callsign': entry.callsign, 'date': round_date} ) }}">{{ entry.count }}</td>
+      <td>{{ entry.odx }} km</td>
     </tr>
     {% endfor %}
     </tbody>

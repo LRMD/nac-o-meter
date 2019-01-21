@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Log;
+use App\Entity\QsoRecord;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -82,15 +83,29 @@ class LogRepository extends ServiceEntityRepository
 
     public function findCallsignsByRoundDate($date)
     {
+        $odx_per_log = $this->getEntityManager()->getRepository(QsoRecord::class)
+            ->createQueryBuilder('q')
+            ->select('l.logid','max(qrb(w.wwl,q.gridsquare)) as odx')
+            ->leftJoin('App\Entity\Log','l','WITH', 'q.logid=l.logid')
+            ->leftJoin('App\Entity\Wwl','w','WITH', 'w.wwlid=l.wwlid')
+            ->leftJoin('App\Entity\Callsign','c','WITH', 'c.callsignid=l.callsignid')
+            ->where('l.date = :ldate')
+            ->groupBy('l.logid')
+            ->setParameter('ldate', $date)
+        ;
+
         return $this->createQueryBuilder('l')
             ->select(
                 'c.callsign', 'b.band',
                 'count(q.logid) as count',
-                'SUBSTRING(w.wwl,1,4) as wwl')
+                'SUBSTRING(w.wwl,1,4) as wwl',
+                'MAX( QRB(w.wwl, q.gridsquare) ) as odx',
+                'AVG( QRB(w.wwl, q.gridsquare) ) as avg')
             ->leftJoin('App\Entity\Callsign','c','WITH', 'c.callsignid=l.callsignid')
             ->leftJoin('App\Entity\QsoRecord','q','WITH', 'q.logid=l.logid')
             ->leftJoin('App\Entity\Wwl','w','WITH', 'w.wwlid=l.wwlid')
             ->leftJoin('App\Entity\Band','b','WITH', 'b.bandid=l.bandid')
+            ->leftJoin('',"(" . $odx_per_log->getDQL().") as odx_t", 'WITH', 'odx_t.logid = l.logid')
             ->where('l.date = :date')
             ->setParameter('date', $date)
             ->groupBy('c.callsign','wwl','b.band')
