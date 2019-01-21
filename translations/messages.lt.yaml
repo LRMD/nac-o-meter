@@ -1,5 +1,6 @@
 lyac:
   main: LYAC Pagrindinis
+  title: LYAC informacija
   top5:
     title: LYAC roboto mėnesio TOP5
     subtitle: Geriausius rezultatus pareiškė:

@@ -1,5 +1,6 @@
 lyac:
   main: LYAC Home
+  title: LYAC live stats
   top5:
     title: LYAC TOP5 DX claimed scores
     subtitle: Open Class participants by their claimed results:
