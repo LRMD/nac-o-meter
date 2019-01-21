@@ -3,12 +3,13 @@
   <div class="card-body">
     <h5 class="card-title">{% trans %}lyac.rounds.title{% endtrans %}</h5>
     <p class="card-text">{% trans %}lyac.rounds.subtitle{% endtrans %}:</p>
-      <div class="btn-group-vertical">
+    <small class="card-text">&nbsp;</small>
+      <ul>
       {% for year in round_years %}
-        <button type="button" class="btn btn-lg btn-light">
-        <a href="{{ path('rounds', { 'year': year['y'] } )}}">{{ year['y'] }}</a>
-        <small>({{ year['c'] }})</small></button>
+      <li><h5 class="card-subtitle mb-4">
+      <a href="{{ path('rounds', { 'year': year['y'] } )}}">{{ year['y'] }}</a>
+      <small class="card-subtitle mb-2 text-muted">({{ year['c'] }})</small></h5></li>
       {% endfor %}
-    </div>
+      </ul>
   </div>
 </div>
