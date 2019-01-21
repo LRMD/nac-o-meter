@@ -54,7 +54,7 @@ class RoundController extends AbstractController
         $roundCheck = $roundRepository->findBy(
             array('date' => new \DateTime($date) )
         );
-        if (empty($roundCheck) && !empty($date)) {
+        if (empty($roundCheck)) {
             return $this->redirectToRoute(
                 'round',
                 array( 'date' => $logRepository->findLastDate()[1] )
