@@ -18,13 +18,13 @@ class MessageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Message::class);
     }
-    
-    public function getLastEntity() 
+
+    public function getLastEntity()
     {
         return $this->createQueryBuilder('e')
             ->orderBy('e.date', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getOneOrNullResult();      
-    }    
+            ->getOneOrNullResult();
+    }
 }
