@@ -76,6 +76,8 @@ class RoundController extends AbstractController
         $roundRepository = $this->getDoctrine()->getRepository(Round::class);
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
         $qsoRecordRepository = $this->getDoctrine()->getRepository(QsoRecord::class);
+
+        $roundName = $dateCheck[0]->getName();
         $allRoundYears = $roundRepository->findAllRoundYears();
         $roundLog = $qsoRecordRepository->getRoundLogByCallsign($date,$callsign);
 
@@ -85,6 +87,7 @@ class RoundController extends AbstractController
 
         return $this->render('rounds/log.html.twig', [
             'round_years' => $allRoundYears,
+            'round_name' > $roundName,
             'round_callsign' => $callsign,
             'round_log' => $roundLog,
             'round_date' => $date,
