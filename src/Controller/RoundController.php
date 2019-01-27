@@ -36,16 +36,43 @@ class RoundController extends AbstractController
                 array( 'year' => $lastYear )
             );
         }
+        $roundsThisYear = $roundRepository->getAllWithLogCount($validYear);
+
+        foreach ($roundsThisYear as $k => $r) {
+            $roundsThisYear[$k]['complete'] = $this->roundCompleteness($r[0]->getDate());
+        }
 
         return $this->render('rounds/index.html.twig', [
             'round_years' => $allRoundYears,
             'year' => $year,
-            'round_count' => $roundRepository->getAllWithLogCount($validYear),
+            'rounds_this_year' => $roundsThisYear,
             'controller_name' => 'RoundController',
             'callSearch' => $callsignSearchForm->createView(),
         ]);
     }
 
+    private function roundCompleteness($date)
+    {
+        $qsoRepository = $this->getDoctrine()->getRepository(QsoRecord::class);
+        $column = 'callsign';
+
+        $roundLogsReceived = array_column(
+            $qsoRepository->getDistinctParticipants($date),
+            $column
+        );
+        $roundAllQSOs = array_column(
+            $qsoRepository->getDistinctCorrespondents($date),
+            $column
+        );
+        $allCalls = array_merge($roundLogsReceived, $roundAllQSOs);
+        $received = sizeof($roundLogsReceived);
+        $total = sizeof(array_unique($allCalls));
+        if ($total == 0) {
+            return $total;
+        }
+        $percent = $received / $total;
+        return $percent;
+    }
 
     private function validateRound($date)
     {
@@ -114,11 +141,14 @@ class RoundController extends AbstractController
         $roundYears = $roundRepository->findAllRoundYears();
         $roundParticipants = $logRepository->findCallsignsByRoundDate($date);
 
+        $roundCompleteness = $this->roundCompleteness($date);
+
         return $this->render('rounds/round.html.twig', [
             'round_years' => $roundYears,
             'round_name' => $roundName,
             'round_participants' => $roundParticipants,
             'round_date' => $date,
+            'round_complete' => $roundCompleteness,
             'callSearch' => $callsignSearchForm->createView(),
         ]);
 

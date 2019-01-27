@@ -2,13 +2,13 @@
 
 {% block title %}
 {% if year is defined %}
-  {% trans %}lyac.rounds.title{% endtrans %} - {{ year }}
+  {% trans %}menu.rounds{% endtrans %} - {{ year }}
 {% elseif round_date is defined %}
   {% trans %}term.round{% endtrans %} {{ round_date }}
   {% if round_name is defined %} ({{ round_name }}){% endif %}
   {% if round_callsign is defined %} - {{ round_callsign }}{% endif %}
 {% else %}
-  {% trans %}lyac.rounds.title{% endtrans %}
+  {% trans %}menu.rounds{% endtrans %}
 {% endif %}
 {% endblock %}
 

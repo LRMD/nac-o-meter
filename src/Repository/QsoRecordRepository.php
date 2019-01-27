@@ -21,9 +21,9 @@ class QsoRecordRepository extends ServiceEntityRepository
         parent::__construct($registry, QsoRecord::class);
     }
 
-    public function getLogsNotReceived($roundDate)
+    private function getDistinctParticipantQuery($roundDate)
     {
-        $calls = $this->getEntityManager()->getRepository(Log::class)
+        return $this->getEntityManager()->getRepository(Log::class)
             ->createQueryBuilder('l2')
             ->select('c.callsign')
             ->distinct('c.callsign')
@@ -34,22 +34,53 @@ class QsoRecordRepository extends ServiceEntityRepository
             )
             ->setParameter('rdate', $roundDate)
             ->setParameter('ly', 'LY%')
-            ;
+        ;
+    }
 
+    private function getDistinctCorrespondentQuery($roundDate)
+    {
         return $this->createQueryBuilder('q')
             ->leftJoin('App\Entity\Log', 'l', 'WITH', 'l.logid=q.logid')
             ->distinct('q.callsign')
             ->select('q.callsign')
             ->where(
                 'q.callsign LIKE :ly',
-                'l.date = :rdate',
-                $this->createQueryBuilder('c')->expr()->notIn('q.callsign',$calls->getDQL())
+                'l.date = :rdate'
             )
             ->setParameter('rdate', $roundDate)
             ->setParameter('ly', 'LY%')
+        ;
+    }
+
+    public function getLogsNotReceived($roundDate)
+    {
+        return $this->getDistinctCorrespondentQuery($roundDate)
+            ->andWhere($this->createQueryBuilder('c')
+                ->expr()
+                ->notIn(
+                    'q.callsign',
+                    $this->getDistinctParticipantQuery($roundDate)->getDQL()
+                )
+            )
             ->getQuery()
             ->getResult()
-            ;
+        ;
+    }
+
+    public function getDistinctCorrespondents($roundDate)
+    {
+        return $this->getDistinctCorrespondentQuery($roundDate)
+            ->getQuery()
+            ->getScalarResult()
+        ;
+    }
+
+    public function getDistinctParticipants($roundDate)
+    {
+        return $this->getDistinctParticipantQuery($roundDate)
+            ->getQuery()
+            ->getScalarResult()
+        ;
     }
 
     public function getTopClaimedScores($roundid, $maxresults, $ly = true)

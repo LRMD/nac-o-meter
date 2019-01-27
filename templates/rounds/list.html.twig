@@ -3,7 +3,16 @@
   <div class="card-body">
     <h5 class="card-title">{% trans %}term.round{% endtrans %}: {{ round_date }}
     <small class="text-muted">({{ round_name }})</small></h5>
-    <h6 class="card-subtitle text-muted">{% trans %}lyac.rounds.participants{% endtrans %}: {{ round_participants|length }} </h6>
+    <h6 class="card-subtitle text-muted">{% trans %}lyac.rounds.participants{% endtrans %}: {{ round_participants|length }}</h6>
+    <div class="progress">
+      <div class="progress-bar"
+           role="progressbar"
+           style="width: {{ round_complete * 100 }}%"
+           aria-valuenow="{{ round_complete * 100 }}"
+           aria-valuemin="0" aria-valuemax="100">
+      {% trans %}term.complete{% endtrans %}:  {{ (round_complete * 100) | round }}%
+      </div>
+    </div>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -27,5 +36,4 @@
     </tbody>
     </table>
   </div>
-
 </div>
