@@ -67,6 +67,22 @@ class QsoRecordRepository extends ServiceEntityRepository
         ;
     }
 
+    public function getDistinctCorrespondents($roundDate)
+    {
+        return $this->getDistinctCorrespondentQuery($roundDate)
+            ->getQuery()
+            ->getScalarResult()
+        ;
+    }
+
+    public function getDistinctParticipants($roundDate)
+    {
+        return $this->getDistinctParticipantQuery($roundDate)
+            ->getQuery()
+            ->getScalarResult()
+        ;
+    }
+
     public function getTopClaimedScores($roundid, $maxresults, $ly = true)
     {
         if ($ly) {
