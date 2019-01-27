@@ -36,11 +36,16 @@ class RoundController extends AbstractController
                 array( 'year' => $lastYear )
             );
         }
+        $roundsThisYear = $roundRepository->getAllWithLogCount($validYear);
+
+        foreach ($roundsThisYear as $k => $r) {
+            $roundsThisYear[$k]['complete'] = $this->roundCompleteness($r[0]->getDate());
+        }
 
         return $this->render('rounds/index.html.twig', [
             'round_years' => $allRoundYears,
             'year' => $year,
-            'round_count' => $roundRepository->getAllWithLogCount($validYear),
+            'rounds_this_year' => $roundsThisYear,
             'controller_name' => 'RoundController',
             'callSearch' => $callsignSearchForm->createView(),
         ]);
