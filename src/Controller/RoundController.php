@@ -62,7 +62,9 @@ class RoundController extends AbstractController
         $allCalls = array_merge($roundLogsReceived, $roundAllQSOs);
         $received = sizeof($roundLogsReceived);
         $total = sizeof(array_unique($allCalls));
-
+        if ($total == 0) {
+            return $total;
+        }
         $percent = $received / $total;
         return $percent;
     }
