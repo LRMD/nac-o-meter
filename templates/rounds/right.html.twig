@@ -1,7 +1,7 @@
 
 <div class="row">
 
-{% for round in round_count %}
+{% for round in rounds_this_year %}
 <div class="col col-lg-3">
     <div class="card p-2 mb-2">
     <div class="card-body">
@@ -19,6 +19,15 @@
         <div class="card-text">{% trans %}lyac.rounds.qso{% endtrans %}: {{ round.cq }}</div>
     </div>
     <div class="card-footer">
+
+    <div class="progress">
+      <div class="progress-bar"
+           role="progressbar"
+           style="width: {{ round.complete * 100 }}%"
+           aria-valuenow="{{ round.complete * 100 }}"
+           aria-valuemin="0" aria-valuemax="100">{{ (round.complete * 100) | round }}%
+      </div>
+    </div>
 
         {% set stars = ( round.cq / 200 ) + 1 %}
         {% for i in 1..stars|number_format %}
