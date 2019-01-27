@@ -46,6 +46,26 @@ class RoundController extends AbstractController
         ]);
     }
 
+    private function roundCompleteness($date)
+    {
+        $qsoRepository = $this->getDoctrine()->getRepository(QsoRecord::class);
+        $column = 'callsign';
+
+        $roundLogsReceived = array_column(
+            $qsoRepository->getDistinctParticipants($date),
+            $column
+        );
+        $roundAllQSOs = array_column(
+            $qsoRepository->getDistinctCorrespondents($date),
+            $column
+        );
+        $allCalls = array_merge($roundLogsReceived, $roundAllQSOs);
+        $received = sizeof($roundLogsReceived);
+        $total = sizeof(array_unique($allCalls));
+
+        $percent = $received / $total;
+        return $percent;
+    }
 
     private function validateRound($date)
     {
@@ -114,11 +134,14 @@ class RoundController extends AbstractController
         $roundYears = $roundRepository->findAllRoundYears();
         $roundParticipants = $logRepository->findCallsignsByRoundDate($date);
 
+        $roundCompleteness = $this->roundCompleteness($date);
+
         return $this->render('rounds/round.html.twig', [
             'round_years' => $roundYears,
             'round_name' => $roundName,
             'round_participants' => $roundParticipants,
             'round_date' => $date,
+            'round_complete' => $roundCompleteness,
             'callSearch' => $callsignSearchForm->createView(),
         ]);
 
