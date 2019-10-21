@@ -1,6 +1,6 @@
 {
     "beberlei/doctrineextensions": {
-        "version": "v1.1.5"
+        "version": "v1.2.3"
     },
     "deployer/deployer": {
         "version": "v6.3.0"
