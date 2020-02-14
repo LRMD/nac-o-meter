@@ -18,6 +18,6 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "yarn": "^1.12.3"
+        "yarn": "^1.22.0"
     }
 }
