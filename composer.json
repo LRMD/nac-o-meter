@@ -15,7 +15,7 @@
         "phpdocumentor/reflection-docblock": "^5.3",
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/asset": "4.1.*",
-        "symfony/cache": "4.1.*",
+        "symfony/cache": "4.2.*",
         "symfony/console": "4.1.*",
         "symfony/dotenv": "4.1.*",
         "symfony/expression-language": "4.1.*",
