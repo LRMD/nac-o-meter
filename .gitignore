@@ -26,3 +26,4 @@
 /results/*.csv
 # do not put any bash scripts
 *.sh
+composer.phar
