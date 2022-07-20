@@ -6,6 +6,11 @@
 parameters:
     locale: 'lt'
 
+framework:
+    cache:
+        app: cache.adapter.null
+        system: cache.adapter.null
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -29,7 +34,6 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    twig.extension.intl:
-        class: Twig_Extensions_Extension_Intl
-        tags:
-            - { name: twig.extension }
+    cache.adapter.null:
+        class: Symfony\Component\Cache\Adapter\NullAdapter
+        arguments: [~]

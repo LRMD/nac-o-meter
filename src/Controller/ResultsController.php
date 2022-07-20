@@ -16,7 +16,7 @@ class ResultsController extends AbstractController
     public function index($year, $band)
     {
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
-        $results = new ResultParser($this->getParameter('kernel.root_dir'));
+        $results = new ResultParser($this->getParameter('kernel.project_dir') . '/public_html/');
         $years = $results->getAllYears();
 
         return $this->render('results/index.html.twig', [
