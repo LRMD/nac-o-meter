@@ -34,6 +34,8 @@ class CallSignInfoController extends AbstractController
             'callsign.html.twig',
             array(
                 'callsign' => $callsign,
+                'reports' => sizeof($logRepository->findLastLogsByCallsign($callsign, 9999)),
+                'wwls' => '',
                 'loghistory' => $lastLogsByCallsign,
                 'callSearch' => $callsignSearchForm->createView()
             )
