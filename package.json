@@ -20,5 +20,6 @@
     "dependencies": {
         "fsevents": "^2.3.2",
         "yarn": "^1.12.3"
-    }
+    },
+    "packageManager": "yarn@3.2.2"
 }

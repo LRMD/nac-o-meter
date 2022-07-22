@@ -34,11 +34,19 @@ your own antennae for a particular radio band.
 
 ### Requirements
 
-* PHP > 7.1
+* PHP > 7.4
 * MySQL or MariaDB protocol version 10
-* Yarn > 1.12
+* Yarn > 3.2
 
 ### Deployment
+
+#### Development:
+
+Just run:
+
+```
+docker compose up
+```
 
 #### Production:
 
@@ -56,8 +64,6 @@ Upload the following folders to the web server:
 * `src/ `
 * `templates/`
 * `translations/`
-
-Do not forget to manually remove Symfony's cache in the `var/cache/prod/` directory.
 
 ## References
 * [1] - http://vushf.dk/
