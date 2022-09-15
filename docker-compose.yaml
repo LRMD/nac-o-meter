@@ -28,8 +28,15 @@ services:
         TIMEZONE: ${TIMEZONE}
     volumes:
         - .:/var/www/symfony
-  composer:
-    image: composer
+  node:
+    image: node
     volumes:
       - .:/app
-    command: install
+    working_dir: /app
+    command:
+      - /bin/bash
+      - -c
+      - |
+        npm install
+        npx sb upgrade
+        yarn encore dev
