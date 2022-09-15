@@ -418,6 +418,9 @@
             "ref": "369b5b29dc52b2c190002825ae7ec24ab6f962dd"
         }
     },
+    "symfony/ux-chartjs": {
+        "version": "v2.4.0"
+    },
     "symfony/validator": {
         "version": "4.1",
         "recipe": {

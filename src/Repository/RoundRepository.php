@@ -30,6 +30,17 @@ class RoundRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findNextRoundDates() {
+        return $this->createQueryBuilder('r')
+            ->where('r.date >= :after')
+            ->orderBy('r.date','ASC')
+            ->setParameter('after', date('Y-m-d'))
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function findAllRoundYears() {
         return $this->createQueryBuilder('r')
             ->select('DISTINCT YEAR(r.date) y')
