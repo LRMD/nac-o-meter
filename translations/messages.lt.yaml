@@ -15,6 +15,7 @@ lyac:
     lastreport: Paskutinė ataskaita gauta:
     userstats: Viso dalyvių (ataskaitų) gauta šį mėnesį:
     lastusers: Paskutiniai ataskaitas robotui pateikę dalyviai:
+    wheretosend: LYAC ataskaitas REG1TEST formatu kviečiame siųsti robotui el. paštu
     notreceived: Negautos ataskaitos (LY):
   callsign:
     title: Šaukinio informacija
