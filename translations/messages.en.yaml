@@ -14,8 +14,9 @@ lyac:
     title: Summary of the current month
     lastreport: Last log seen by robot on:
     userstats: Total &#35; of participants (logs received):
-    lastusers: Last calls that have submitted logs:
-    notreceived: Logs not received (LY only):
+    lastusers: Latest log submissions:
+    wheretosend: Please submit your LYAC/NAC logs in the REG1TEST format to the email address
+    notreceived: Missing logs (LY only):
   callsign:
     title: Callsign information
     participant: Summary of
