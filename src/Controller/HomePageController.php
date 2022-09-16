@@ -9,6 +9,8 @@ use App\Entity\Callsign;
 use App\Entity\QsoRecord;
 use App\Form\CallsignSearch;
 use Doctrine\ORM\EntityRepository;
+use Symfony\UX\Chartjs\Model\Chart;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +22,7 @@ class HomePageController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(Request $request)
+    public function index(Request $request, ChartBuilderInterface $chartBuilder)
     {
         $logRepository = $this->getDoctrine()->getRepository(Log::class);
         $qsoRepository = $this->getDoctrine()->getRepository(QsoRecord::class);
@@ -32,6 +34,28 @@ class HomePageController extends AbstractController
         $lastDate = $logRepository->findLastDate()[1];
         $lastMonthStats = $logRepository->findLastMonthStats($lastDate);
         $lastRounds = $roundRepository->findLastRoundDates($lastDate);
+        $upcomingRounds = $roundRepository->findNextRoundDates();
+
+        foreach ($lastMonthStats as $statItem) {
+          $statLabels[] = $statItem['bandFreq'];
+          $statData[] = $statItem['count'];
+        }
+
+        $lastMonthStatsChart = $chartBuilder->createChart(Chart::TYPE_PIE);
+        $lastMonthStatsChart->setData([
+          'labels' => $statLabels,
+          'datasets' => [
+            [
+              'label' => 'Month stats',
+              'backgroundColor' => [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)'
+              ],
+              'data' => $statData,
+            ],
+          ],
+        ]);
 
         $logsNotReceived = [];
         $topFiveScores = [];
@@ -53,6 +77,8 @@ class HomePageController extends AbstractController
           'topFiveScores' => $topFiveScores,
           'lastDate' => $lastMsgDate->format('Y-m-d H:i'),
           'lastRounds' => $lastRounds,
+          'lastMonthStatsChart' => $lastMonthStatsChart,
+          'upcomingRounds' => $upcomingRounds,
           'lastCallsigns' => $lastCallsigns,
           'logsNotReceived' => $logsNotReceived,
           'callSearch' => $callsignSearchForm->createView(),

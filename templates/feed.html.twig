@@ -10,6 +10,10 @@
        {{ s.bandFreq }} -
        <b>{{ s.count }}</b>{% if not loop.last %}, {% endif %}
     {% endfor %}
+    
+    <div class="chart-container" style="position: relative; height:350px; width:350px">
+      {{ render_chart(lastMonthStatsChart) }}
+    </div>
 
     </p>
     <h6 class="card-subtitle text-muted">{% trans %}lyac.month.lastusers{% endtrans %}</h6>
