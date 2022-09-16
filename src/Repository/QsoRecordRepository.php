@@ -126,7 +126,9 @@ class QsoRecordRepository extends ServiceEntityRepository
                     'q.callsign',
                     'SUBSTRING(w.wwl,1,4) as w_wwl',
                     'SUBSTRING(q.gridsquare,1,4) as q_wwl',
-                    'QRB(q.gridsquare, w.wwl) as qrb'
+                    'QRB(q.gridsquare, w.wwl) as qrb',
+                    'grid2lat(q.gridsquare) as lat',
+                    'grid2lon(q.gridsquare) as lon'
             )
             ->leftJoin('App\Entity\Log', 'l', 'WITH', 'l.logid=q.logid')
             ->leftJoin('App\Entity\Callsign', 'c', 'WITH', 'l.callsignid=c.callsignid')

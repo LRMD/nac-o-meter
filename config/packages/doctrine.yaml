@@ -33,6 +33,8 @@ doctrine:
         dql:
             string_functions:
                 qrb: App\Utils\QRBFunction
+                grid2lat: App\Utils\Grid2LatFunction
+                grid2lon: App\Utils\Grid2LonFunction
             datetime_functions:
                 date_format: DoctrineExtensions\Query\Mysql\DateFormat
                 year: DoctrineExtensions\Query\Mysql\Year
