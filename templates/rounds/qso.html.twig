@@ -3,6 +3,10 @@
   <div class="card-body">
     <h4 class="card-title">{% trans %}term.callsign{% endtrans %}: {{ round_callsign }} @ {{ round_log[0].w_wwl }}</h1>
     <h6 class="card-title text-muted">{% trans %}term.round{% endtrans %}: {{ round_date }}</h6>
+{% block stylesheets %}
+    <link href="{{ asset('build/map.css') }}" rel="stylesheet" />
+{% endblock %}
+    <div id="map" class="map"></div>
 
     <table class="table table-striped">
       <thead>
@@ -27,3 +31,28 @@
   </div>
 
 </div>
+
+<div class="js-user-location" data-points='{
+  "operator": {
+    "callsign": "{{ round_callsign }}",
+    "location": {
+      "lon": "{{ round_log[0].mylon }}",
+      "lat": "{{ round_log[0].mylat }}"
+    }
+  },
+  "points": [
+{% for entry in round_log %}
+  {
+    "callsign": "{{ entry.callsign }}",
+    "location": {
+      "lon": "{{ entry.lon }}",
+      "lat": "{{ entry.lat }}"
+    }
+  },
+{% endfor %}
+  {}
+]}'></div>
+
+{% block javascript %}
+    <script src="{{ asset('build/map.js') }}"></script>
+{% endblock %}
