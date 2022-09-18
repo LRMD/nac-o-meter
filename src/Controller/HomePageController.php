@@ -50,7 +50,9 @@ class HomePageController extends AbstractController
               'backgroundColor' => [
                   'rgb(255, 99, 132)',
                   'rgb(54, 162, 235)',
-                  'rgb(255, 205, 86)'
+                  'rgb(255, 205, 86)',
+                  'rgb(34, 139, 34)',
+                  'rgb(148, 0, 211)'
               ],
               'data' => $statData,
             ],
