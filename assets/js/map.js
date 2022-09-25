@@ -69,7 +69,23 @@ function addMapEntries(items,op) {
         if (items[i].location &&
             ( items[i].location.lon != op.location.lon &&
             items[i].location.lat != op.location.lat ) ) {
-            var f = new Feature({
+
+              var l = new Feature({
+                geometry: new LineString([
+                  fromLonLat([ op.location.lon, op.location.lat ]),
+                  fromLonLat([ items[i].location.lon, items[i].location.lat ])
+                ]),
+                name: 'QSO',
+                style: new Style.Style({
+                  stroke : new Style.Stroke({
+                    color: '#0000ff',
+                    width: 5
+                  })
+                })
+              });
+              vs.addFeature(l);
+
+              var f = new Feature({
                 name: items[i].callsign,
                 geometry: new Point(fromLonLat(
                     [ items[i].location.lon, items[i].location.lat ]
