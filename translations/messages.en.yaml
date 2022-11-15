@@ -4,6 +4,10 @@ lyac:
   top5:
     title: LYAC TOP5 DX claimed scores
     subtitle: Open Class participants by their claimed results:
+    tabs:
+      main: Main class
+      fm: FM only
+      ft8: FT8 checklog
   results:
     title: LYAC results
     subtitle: Final results by year/round:

@@ -35,6 +35,8 @@ class HomePageController extends AbstractController
         $lastMonthStats = $logRepository->findLastMonthStats($lastDate);
         $lastRounds = $roundRepository->findLastRoundDates($lastDate);
         $upcomingRounds = $roundRepository->findNextRoundDates();
+        
+        $locale = $this->getParameter('kernel.default_locale') == $request->getLocale();
 
         foreach ($lastMonthStats as $statItem) {
           $statLabels[] = $statItem['bandFreq'];
@@ -68,7 +70,19 @@ class HomePageController extends AbstractController
           $topFiveScores[$dateStr] = $qsoRepository->getTopClaimedScores(
             $lastRound->getRoundId(),
             5,
-            $this->getParameter('kernel.default_locale') == $request->getLocale()
+            $locale
+          );
+          $topFiveScoresFM[$dateStr] = $qsoRepository->getTopClaimedScores(
+            $lastRound->getRoundId(),
+            5,
+            $locale,
+            'fm'
+          );
+          $topFiveScoresFT8[$dateStr] = $qsoRepository->getTopClaimedScores(
+            $lastRound->getRoundId(),
+            5,
+            $locale,
+            'ft8'
           );
         }
 
@@ -77,6 +91,8 @@ class HomePageController extends AbstractController
         return $this->render('home.html.twig', array(
           'lastMonthStats' => $lastMonthStats,
           'topFiveScores' => $topFiveScores,
+          'topFiveScoresFM' => $topFiveScoresFM,
+          'topFiveScoresFT8' => $topFiveScoresFT8,
           'lastDate' => $lastMsgDate->format('Y-m-d H:i'),
           'lastRounds' => $lastRounds,
           'lastMonthStatsChart' => $lastMonthStatsChart,

@@ -4,6 +4,10 @@ lyac:
   top5:
     title: LYAC roboto mėnesio TOP5
     subtitle: Geriausius rezultatus pareiškė:
+    tabs:
+      main: Pagrindinė
+      fm: FM įskaita
+      ft8: FT8 checklog
   results:
     title: LYAC rezultatai
     subtitle: Išteisėjauti pagal metus/turą:

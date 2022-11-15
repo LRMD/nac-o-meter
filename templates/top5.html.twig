@@ -6,20 +6,87 @@
 
     {% for date, topFive in topFiveScores %}
     {% if topFive is not empty %}
+      {% set roundName = lastRounds[loop.index-1].name %}
       <h6><a href="{{ path('round', { 'date': date |date('Y-m-d') }) }}">{{ date |date('Y-m-d') }}</a>
-      <small class="card-subtitle mb-2 text-muted"> ({{ lastRounds[loop.index-1].name }})</small>
+      <small class="card-subtitle mb-2 text-muted"> ({{ roundName }})</small>
       </h6>
-      <table class="table table-sm">
-        <tbody>
-          {% for participant in topFive %}
-          <tr>
-            <th scope="row">{{ loop.index }}.</th>
-            <td><a href="{{ path( 'call_search', {'callsign': participant.callsign} ) }}">{{ participant.callsign }}</a></td>
-            <td>{{ participant.total_points }}</td>
-          </tr>
-          {% endfor %}
-      </tbody>
-      </table>
+
+      <ul class="nav nav-tabs" id="top5" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link p-1 active" 
+            id="{{ roundName }}-main-tab" data-toggle="tab" data-bs-toggle="tab" data-bs-target="#{{ roundName }}-main" 
+            type="button" role="tab" aria-controls="{{ roundName }}-main" aria-selected="true">
+            <small>{% trans %}lyac.top5.tabs.main{% endtrans %}</small>
+            </button>
+        </li>
+
+        <li class="nav-item" role="presentation">
+          <button class="nav-link p-1 {% if topFiveScoresFM[date]|length == 0 %}disabled{% endif %}" 
+            id="{{ roundName }}-fm-tab" data-toggle="tab" data-bs-toggle="tab" data-bs-target="#{{ roundName }}-fm" 
+            type="button" role="tab" aria-controls="{{ roundName }}-fm" aria-selected="false">
+            <small>{% trans %}lyac.top5.tabs.fm{% endtrans %} ({{ topFiveScoresFM[date] | length }}) </small>
+            </button>
+        </li>
+
+        <li class="nav-item" role="presentation">
+          <button class="nav-link p-1 {% if topFiveScoresFT8[date]|length == 0 %}disabled{% endif %}" 
+            id="{{ roundName }}-ft8-tab" data-toggle="tab" data-bs-toggle="tab" data-bs-target="#{{ roundName }}-ft8" 
+            type="button" role="tab" aria-controls="{{ roundName }}-ft8" aria-selected="false">
+            <small>{% trans %}lyac.top5.tabs.ft8{% endtrans %} ({{ topFiveScoresFT8[date] | length }}) </small>
+            </button>
+        </li>
+      </ul>
+      
+      <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade show active" id="{{ roundName }}-main" role="tabpanel" aria-labelledby="main-tab">
+          <table class="table table-sm">
+            <tbody>
+              {% for participant in topFive %}
+              <tr>
+                <th {% if loop.index == 1 %} class="border-0"{% endif %} scope="row">{{ loop.index }}.</th>
+                <td {% if loop.index == 1 %} class="border-0"{% endif %}><a href="{{ path( 'call_search', {'callsign': participant.callsign} ) }}">{{ participant.callsign }}</a></td>
+                <td {% if loop.index == 1 %} class="border-0"{% endif %}>{{ participant.total_points }}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+          </table>
+        </div>
+        
+        <div class="tab-pane fade" id="{{ roundName }}-fm" role="tabpanel" aria-labelledby="fm-tab">
+        
+          <table class="table table-sm">
+            <tbody>
+              {% for participant in topFiveScoresFM[date] %}
+              <tr>
+                <th {% if loop.index == 1 %} class="border-0"{% endif %} scope="row">{{ loop.index }}.</th>
+                <td {% if loop.index == 1 %} class="border-0"{% endif %}><a href="{{ path( 'call_search', {'callsign': participant.callsign} ) }}">{{ participant.callsign }}</a></td>
+                <td {% if loop.index == 1 %} class="border-0"{% endif %}>{{ participant.total_points }}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+          </table>
+        
+        </div>
+
+        <div class="tab-pane fade" id="{{ roundName }}-ft8" role="tabpanel" aria-labelledby="ft8-tab">
+        
+          <table class="table table-sm">
+            <tbody>
+              {% for participant in topFiveScoresFT8[date] %}
+              <tr>
+                <th {% if loop.index == 1 %} class="border-0"{% endif %} scope="row">{{ loop.index }}.</th>
+                <td {% if loop.index == 1 %} class="border-0"{% endif %}><a href="{{ path( 'call_search', {'callsign': participant.callsign} ) }}">{{ participant.callsign }}</a></td>
+                <td {% if loop.index == 1 %} class="border-0"{% endif %}>{{ participant.total_points }}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+          </table>
+        
+        
+        </div>
+
+      </div>
     {% endif %}
     {% endfor %}
   </div>
