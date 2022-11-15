@@ -12,7 +12,7 @@
                 <tr>
                 <th scope="col">{% trans %}lyac.results.callsign{% endtrans %}</th>
                 {% for m in 1..12 %}
-                <th>{{ '2020-' ~ m ~ '-01' | date('Y-m-d') }}</th>
+                <th>{{ m }}</th>
                 {% endfor %}
                 <th scope="col">{% trans %}lyac.results.total{% endtrans %}</th>
                 </tr>

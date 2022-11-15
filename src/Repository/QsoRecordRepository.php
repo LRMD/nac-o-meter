@@ -83,13 +83,19 @@ class QsoRecordRepository extends ServiceEntityRepository
         ;
     }
 
-    public function getTopClaimedScores($roundid, $maxresults, $ly = true)
+    public function getTopClaimedScores($roundid, $maxresults, $ly = true, $modeFilter = '')
     {
         if ($ly) {
-            $condition = 'c.callsign LIKE :ly';
+            $lyCondition = 'c.callsign LIKE :ly';
         }
         else {
-            $condition = 'c.callsign NOT LIKE :ly';
+            $lyCondition = 'c.callsign NOT LIKE :ly';
+        }
+        // 5: FM, 6,9: FT8/RTTY
+        switch ($modeFilter) {
+            case 'fm': $modeCondition = 'q.modeid = 5'; break;
+            case 'ft8': $modeCondition = 'q.modeid > 5'; break;
+            default: $modeCondition = 'q.modeid > 0';
         }
         return $this->createQueryBuilder('q')
             ->select('c.callsign',
@@ -108,7 +114,7 @@ class QsoRecordRepository extends ServiceEntityRepository
             ->leftJoin('App\Entity\Callsign', 'c', 'WITH', 'l.callsignid=c.callsignid')
             ->leftJoin('App\Entity\Wwl', 'w', 'WITH', 'l.wwlid=w.wwlid')
             ->leftJoin('App\Entity\Round', 'r', 'WITH', 'l.date=r.date')
-            ->where('r.roundid = :roundid', $condition)
+            ->where('r.roundid = :roundid', $lyCondition, $modeCondition)
             ->setParameter('roundid', $roundid)
             ->setParameter('ly', 'LY%')
             ->groupBy('l.logid')

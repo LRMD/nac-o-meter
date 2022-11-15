@@ -4,6 +4,10 @@ lyac:
   top5:
     title: ТОП5 LYAC робота за месяц
     subtitle: Лучшие результаты заявили:
+    tabs:
+      main: Главная
+      fm: Только FM
+      ft8: FT8 checklog
   results:
     title: LYAC результаты
     subtitle: Результаты после судейства по годам/туру:
