@@ -39,7 +39,7 @@ class LogRepository extends ServiceEntityRepository
     private static function subtractOneMonth($date)
     {
         $_d = new \DateTime($date);
-        return $_d->modify('-1 month');
+        return $_d->modify('-4 weeks');
     }
 
     public function findLastCallsigns($maxres)
