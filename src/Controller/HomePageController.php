@@ -33,19 +33,44 @@ class HomePageController extends AbstractController
         $lastMsgDate = $msgRepository->getLastEntity()->getDate();
         $lastDate = $logRepository->findLastDate()[1];
         $lastMonthStats = $logRepository->findLastMonthStats($lastDate);
+        $lastMonthModeStats = $logRepository->findLastMonthModeStats($lastDate);
+
         $lastRounds = $roundRepository->findLastRoundDates($lastDate);
         $upcomingRounds = $roundRepository->findNextRoundDates();
         
         $locale = $this->getParameter('kernel.default_locale') == $request->getLocale();
 
-        foreach ($lastMonthStats as $statItem) {
-          $statLabels[] = $statItem['bandFreq'];
-          $statData[] = $statItem['count'];
+        foreach ($lastMonthModeStats as $modeStatItem) {
+          $modeStatLabels[] = $modeStatItem['mode'];
+          $modeStatData[] = $modeStatItem['count'];
+        }
+
+        $lastMonthModeStatsChart = $chartBuilder->createChart(Chart::TYPE_PIE);
+        $lastMonthModeStatsChart->setData([
+          'labels' => $modeStatLabels,
+          'datasets' => [
+            [
+              'label' => 'Mode stats',
+              'backgroundColor' => [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)',
+                  'rgb(34, 139, 34)',
+                  'rgb(148, 0, 211)'
+              ],
+              'data' => $modeStatData,
+            ],
+          ],
+        ]);
+
+        foreach ($lastMonthStats as $logStatItem) {
+          $logStatLabels[] = $logStatItem['bandFreq'];
+          $logStatData[] = $logStatItem['count'];
         }
 
         $lastMonthStatsChart = $chartBuilder->createChart(Chart::TYPE_PIE);
         $lastMonthStatsChart->setData([
-          'labels' => $statLabels,
+          'labels' => $logStatLabels,
           'datasets' => [
             [
               'label' => 'Month stats',
@@ -56,7 +81,7 @@ class HomePageController extends AbstractController
                   'rgb(34, 139, 34)',
                   'rgb(148, 0, 211)'
               ],
-              'data' => $statData,
+              'data' => $logStatData,
             ],
           ],
         ]);
@@ -95,7 +120,7 @@ class HomePageController extends AbstractController
           'topFiveScoresFT8' => $topFiveScoresFT8,
           'lastDate' => $lastMsgDate->format('Y-m-d H:i'),
           'lastRounds' => $lastRounds,
-          'lastMonthStatsChart' => $lastMonthStatsChart,
+          'lastMonthStatsChart' => (rand(0,9) > 5 ? $lastMonthModeStatsChart : $lastMonthStatsChart ),
           'upcomingRounds' => $upcomingRounds,
           'lastCallsigns' => $lastCallsigns,
           'logsNotReceived' => $logsNotReceived,

@@ -112,4 +112,19 @@ class LogRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findLastMonthModeStats($date)
+    {
+        return $this->createQueryBuilder('l')
+            ->select('count(q.qsoid) as count')
+            ->leftJoin('App\Entity\QsoRecord','q','WITH', 'q.logid=l.logid')
+            ->leftJoin('App\Entity\Mode', 'm', 'WITH', 'q.modeid=m.modeid')
+            ->addSelect('m.mode')
+            ->where('l.date > :since')
+            ->setParameter('since', $this->subtractOneMonth($date))
+            ->groupBy('m.modeid')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
