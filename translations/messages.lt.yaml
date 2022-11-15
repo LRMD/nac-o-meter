@@ -20,7 +20,7 @@ lyac:
     userstats: Viso dalyvių (ataskaitų) gauta šį mėnesį:
     lastusers: Paskutiniai ataskaitas robotui pateikę dalyviai:
     wheretosend: LYAC ataskaitas REG1TEST formatu kviečiame siųsti robotui el. paštu
-    notreceived: Negautos ataskaitos (LY):
+    notreceived: Negautos LYAC ataskaitos:
   callsign:
     title: Šaukinio informacija
     participant: Dalyvio
