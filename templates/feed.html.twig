@@ -2,30 +2,49 @@
 
   <div class="card-body">
     <h5 class="card-title">{% trans %}lyac.month.title{% endtrans %}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{% trans %}lyac.month.lastreport{% endtrans %}</h6>
-    <p class="card-text">{{ lastDate }}</p>
-    <h6 class="card-subtitle mb-2 text-muted">{% trans %}lyac.month.userstats{% endtrans %}</h6>
-    <p class="card-text">
-    {% for s in lastMonthStats %}
-       {{ s.bandFreq }} -
-       <b>{{ s.count }}</b>{% if not loop.last %}, {% endif %}
-    {% endfor %}
+    <h6 class="card-text mb-2">{% trans %}lyac.month.lastreport{% endtrans %} {{ lastDate | ago }}.</h6>
     
-    <div class="chart-container" style="position: relative; height:350px; width:350px">
-      {{ render_chart(lastMonthStatsChart) }}
+
+    <div class="row">
+
+      <div class="card-text col-sm m-2">
+      
+      <div class="chart-container" style="position: relative; height:300px; width:300px">
+        {{ render_chart(lastMonthStatsChart) }}
+      </div>
+
+      </div>
+      
+      <div class="card-text col-sm m-2">
+
+      <div class="chart-container" style="position: relative; height:300px; width:300px">
+        {{ render_chart(lastMonthModeStatsChart) }}
+      </div>
+
+      </div>
+
     </div>
 
-    </p>
-    <h6 class="card-subtitle text-muted">{% trans %}lyac.month.lastusers{% endtrans %}</h6>
-    <p class="card-text text-success">
+  </div>
+</div>
+
+<p></p>
+
+<div class="card">
+    <div class="card-body">
+
+    <h5 class="card-title text-muted">{% trans %}lyac.month.lastusers{% endtrans %}</h5>
+    
+    <h5 class="card-text">
     {% for c in lastCallsigns  %}
-      <a href="{{ path(
+      <a class="" href="{{ path(
                   'call_search',
                   {'callsign': c.callsign}
                 ) }}">{{ c.callsign }}</a>{% if not loop.last %}, {% endif %}
-    {% endfor %}</p>
+    {% endfor %}
+    </h5>
 
-    <h6 class="card-subtitle mb-2 text-muted">{% trans %}lyac.month.wheretosend{% endtrans %}: <b>lyac@qrz.lt</b>.</h6>
+    <div class="card-text mb-2">{% trans %}lyac.month.wheretosend{% endtrans %}: <b>lyac@qrz.lt</b>.</div>
   </div>
 </div>
 <p></p>

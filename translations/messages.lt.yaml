@@ -16,7 +16,7 @@ lyac:
     selection: Kairiajame meniu pasirinkite metus ir turą
   month:
     title: Bendra šio mėnesio LYAC informacija
-    lastreport: Paskutinė ataskaita gauta:
+    lastreport: Paskutinė ataskaita gauta
     userstats: Viso dalyvių (ataskaitų) gauta šį mėnesį:
     lastusers: Paskutiniai ataskaitas robotui pateikę dalyviai:
     wheretosend: LYAC ataskaitas REG1TEST formatu kviečiame siųsti robotui el. paštu
