@@ -45,6 +45,10 @@ class HomePageController extends AbstractController
           $modeStatData[] = $modeStatItem['count'];
         }
 
+        foreach ($modeStatLabels as $k => $v) {
+          if ($v == 'RTTY') $modeStatLabels[$k] = 'FT8';
+        }
+
         $lastMonthModeStatsChart = $chartBuilder->createChart(Chart::TYPE_PIE);
         $lastMonthModeStatsChart->setData([
           'labels' => $modeStatLabels,
