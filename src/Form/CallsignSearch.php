@@ -17,13 +17,13 @@ class CallsignSearch extends AbstractType
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'searchform.placeholder',
-                    'class' => 'form-control mr-sm-2',
+                    'class' => 'form-control me-2',
                     'autofocus' => true
                 )))
             ->add('save', SubmitType::class, array(
                 'label' => 'searchform.submit',
                 'attr' => array(
-                    'class' => 'btn btn-outline my-2 my-sm-0'
+                    'class' => 'btn btn-primary'
                 )
             ))
         ;

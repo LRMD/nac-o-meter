@@ -68,12 +68,15 @@ class HomePageController extends AbstractController
           $logStatData[] = $logStatItem['count'];
         }
 
-        $lastMonthStatsChart = $chartBuilder->createChart(Chart::TYPE_PIE);
+        $lastMonthStatsChart = $chartBuilder->createChart(Chart::TYPE_BAR);
+        $lastMonthStatsChart->setOptions([
+          'maintainAspectRatio' => false
+        ]);
         $lastMonthStatsChart->setData([
           'labels' => $logStatLabels,
           'datasets' => [
             [
-              'label' => 'Month stats',
+              'label' => 'QSO\'s by band',
               'backgroundColor' => [
                   'rgb(255, 99, 132)',
                   'rgb(54, 162, 235)',
@@ -120,7 +123,8 @@ class HomePageController extends AbstractController
           'topFiveScoresFT8' => $topFiveScoresFT8,
           'lastDate' => $lastMsgDate->format('Y-m-d H:i'),
           'lastRounds' => $lastRounds,
-          'lastMonthStatsChart' => (rand(0,9) > 5 ? $lastMonthModeStatsChart : $lastMonthStatsChart ),
+          'lastMonthStatsChart' => $lastMonthStatsChart,
+          'lastMonthModeStatsChart' => $lastMonthModeStatsChart,
           'upcomingRounds' => $upcomingRounds,
           'lastCallsigns' => $lastCallsigns,
           'logsNotReceived' => $logsNotReceived,

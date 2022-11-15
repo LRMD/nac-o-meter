@@ -16,7 +16,7 @@ lyac:
     selection: Please select the year and round from the menu on the left
   month:
     title: Summary of the current month
-    lastreport: Last log seen by robot on:
+    lastreport: Last LYAC log received
     userstats: Total &#35; of participants (logs received):
     lastusers: Latest log submissions:
     wheretosend: Please submit your LYAC/NAC logs in the REG1TEST format to the email address
