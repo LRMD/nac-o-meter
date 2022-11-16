@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Callsign;
 use App\Entity\Log;
 use App\Form\CallsignSearch;
+use Symfony\UX\Chartjs\Model\Chart;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,9 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CallSignInfoController extends AbstractController
 {
     /**
-     * @Route("/call/{callsign}", name="call_search", defaults={"callsign"=""}, requirements={"callsign"=".+"})
+     * @Route("/call/{callsign}/{year}", name="call_search", defaults={"callsign"="","year"=""}, requirements={"callsign"=".+"})
      */
-    public function callsignSearch($callsign)
+    public function callsignSearch($callsign, ChartBuilderInterface $chartBuilder)
     {
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
         $logRepository = $this->getDoctrine()->getRepository(Log::class);
@@ -28,15 +30,47 @@ class CallSignInfoController extends AbstractController
             );
           }
 
-        $lastLogsByCallsign = $logRepository->findLastLogsByCallsign($callsign);
+        $lastLogsByCallsign = $logRepository->findLastLogsByCallsign($callsign, 9999);
+
+        $aggregatedUserLogs = array();
+        foreach ($lastLogsByCallsign as $k => $v) {
+            $year = $lastLogsByCallsign[$k]['date']->format("Y");
+            if (isset($aggregatedUserLogs[$year])) {
+                $aggregatedUserLogs[$year] = $aggregatedUserLogs[$year] + $lastLogsByCallsign[$k]['count'];
+            }
+            else {
+                $aggregatedUserLogs[$year] = $lastLogsByCallsign[$k]['count'];
+            }
+        }
+
+        $userActivityChart = $chartBuilder->createChart(Chart::TYPE_BAR);
+        $userActivityChart->setOptions([
+          'maintainAspectRatio' => false
+        ]);
+        $userActivityChart->setData([
+          'datasets' => [
+            [
+              'label' => 'QSO / year',
+              'backgroundColor' => [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)',
+                  'rgb(34, 139, 34)',
+                  'rgb(148, 0, 211)'
+              ],
+              'data' => $aggregatedUserLogs
+            ],
+          ],
+        ]);
 
         return $this->render(
             'callsign.html.twig',
             array(
                 'callsign' => $callsign,
-                'reports' => sizeof($logRepository->findLastLogsByCallsign($callsign, 9999)),
+                'reports' => sizeof($lastLogsByCallsign),
                 'wwls' => '',
-                'loghistory' => $lastLogsByCallsign,
+                'loghistory' => array_slice($lastLogsByCallsign,0,20),
+                'userActivityChart' => $userActivityChart,
                 'callSearch' => $callsignSearchForm->createView()
             )
         );
