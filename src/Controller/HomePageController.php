@@ -48,23 +48,20 @@ class HomePageController extends AbstractController
         foreach ($modeStatLabels as $k => $v) {
           if ($v == 'RTTY') $modeStatLabels[$k] = 'FT8';
         }
-
+        $chartColors = [  'rgb(255, 99, 132)',
+                          'rgb(54, 162, 235)',
+                          'rgb(255, 205, 86)',
+                          'rgb(34, 139, 34)',
+                          'rgb(148, 0, 211)'
+        ];
         $lastMonthModeStatsChart = $chartBuilder->createChart(Chart::TYPE_PIE);
         $lastMonthModeStatsChart->setData([
           'labels' => $modeStatLabels,
-          'datasets' => [
-            [
+          'datasets' => [ [
               'label' => 'Mode stats',
-              'backgroundColor' => [
-                  'rgb(255, 99, 132)',
-                  'rgb(54, 162, 235)',
-                  'rgb(255, 205, 86)',
-                  'rgb(34, 139, 34)',
-                  'rgb(148, 0, 211)'
-              ],
+              'backgroundColor' => $chartColors,
               'data' => $modeStatData,
-            ],
-          ],
+            ] ],
         ]);
 
         foreach ($lastMonthStats as $logStatItem) {
@@ -78,19 +75,11 @@ class HomePageController extends AbstractController
         ]);
         $lastMonthStatsChart->setData([
           'labels' => $logStatLabels,
-          'datasets' => [
-            [
+          'datasets' => [ [
               'label' => 'QSO\'s by band',
-              'backgroundColor' => [
-                  'rgb(255, 99, 132)',
-                  'rgb(54, 162, 235)',
-                  'rgb(255, 205, 86)',
-                  'rgb(34, 139, 34)',
-                  'rgb(148, 0, 211)'
-              ],
+              'backgroundColor' => $chartColors,
               'data' => $logStatData,
-            ],
-          ],
+            ] ],
         ]);
 
         $logsNotReceived = [];

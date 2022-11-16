@@ -16,7 +16,7 @@ class CallSignInfoController extends AbstractController
     /**
      * @Route("/call/{callsign}/{year}", name="call_search", defaults={"callsign"="","year"=""}, requirements={"callsign"=".+"})
      */
-    public function callsignSearch($callsign, ChartBuilderInterface $chartBuilder)
+    public function callsignSearch($callsign, $year, ChartBuilderInterface $chartBuilder)
     {
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
         $logRepository = $this->getDoctrine()->getRepository(Log::class);
@@ -36,10 +36,21 @@ class CallSignInfoController extends AbstractController
         foreach ($lastLogsByCallsign as $k => $v) {
             $year = $lastLogsByCallsign[$k]['date']->format("Y");
             if (isset($aggregatedUserLogs[$year])) {
-                $aggregatedUserLogs[$year] = $aggregatedUserLogs[$year] + $lastLogsByCallsign[$k]['count'];
+                $aggregatedUserLogs[$year] = $aggregatedUserLogs[$year] + $v['count'];
             }
             else {
-                $aggregatedUserLogs[$year] = $lastLogsByCallsign[$k]['count'];
+                $aggregatedUserLogs[$year] = $v['count'];
+            }
+        }
+
+        $aggregatedUserModes = array();
+        foreach ($lastLogsByCallsign as $k => $v) {
+            $band = $lastLogsByCallsign[$k]['band'];
+            if (isset($aggregatedUserModes[$mode])) {
+                $aggregatedUserModes[$band] = $aggregatedUserModes[$band] + $v['count'];
+            }
+            else {
+                $aggregatedUserModes[$band] = $v['count'];
             }
         }
 
