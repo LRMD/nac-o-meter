@@ -2,7 +2,7 @@
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.6.3",
         "@hotwired/stimulus": "^3.0.0",
-        "@storybook/manager-webpack5": "^6.5.12",
+        "@storybook/manager-webpack5": "^6.5.16",
         "@symfony/stimulus-bridge": "^3.2.1",
         "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets",
         "@symfony/webpack-encore": "^2.1.0",
