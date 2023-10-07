@@ -39,8 +39,7 @@ services:
       - /bin/bash
       - -c
       - |
-        npm install
-        npx sb upgrade
+        yarn install
         yarn encore dev
     depends_on:
       - php
