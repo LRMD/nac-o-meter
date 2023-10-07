@@ -28,6 +28,8 @@ services:
         TIMEZONE: ${TIMEZONE}
     volumes:
         - .:/var/www/symfony
+    depends_on:
+      - mysql
   node:
     image: node
     volumes:
@@ -40,3 +42,5 @@ services:
         npm install
         npx sb upgrade
         yarn encore dev
+    depends_on:
+      - php
