@@ -46,7 +46,7 @@
               <tr>
                 <th {% if loop.index == 1 %} class="border-0"{% endif %} scope="row">{{ loop.index }}.</th>
                 <td {% if loop.index == 1 %} class="border-0"{% endif %}><a href="{{ path( 'call_search', {'callsign': participant.callsign} ) }}">{{ participant.callsign }}</a></td>
-                <td {% if loop.index == 1 %} class="border-0"{% endif %}>{{ participant.total_points }}</td>
+                <td {% if loop.index == 1 %} class="border-0"{% endif %}><a href="{{ path( 'round_details', {'callsign': participant.callsign | upper, 'date': date |date('Y-m-d')} ) }}">{{ participant.total_points }}</a></td>
               </tr>
               {% endfor %}
           </tbody>
