@@ -80,7 +80,7 @@ class HomePageController extends AbstractController
           'labels' => $logStatLabels,
           'datasets' => [
             [
-              'label' => 'QSO\'s by band',
+              'label' => 'Logs received last month',
               'backgroundColor' => [
                   'rgb(255, 99, 132)',
                   'rgb(54, 162, 235)',
