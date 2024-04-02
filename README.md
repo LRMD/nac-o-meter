@@ -50,9 +50,25 @@ docker compose up
 
 #### Production:
 
+Switch your environment to production:
+
 ```
-APP_ENV=prod composer install --no-dev --optimize-autoloader
-yarn encore production
+docker compose -f docker-production.yaml up
+```
+
+Example lftp script to upload :
+
+```
+lftp -c '
+  open -u $USER,$PASS $HOST;
+  mirror -R --delete --use-cache --verbose --parallel=2 public_html public_html;
+  mirror -R --delete --use-cache --verbose --parallel=2 config config;
+  mirror -R --delete --use-cache --verbose --parallel=2 src src;
+  mirror -R --delete --use-cache --verbose --parallel=2 templates templates;
+  mirror -R --delete --use-cache --verbose --parallel=2 translations translations;
+  mirror -R --delete --use-cache --verbose --parallel=2 vendor vendor;
+  rm -r var/cache/prod;
+'
 ```
 
 Upload the following folders to the web server:
