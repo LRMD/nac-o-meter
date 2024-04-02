@@ -31,13 +31,24 @@ services:
     depends_on:
       - mysql
     environment:
+      APP_ENV: test
+  composer:
+    build:
+      context: .docker/php7-fpm
+      args:
+        TIMEZONE: ${TIMEZONE}
+    volumes:
+        - .:/var/www/symfony
+    depends_on:
+      - php
+    environment:
       COMPOSER_ALLOW_SUPERUSER: 1
+      APP_ENV: test
     command:
       - /bin/bash
       - -c
       - |
         /usr/bin/composer install
-        /usr/local/sbin/php-fpm
   node:
     image: node
     volumes:
@@ -50,4 +61,5 @@ services:
         yarn install
         yarn encore dev
     depends_on:
-      - php
+      composer:
+        condition: service_completed_successfully
