@@ -30,6 +30,14 @@ services:
         - .:/var/www/symfony
     depends_on:
       - mysql
+    environment:
+      COMPOSER_ALLOW_SUPERUSER: 1
+    command:
+      - /bin/bash
+      - -c
+      - |
+        /usr/bin/composer install
+        /usr/local/sbin/php-fpm
   node:
     image: node
     volumes:
