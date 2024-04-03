@@ -1,7 +1,7 @@
 ###> symfony/framework-bundle ###
 .env.prod
 /public_html/bundles/
-/backup/
+/backup*/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
