@@ -86,6 +86,8 @@ class LogRepository extends ServiceEntityRepository
             ->select(
                 'c.callsign', 'b.band',
                 'count(q.logid) as count',
+                'grid2lat(w.wwl) as lat',
+                'grid2lon(w.wwl) as lon',
                 'SUBSTRING(w.wwl,1,4) as wwl')
             ->leftJoin('App\Entity\Callsign','c','WITH', 'c.callsignid=l.callsignid')
             ->leftJoin('App\Entity\QsoRecord','q','WITH', 'q.logid=l.logid')
@@ -93,7 +95,7 @@ class LogRepository extends ServiceEntityRepository
             ->leftJoin('App\Entity\Band','b','WITH', 'b.bandid=l.bandid')
             ->where('l.date = :date')
             ->setParameter('date', $date)
-            ->groupBy('c.callsign','wwl','b.band')
+            ->groupBy('c.callsign','wwl','b.band','lat','lon')
             ->orderBy('count','DESC')
             ->getQuery()
             ->getResult()

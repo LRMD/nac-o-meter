@@ -64,26 +64,30 @@ function getStyleLabel(callsign) {
     })
   }
 
+
 function addMapEntries(items,op) {
     for (var i=0; i<items.length; i++) {
-        if (items[i].location &&
-            ( items[i].location.lon != op.location.lon &&
-            items[i].location.lat != op.location.lat ) ) {
 
-              var l = new Feature({
-                geometry: new LineString([
-                  fromLonLat([ op.location.lon, op.location.lat ]),
-                  fromLonLat([ items[i].location.lon, items[i].location.lat ])
-                ]),
-                name: 'QSO',
-                style: new Style.Style({
-                  stroke : new Style.Stroke({
-                    color: '#0000ff',
-                    width: 5
-                  })
-                })
-              });
-              vs.addFeature(l);
+      if (items[i].location ) {
+
+              if ( op.location !== undefined &&
+                items[i].location.lon != op.location.lon &&
+                items[i].location.lat != op.location.lat ) {
+                var l = new Feature({
+                  geometry: new LineString([
+                    fromLonLat([ op.location.lon, op.location.lat ]),
+                    fromLonLat([ items[i].location.lon, items[i].location.lat ])
+                  ]),
+                  name: 'QSO',
+                  style: new Style.Style({
+                    stroke : new Style.Stroke({
+                      color: '#0000ff',
+                      width: 5
+                    })
+                    })
+                  });
+                  vs.addFeature(l);
+              }
 
               var f = new Feature({
                 name: items[i].callsign,
@@ -101,15 +105,16 @@ function addMapEntries(items,op) {
             console.log(items[i]);
         }
     }
-    var p = new Feature({
-        name: op.callsign,
-        geometry: new Point(fromLonLat( [ op.location.lon, op.location.lat ] ))
-    });
-    p.setStyle( [ getStyleCircle(3), getStyleLabel(op.callsign) ] )
-    vs.addFeature(p);
-
+    if (op.callsign !== undefined) {
+      var p = new Feature({
+          name: op.callsign,
+          geometry: new Point(fromLonLat( [ op.location.lon, op.location.lat ] ))
+      });
+      p.setStyle( [ getStyleCircle(3), getStyleLabel(op.callsign) ] )
+      vs.addFeature(p);
+      view.centerOn(p.getGeometry().getCoordinates(), map.getSize(), [400, 300]);
+    }
     map.addLayer(vl);
-    view.centerOn(p.getGeometry().getCoordinates(), map.getSize(), [400, 300]);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
