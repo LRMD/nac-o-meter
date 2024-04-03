@@ -3,6 +3,13 @@
   <div class="card-body">
     <h5 class="card-title">{% trans %}term.round{% endtrans %}: {{ round_date }}
     <small class="text-muted">({{ round_name }})</small></h5>
+
+    {% block stylesheets %}
+    <link href="{{ asset('build/map.css') }}" rel="stylesheet" />
+    {% endblock %}
+    <div id="map" class="map"></div>
+    <br />
+
     <h6 class="card-subtitle text-muted">{% trans %}lyac.rounds.participants{% endtrans %}: {{ round_participants|length }}</h6>
     <div class="progress">
       <div class="progress-bar"
@@ -37,3 +44,23 @@
     </table>
   </div>
 </div>
+
+<div class="js-user-location" data-points='{
+  "operator": { },
+  "points": [
+{% for entry in round_participants %}
+  {
+    "callsign": "{{ entry.callsign }}",
+    "location": {
+      "lon": "{{ entry.lon }}",
+      "lat": "{{ entry.lat }}"
+    }
+  },
+{% endfor %}
+  {}
+]}'></div>
+
+
+{% block javascript %}
+    <script src="{{ asset('build/map.js') }}"></script>
+{% endblock %}
