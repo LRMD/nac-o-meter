@@ -45,15 +45,16 @@ your own antennae for a particular radio band.
 Just run:
 
 ```
-docker compose up
+podman compose up
 ```
 
 #### Production:
 
-Switch your environment to production:
+Set your environment to production:
 
 ```
-docker compose -f docker-production.yaml up
+podman compose exec app composer install --no-dev --optimize-autoloader
+podman compose exec app yarn encore production
 ```
 
 Example lftp script to upload :
