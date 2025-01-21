@@ -20,6 +20,7 @@ services:
       - -c
       - |
         composer install
+        corepack enable
         yarn install
         yarn encore dev
         php -S 0.0.0.0:8080 -t public_html
