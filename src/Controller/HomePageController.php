@@ -138,23 +138,29 @@ class HomePageController extends AbstractController
     }
 
     /**
-     * @Route("/call_search_handle", name="call_search_handle")
+     * @Route("/call_search_handle", name="call_search_handle", methods={"GET", "POST"})
      */
     public function handleCallSearch(Request $request)
     {
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
         $callsignSearchForm->handleRequest($request);
+
+        // Handle both GET and POST methods
+        $callsign = $request->get('callsign');
+        if ($request->isMethod('GET') && $callsign) {
+            return $this->redirectToRoute('call_search', ['callsign' => $callsign]);
+        }
+
         if ($callsignSearchForm->isSubmitted() && $callsignSearchForm->isValid()) {
             $data = $callsignSearchForm->getData();
             return $this->redirectToRoute(
-              'call_search',
-              array(
-                'callsign' => $data['callsign']
-              )
+                'call_search',
+                ['callsign' => $data['callsign']]
             );
         }
         
-        // If form is not valid or not submitted, redirect back to home
+        // If form is not valid or not submitted, redirect back to home with a flash message
+        $this->addFlash('error', 'Please enter a valid callsign');
         return $this->redirectToRoute('home');
     }
 }
