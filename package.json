@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "ol": "^7.1.0",
-        "yarn": "^1.12.3"
+        "yarn": "^1.22.22"
     },
     "packageManager": "yarn@3.2.2"
 }

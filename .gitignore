@@ -29,3 +29,4 @@ composer.phar
 .yarn/releases
 .yarn/sdks
 .yarn/versions
+repomix-output.txt

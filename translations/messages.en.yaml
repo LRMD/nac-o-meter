@@ -42,6 +42,7 @@ menu:
   awards: Awards
   reports: Reports
   archive: Archive
+  rules: Rules
 searchform:
   placeholder: Enter callsign
   submit: Submit
@@ -52,3 +53,6 @@ term:
   callsign: Callsign
   band: Band
   complete: Complete
+rules:
+  title: Rules
+  menu: Rules

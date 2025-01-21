@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'rules.title'|trans }}{% endblock %}
+
+{% block breadcrumb_items %}
+  <li class="breadcrumb-item active" aria-current="page">{{ 'rules.title'|trans }}</li>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+  <h1>{{ 'rules.title'|trans }}</h1>
+
+  <ul class="nav nav-tabs" id="rulesTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="lt-tab" data-bs-toggle="tab" href="#lt" role="tab" aria-controls="lt" aria-selected="true">LT</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="en-tab" data-bs-toggle="tab" href="#en" role="tab" aria-controls="en" aria-selected="false">EN</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="uk-tab" data-bs-toggle="tab" href="#uk" role="tab" aria-controls="uk" aria-selected="false">UK</a>
+    </li>
+  </ul>
+
+  <div class="tab-content pt-4" id="rulesTabContent">
+    <div class="tab-pane fade show active" id="lt" role="tabpanel" aria-labelledby="lt-tab">
+      <h2>LYAC Taisyklės</h2>
+      <h3>LRMD LYAC – Lietuvos UTB Aktyvumo dienos nuostatai</h3>
+
+      <h4>DATA</h4>
+      <ul>
+        <li>144 MHz, kiekvieno mėnesio 1-asis antradienis</li>
+        <li>432 MHz, kiekvieno mėnesio 2-asis antradienis</li>
+        <li>1,3 GHz, kiekvieno mėnesio 3-iasis antradienis</li>
+        <li>2,4 GHz ir aukščiau, kiekvieno mėnesio 4-asis antradienis</li>
+      </ul>
+
+      <!-- Rest of Lithuanian rules content -->
+    </div>
+    <div class="tab-pane fade" id="en" role="tabpanel" aria-labelledby="en-tab">
+      <h2>Rules</h2>
+      <h3>LY VHF ACTIVITY CONTEST (LYAC) OPEN CLASS RULES</h3>
+
+      <h4>PARTICIPANTS</h4>
+      <p>All amateurs in LY and other countries are invited!</p>
+
+      <h4>DATES</h4>
+      <ul>
+        <li>144 MHz, 1-st Tuesday, every month</li>
+        <li>432 MHz, 2-nd Tuesday, every month</li>
+        <li>1,3 GHz, 3-rd Tuesday, every month</li>
+        <li>2,4 GHz and up, 4-th Tuesday, every month</li>
+      </ul>
+
+      <!-- Rest of English rules content -->
+    </div>
+    <div class="tab-pane fade" id="uk" role="tabpanel" aria-labelledby="uk-tab">
+      <h2>Положення</h2>
+      <h3>ПОЛОЖЕННЯ ПРО ВІДКРИТІ ЗМАГАННЯ АКТИВНОСТІ ЛИТОВСЬКИХ СТАНЦІЙ НА УКХ</h3>
+
+      <h4>УЧАСНИКИ</h4>
+      <p>До участі запрошуються радіоаматори всіх країн.</p>
+
+      <h4>ДАТА</h4>
+      <ul>
+        <li>144 МГц, 1-й вівторок кожного місяця</li>
+        <li>432 МГц, 2-й вівторок кожного місяця</li>
+        <li>1,3 ГГц, 3-й вівторок кожного місяця</li>
+        <li>2,4 ГГц і вище, 4-й вівторок кожного місяця</li>
+      </ul>
+
+      <!-- Rest of Ukrainian rules content -->
+    </div>
+  </div>
+</div>
+{% endblock %} 

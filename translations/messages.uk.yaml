@@ -1,0 +1,61 @@
+rules:
+  title: 'Правила змагань'
+  menu: 'Правила'
+
+lyac:
+  main: LYAC Головна
+  title: LYAC Інформація
+  top5:
+    title: ТОП5 LYAC робота за місяць
+    subtitle: Найкращі результати заявили:
+    tabs:
+      main: Головна
+      fm: Тільки FM
+      ft8: FT8 checklog
+  results:
+    title: LYAC результати
+    subtitle: Результати після суддівства за роками/туром:
+    callsign: Позивний
+    total: Всього
+    selection: Виберіть рік і тур у лівій частині меню
+  month:
+    title: Загальна LYAC інформація за поточний місяць
+    lastreport: Останній звіт отримано 
+    userstats: Загальна кількість звітів, отриманих за поточний місяць:
+    lastusers: Останні учасники, які надали звіти роботу:
+    wheretosend: Надсилайте ваш звіт формату Reg1Test (EDI) електронною поштою 
+    notreceived: Неотримані звіти (LY):
+  callsign:
+    title: Інформація про позивний
+    participant: Інформація про
+    information: учасника
+    reports: Всього звітів
+    wwls: Унікальні квадрати
+    notfound:
+      title: Учасника не знайдено!
+      message: Учасника з таким позивним не знайдено.
+    lastlogs: Останні отримані звіти
+  rounds:
+    title: LYAC Тури
+    subtitle: Виберіть рік
+    participants: Учасників
+    qso: QSO
+
+menu:
+  rounds: Тури
+  results: Результати
+  awards: Досягнення
+  reports: Звіти
+  archive: Архів
+
+searchform:
+  placeholder: Введіть позивний
+  submit: Вперед
+
+term:
+  date: Дата
+  qso: QSO
+  round: Тур
+  callsign: Позивний
+  band: Діапазон
+  complete: Завершеність 

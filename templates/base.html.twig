@@ -31,6 +31,7 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="{{ path('rounds') }}">{% trans %}menu.rounds{% endtrans %}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ path('results') }}">{% trans %}menu.results{% endtrans %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ path('rules') }}">{% trans %}rules.menu{% endtrans %}</a></li>
             <li class="nav-item"><a class="nav-link" href="https://www.blue-yellow.lt/" target="_blank">
               <span style="background-color: #0057B8">#StandWith</span><span style="background-color: #FFD700; color: darkgrey">Ukraine</span>
             </a></li>
@@ -38,13 +39,16 @@
 
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            <a class="nav-link" href="{{ path(app.request.get('_route'), app.request.get('_route_params')| merge ({'_locale': 'lt'})) }}">LT</a>
+            <a class="nav-link" href="{{ path(app.request.get('_route'), app.request.get('_route_params')| merge ({'_locale': 'lt'})) }}">🇱🇹</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="{{ path(app.request.get('_route'), app.request.get('_route_params')| merge ({'_locale': 'en'})) }}">EN</a>
+            <a class="nav-link" href="{{ path(app.request.get('_route'), app.request.get('_route_params')| merge ({'_locale': 'en'})) }}">🇬🇧</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="{{ path(app.request.get('_route'), app.request.get('_route_params')| merge ({'_locale': 'ru'})) }}">RU</a>
+            <a class="nav-link" href="{{ path(app.request.get('_route'), app.request.get('_route_params')| merge ({'_locale': 'pl'})) }}">🇵🇱</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ path(app.request.get('_route'), app.request.get('_route_params')| merge ({'_locale': 'uk'})) }}">🇺🇦</a>
             </li>
           </ul>
 
