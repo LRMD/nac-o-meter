@@ -6,15 +6,17 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CallsignSearch extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->setMethod('POST')
+            ->setMethod('GET')
             ->add('callsign', TextType::class, array(
                 'label' => false,
+                'required' => true,
                 'attr' => array(
                     'placeholder' => 'searchform.placeholder',
                     'class' => 'form-control me-2',
@@ -27,5 +29,12 @@ class CallsignSearch extends AbstractType
                 )
             ))
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'csrf_protection' => false,
+        ]);
     }
 }
