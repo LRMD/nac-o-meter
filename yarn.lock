@@ -1624,10 +1624,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-free@npm:^5.6.3":
-  version: 5.15.4
-  resolution: "@fortawesome/fontawesome-free@npm:5.15.4"
-  checksum: 32281c3df4075290d9a96dfc22f72fadb3da7055d4117e48d34046b8c98032a55fa260ae351b0af5d6f6fb57a2f5d79a4abe52af456da35195f7cb7dda27b4a2
+"@fortawesome/fontawesome-free@npm:^6.7.2":
+  version: 6.7.2
+  resolution: "@fortawesome/fontawesome-free@npm:6.7.2"
+  checksum: 2ceb384ada8e4a1e8a8e24384a35e3afa01589ddec67c8c52e3ad5d7db1662d0fc92560bd9a23baa4e0676e721e423aef99fb79fe6899bf13900fd1e611b6760
   languageName: node
   linkType: hard
 
@@ -1647,7 +1647,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/stimulus@npm:^3.0.0":
+"@hotwired/stimulus@npm:^3.2.2":
   version: 3.2.2
   resolution: "@hotwired/stimulus@npm:3.2.2"
   checksum: e0c13469df89f760f35cce0fd7af5f7eeabd4ff79c4ad2b05fe7d8d7b845818c6736c3cd515c1906e144aa27529d5a60377647937b756950b4f709be329c9046
@@ -1726,6 +1726,13 @@ __metadata:
     "@jridgewell/resolve-uri": ^3.1.0
     "@jridgewell/sourcemap-codec": ^1.4.14
   checksum: 9d3c40d225e139987b50c48988f8717a54a8c994d8a948ee42e1412e08988761d0754d7d10b803061cc3aebf35f92a5dbbab493bd0e1a9ef9e89a2130e83ba34
+  languageName: node
+  linkType: hard
+
+"@kurkle/color@npm:^0.3.0":
+  version: 0.3.4
+  resolution: "@kurkle/color@npm:0.3.4"
+  checksum: b95c6abe0241ba1745b3c84de3b464296b95ce577110b54f46e6c6dcc9a0966491533df43812bd6c66f92cf818e385d1390b280cd5851d4afb52fc37f8a6c0b9
   languageName: node
   linkType: hard
 
@@ -2294,9 +2301,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@symfony/stimulus-bridge@npm:^3.2.1":
-  version: 3.2.2
-  resolution: "@symfony/stimulus-bridge@npm:3.2.2"
+"@symfony/stimulus-bridge@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "@symfony/stimulus-bridge@npm:3.2.3"
   dependencies:
     "@hotwired/stimulus-webpack-helpers": ^1.0.1
     "@types/webpack-env": ^1.16.4
@@ -2305,7 +2312,7 @@ __metadata:
     schema-utils: ^3.0.0
   peerDependencies:
     "@hotwired/stimulus": ^3.0
-  checksum: 03f8784724efcb919ce059bfe4827d6ad0f1980ff0202e6c94fe1a52c4f0057e343a6351d29adf501dac014db86db17a0f8a4483f3e65862822ea3a4dd872a52
+  checksum: 88521bc7183ecf2c550b8acf7fd532a72bf1230d01ea26fcf40281d8b8abad62d647792e8233436ecb91010ac4f5262414501d4bffa5e24cb72ae2e67e578b39
   languageName: node
   linkType: hard
 
@@ -3835,13 +3842,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bootstrap@npm:^4.1.3":
-  version: 4.6.2
-  resolution: "bootstrap@npm:4.6.2"
+"bootstrap@npm:^5.3.3":
+  version: 5.3.3
+  resolution: "bootstrap@npm:5.3.3"
   peerDependencies:
-    jquery: 1.9.1 - 3
-    popper.js: ^1.16.1
-  checksum: 3f4e7768ff7d618c49d4bf4f02aa54a9bfb679d4eecb0f3854fa4af1a17b9114b147009c435946432cdd1572efffc71d88ec385c55943a12fa66253cde0876b0
+    "@popperjs/core": ^2.11.8
+  checksum: 537b68db30150075614310e9ebdf1be9b4affdf89ca226d59f4352e82a368b203af13ed0ce5ccfa4e06f141ecd233f7432ca3817e9c1a39863a05fbe13c73c4b
   languageName: node
   linkType: hard
 
@@ -4227,10 +4233,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chart.js@npm:^3.4.1":
-  version: 3.9.1
-  resolution: "chart.js@npm:3.9.1"
-  checksum: 9ab0c0ac01215af0b3f020f2e313030fd6e347b48ed17d5484ee9c4e8ead45e78ae71bea16c397621c386b409ce0b14bf17f9f6c2492cd15b56c0f433efdfff6
+"chart.js@npm:^4.4.7":
+  version: 4.4.7
+  resolution: "chart.js@npm:4.4.7"
+  dependencies:
+    "@kurkle/color": ^0.3.0
+  checksum: c0f0e9efd935b21a37286d1544046277bb607c08fb3e012b4c501104187a42a0c6541c8d7575782c7f1f3e0a91537b7d6a2eb9cd57122eb176609493838a9543
   languageName: node
   linkType: hard
 
@@ -7691,7 +7699,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jquery@npm:^3.3.1":
+"jquery@npm:^3.7.1":
   version: 3.7.1
   resolution: "jquery@npm:3.7.1"
   checksum: 4370b8139d6ae82867eb6f7f21d1edccf1d1bdf41c0840920ea80d366c2cd5dbe1ceebb110ee9772aa839b04400faa1572c5c560b507c688ed7b61cea26c0e27
@@ -8859,7 +8867,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-sass@npm:^7.0.0":
+"node-sass@npm:^7.0.3":
   version: 7.0.3
   resolution: "node-sass@npm:7.0.3"
   dependencies:
@@ -9131,7 +9139,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ol@npm:^7.1.0, ol@npm:^7.3.0":
+"ol@npm:^7.3.0, ol@npm:^7.5.2":
   version: 7.5.2
   resolution: "ol@npm:7.5.2"
   dependencies:
@@ -9595,7 +9603,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"popper.js@npm:^1.14.5":
+"popper.js@npm:^1.16.1":
   version: 1.16.1
   resolution: "popper.js@npm:1.16.1"
   checksum: c56ae5001ec50a77ee297a8061a0221d99d25c7348d2e6bcd3e45a0d0f32a1fd81bca29d46cb0d4bdf13efb77685bd6a0ce93f9eb3c608311a461f945fffedbe
@@ -10689,20 +10697,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@fortawesome/fontawesome-free": ^5.6.3
-    "@hotwired/stimulus": ^3.0.0
+    "@fortawesome/fontawesome-free": ^6.7.2
+    "@hotwired/stimulus": ^3.2.2
     "@storybook/manager-webpack5": ^6.5.16
-    "@symfony/stimulus-bridge": ^3.2.1
+    "@symfony/stimulus-bridge": ^3.2.3
     "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets"
     "@symfony/webpack-encore": ^2.1.0
-    bootstrap: ^4.1.3
-    chart.js: ^3.4.1
-    jquery: ^3.3.1
-    node-sass: ^7.0.0
-    ol: ^7.1.0
-    popper.js: ^1.14.5
+    bootstrap: ^5.3.3
+    chart.js: ^4.4.7
+    jquery: ^3.7.1
+    node-sass: ^7.0.3
+    ol: ^7.5.2
+    popper.js: ^1.16.1
     sass-loader: ^12.6.0
-    webpack-notifier: ^1.6.0
+    webpack-notifier: ^1.15.0
     yarn: ^1.22.22
   languageName: unknown
   linkType: soft
@@ -12666,7 +12674,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-notifier@npm:^1.6.0":
+"webpack-notifier@npm:^1.15.0":
   version: 1.15.0
   resolution: "webpack-notifier@npm:1.15.0"
   dependencies:
