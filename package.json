@@ -1,18 +1,18 @@
 {
     "devDependencies": {
-        "@fortawesome/fontawesome-free": "^5.6.3",
+        "@fortawesome/fontawesome-free": "^6.7.2",
         "@hotwired/stimulus": "^3.0.0",
         "@storybook/manager-webpack5": "^6.5.16",
-        "@symfony/stimulus-bridge": "^3.2.1",
-        "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets",
+        "@symfony/stimulus-bridge": "^3.2.3",
+        "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/assets",
         "@symfony/webpack-encore": "^2.1.0",
-        "bootstrap": "^4.1.3",
+        "bootstrap": "^5.3.3",
         "chart.js": "^3.4.1",
-        "jquery": "^3.3.1",
-        "node-sass": "^7.0.0",
-        "popper.js": "^1.14.5",
+        "jquery": "^3.7.1",
+        "node-sass": "^7.0.3",
+        "popper.js": "^1.16.1",
         "sass-loader": "^12.6.0",
-        "webpack-notifier": "^1.6.0"
+        "webpack-notifier": "^1.15.0"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -23,7 +23,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "ol": "^7.1.0",
+        "ol": "^7.5.2",
         "yarn": "^1.22.22"
     },
     "packageManager": "yarn@3.2.2"
