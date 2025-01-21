@@ -4,4 +4,10 @@ controllers:
     prefix:
         lt: ''
         en: '/en'
-        ru: '/ru'
+        pl: '/pl'
+        uk: '/uk'
+rules:
+    path: /{_locale}/rules
+    controller: App\Controller\RulesController::index
+    requirements:
+        _locale: en|lt|pl|uk

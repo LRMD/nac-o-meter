@@ -1,0 +1,58 @@
+lyac:
+  main: LYAC Strona główna
+  title: LYAC statystyki na żywo
+  top5:
+    title: LYAC TOP5 DX wyniki zgłoszone
+    subtitle: Uczestnicy klasy otwartej według zgłoszonych wyników:
+    tabs:
+      main: Klasa główna
+      fm: Tylko FM
+      ft8: FT8 checklog
+  results:
+    title: LYAC wyniki
+    subtitle: Wyniki końcowe według roku/tury:
+    callsign: Znak wywoławczy
+    total: Suma
+    selection: Wybierz rok i turę z menu po lewej stronie
+  month:
+    title: Podsumowanie bieżącego miesiąca
+    lastreport: Ostatni log LYAC otrzymany
+    userstats: Całkowita liczba uczestników (otrzymane logi):
+    lastusers: Ostatnio przesłane logi:
+    wheretosend: Prosimy o przesyłanie logów LYAC/NAC w formacie REG1TEST na adres email
+    notreceived: Brakujące logi (tylko LY):
+  callsign:
+    title: Informacje o znaku
+    participant: Podsumowanie
+    information: aktywności
+    reports: Łączna liczba raportów
+    wwls: "Liczba unikalnych WWL"
+    notfound:
+      title: Nie znaleziono uczestnika!
+      message: Nie mamy żadnych informacji o tym znaku wywoławczym.
+    lastlogs: Ostatnio otrzymane raporty
+  rounds:
+    title: Aktywne tury LYAC
+    subtitle: Według roku
+    participants: Raporty
+    qso: QSO
+menu:
+  rounds: Tury
+  results: Wyniki
+  awards: Nagrody
+  reports: Raporty
+  archive: Archiwum
+  rules: Regulamin
+searchform:
+  placeholder: Wprowadź znak
+  submit: Wyślij
+term:
+  date: Data
+  qso: QSO
+  round: Tura
+  callsign: Znak wywoławczy
+  band: Pasmo
+  complete: Ukończone
+rules:
+  title: Regulamin
+  menu: Regulamin 

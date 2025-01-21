@@ -52,3 +52,6 @@ term:
   callsign: Šaukinys
   band: Diapazonas
   complete: Aktyvumas
+rules:
+  title: 'Varžybų taisyklės'
+  menu: 'Taisyklės'
