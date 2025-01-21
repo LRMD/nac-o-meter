@@ -10,11 +10,12 @@
     {{ callsign | upper }}
     {% trans %}lyac.callsign.information{% endtrans %}</h5>
     <h6>{% trans %}lyac.callsign.reports{% endtrans %}: {{ reports }}</h6>
-  {% endif %}
 
   <div class="chart-container" style="position: relative; height:300px; width:370px">
     {{ render_chart(userActivityChart) }}
   </div>
+
+  {% endif %}
 
 </div>
 
