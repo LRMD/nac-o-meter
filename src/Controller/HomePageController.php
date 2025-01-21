@@ -153,5 +153,8 @@ class HomePageController extends AbstractController
               )
             );
         }
+        
+        // If form is not valid or not submitted, redirect back to home
+        return $this->redirectToRoute('home');
     }
 }
