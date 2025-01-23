@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     curl \
     gnupg \
-    && docker-php-ext-install pdo pdo_mysql zip \
+    && docker-php-ext-install pdo pdo_mysql zip intl dom xml \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
