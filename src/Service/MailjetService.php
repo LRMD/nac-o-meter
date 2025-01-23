@@ -34,7 +34,7 @@ class MailjetService
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => 'noreply@logs.cqcq..lt',
+                        'Email' => 'noreply@logs.cqcq.lt',
                         'Name' => 'LYAC Robot'
                     ],
                     'To' => [
