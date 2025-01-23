@@ -42,6 +42,8 @@ menu:
   awards: Pasiekimai
   reports: Ataskaitos
   archive: Archyvas
+  rules: Taisyklės
+  submit: Pateikti žurnalą
 searchform:
   placeholder: Įveskite šaukinį
   submit: Pirmyn
@@ -55,3 +57,50 @@ term:
 rules:
   title: 'Varžybų taisyklės'
   menu: 'Taisyklės'
+submit:
+  title: Pateikti varžybų žurnalą
+  description: Pateikite savo NAC/LYAC varžybų žurnalą REG1TEST formatu. Žurnalas bus išsiųstas varžybų vadovui el. paštu.
+  success: Jūsų žurnalo failas {filename} sėkmingai išsiųstas!
+  error:
+    send: Nepavyko išsiųsti žurnalo failo. Bandykite dar kartą arba susisiekite su administratoriumi.
+  form:
+    contest: Varžybos
+    date: Data
+    callsign: Jūsų šaukinys
+    wwl: WWL lokatorius
+    band: Diapazonas
+    section: Sekcija
+    manager: Varžybų vadovas
+    club: Klubo pavadinimas
+    address1: Adresas 1
+    address2: Adresas 2
+    postal: Pašto kodas
+    city: Miestas
+    country: Šalis
+    phone: Telefonas
+    bbs: BBS
+    operator1: Pagrindinis operatorius
+    operator2: Antras operatorius
+    tx_equipment: TX įranga
+    power: Galia
+    rx_equipment: RX įranga
+    antenna: Antena
+    antenna_height: Antenos aukštis
+    remarks: Pastabos
+    optional_fields: Rodyti/Slėpti papildomus laukus
+    submit: Pateikti žurnalą
+    qso_records: QSO įrašai
+  qso:
+    date: Data
+    time: Laikas
+    call: Šaukinys
+    mode: Moduliacija
+    sent: Išsiųsta
+    rcvd: Gauta
+    wwl: WWL
+  validation:
+    callsign: Neteisingas šaukinio formatas
+    wwl: Neteisingas WWL lokatoriaus formatas
+    tuesday: Varžybų data turi būti antradienį
+    qso_required: Būtinas bent vienas galiojantis QSO
+    qso_wwl: QSO su {call} neturi WWL lokatoriaus. Tęsti?

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'rules.title'|trans }}{% endblock %}
+
+{% block lwidth %}3{% endblock %}
+{% block rwidth %}9{% endblock %}
+
+{% block left %}
+<div class="card">
+    <div class="card-body">
+        <h4>{{ 'rules.title'|trans }}</h4>
+        
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        
+<h2>LRMD LYAC – Regulamin Dni Aktywności UKF na Litwie</h2>
+<p>&nbsp;</p>
+<h3>DATA</h3>
+<ul>
+<li>144 MHz, pierwszy wtorek każdego miesiąca</li>
+<li>432 MHz, drugi wtorek każdego miesiąca</li>
+<li>1,3 GHz, trzeci wtorek każdego miesiąca</li>
+<li>2,4 GHz i wyżej, czwarty wtorek każdego miesiąca</li>
+</ul>
+<h3>CZAS</h3>
+<p>18:00–21:59 UTC od listopada do marca,<br>
+17:00–20:59 UTC od kwietnia do października.</p>
+<h3>ŁĄCZNOŚCI</h3>
+<p>Praca na pasmach zgodnie z podziałem pasm IARU Region 1. Zaliczane są łączności z krótkofalowcami ze wszystkich krajów. Łączności przez aktywne przemienniki i EME nie są zaliczane.</p>
+<h3>EMISJE</h3>
+<p>CW, SSB, FM</p>
+<h3>RAPORTY</h3>
+<p>RS(T) i 6-znakowy WWL, np. 599 KO15NV.</p>
+<h3>PUNKTACJA</h3>
+<p>144 MHz, 432 MHz i 1,3 GHz:<br>
+1 km = 1 punkt + 500 punktów dodatkowych za każdy nowy 4-znakowy kwadrat lokatora (np.: KO14, KO25, JO14, …)</p>
+<p>2,4 GHz i wyżej:<br>
+1 km = 1 punkt * mnożnik pasma + 500 punktów dodatkowych za każdy nowy kwadrat lokatora, niezależnie od pasma.<br>
+Mnożniki pasm:</p>
+<ul>
+<li>2,4 GHz * 2</li>
+<li>5,7 GHz * 4</li>
+<li>10 GHz * 5</li>
+<li>24 GHz * 6</li>
+</ul>
+<p>Łączność 0 km z własnym WW LOC (KO14WW – KO14WW) daje 1 punkt.</p>
+<h3>DZIENNIKI</h3>
+<p>Przyjmowane są tylko dzienniki elektroniczne w formacie Reg1Test (EDI). Dzienniki należy wysłać w ciągu dwóch tygodni po zawodach na adres <img decoding="async" src="https://www.qrz.lt/lyac/wp-content/uploads/lyacmail.gif" alt="" style="vertical-align: bottom">.</p>
+
+<p>W dzienniku należy podać: datę i czas UTC każdego QSO, odebrany znak wywoławczy, nadany RS(T) i odebrany RS(T) z lokatorem. Na stronie tytułowej dziennika należy podać swój znak wywoławczy, imię, nazwisko, e-mail oraz WW LOC, z którego pracowano.</p>
+
+<p>Plik dziennika należy nazwać "znak_wywoławczy-pasmo-miesiąc.edi", np.: LY0XX-144-01.edi. Plik dziennika należy załączyć, w żadnym wypadku nie należy wklejać go w treść e-maila. W temacie e-maila (subject) należy wpisać swój znak wywoławczy i pasmo. Wiadomości bez tematu mogą przypadkowo trafić do kosza.</p>
+    </div>
+</div>
+
+{% endblock %} 

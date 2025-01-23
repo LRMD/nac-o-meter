@@ -2,22 +2,58 @@
 
 {% block title %}{{ 'rules.title'|trans }}{% endblock %}
 
-{% block content %}
-<div class="container mt-4">
-  <h1>{{ 'rules.title'|trans }}</h1>
+{% block lwidth %}3{% endblock %}
+{% block rwidth %}9{% endblock %}
 
-  <h2>Rules</h2>
-  <h3>LY VHF ACTIVITY CONTEST (LYAC) OPEN CLASS RULES</h3>
-
-  <h4>PARTICIPANTS</h4>
-  <p>All amateurs in LY and other countries are invited!</p>
-
-  <h4>DATES</h4>
-  <ul>
-    <li>144 MHz, 1-st Tuesday, every month</li>
-    <li>432 MHz, 2-nd Tuesday, every month</li>
-    <li>1,3 GHz, 3-rd Tuesday, every month</li>
-    <li>2,4 GHz and up, 4-th Tuesday, every month</li>
-  </ul>
+{% block left %}
+<div class="card">
+    <div class="card-body">
+        <h4>{{ 'rules.title'|trans }}</h4>
+        
+    </div>
 </div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        
+<h2>LRMD LYAC – Lithuanian VHF Activity Days Rules</h2>
+<p>&nbsp;</p>
+<h3>DATE</h3>
+<ul>
+<li>144 MHz, first Tuesday of each month</li>
+<li>432 MHz, second Tuesday of each month</li>
+<li>1.3 GHz, third Tuesday of each month</li>
+<li>2.4 GHz and up, fourth Tuesday of each month</li>
+</ul>
+<h3>TIME</h3>
+<p>18:00–21:59 UTC from November to March,<br>
+17:00–20:59 UTC from April to October.</p>
+<h3>CONTACTS</h3>
+<p>Operation according to IARU Region 1 band plan. Contacts with radio amateurs from all countries are valid. Contacts via active repeaters and EME are not valid.</p>
+<h3>MODES</h3>
+<p>CW, SSB, FM</p>
+<h3>REPORTS</h3>
+<p>RS(T) and 6-character WWL, e.g. 599 KO15NV.</p>
+<h3>SCORING</h3>
+<p>144 MHz, 432 MHz and 1.3 GHz:<br>
+1 km = 1 point + 500 bonus points for each new 4-character locator square (e.g.: KO14, KO25, JO14, …)</p>
+<p>2.4 GHz and up:<br>
+1 km = 1 point * band multiplier + 500 bonus points for each new locator square, regardless of band.<br>
+Band multipliers:</p>
+<ul>
+<li>2.4 GHz * 2</li>
+<li>5.7 GHz * 4</li>
+<li>10 GHz * 5</li>
+<li>24 GHz * 6</li>
+</ul>
+<p>A 0 km contact with your own WW LOC (KO14WW – KO14WW) gives 1 point.</p>
+<h3>LOGS</h3>
+<p>Only electronic logs in Reg1Test (EDI) format are accepted. Logs must be sent within two weeks after the contest to <img decoding="async" src="https://www.qrz.lt/lyac/wp-content/uploads/lyacmail.gif" alt="" style="vertical-align: bottom">.</p>
+<p>The log must include: date and time UTC of each QSO, received callsign, sent RS(T) and received RS(T) with locator. The log header must include your callsign, name, surname, email and WW LOC from which you operated.</p>
+<p>Name the log file "callsign-band-month.edi", e.g.: LY0XX-144-01.edi. Attach the log file, never paste it into the email body. In the email subject line, write your callsign and band. Messages without a subject may accidentally end up in the trash.</p>
+    </div>
+</div>
+
 {% endblock %} 

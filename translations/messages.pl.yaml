@@ -43,6 +43,7 @@ menu:
   reports: Raporty
   archive: Archiwum
   rules: Regulamin
+  submit: Wyślij dziennik
 searchform:
   placeholder: Wprowadź znak
   submit: Wyślij
@@ -55,4 +56,51 @@ term:
   complete: Ukończone
 rules:
   title: Regulamin
-  menu: Regulamin 
+  menu: Regulamin
+submit:
+  title: Wyślij dziennik zawodów
+  description: Wyślij swój dziennik zawodów NAC/LYAC w formacie REG1TEST. Dziennik zostanie wysłany do kierownika zawodów e-mailem.
+  success: Twój plik dziennika {filename} został pomyślnie wysłany!
+  error:
+    send: Nie udało się wysłać pliku dziennika. Spróbuj ponownie lub skontaktuj się z administratorem.
+  form:
+    contest: Zawody
+    date: Data
+    callsign: Twój znak wywoławczy
+    wwl: Lokator WWL
+    band: Pasmo
+    section: Sekcja
+    manager: Kierownik zawodów
+    club: Nazwa klubu
+    address1: Adres 1
+    address2: Adres 2
+    postal: Kod pocztowy
+    city: Miasto
+    country: Kraj
+    phone: Telefon
+    bbs: BBS
+    operator1: Główny operator
+    operator2: Drugi operator
+    tx_equipment: Sprzęt TX
+    power: Moc
+    rx_equipment: Sprzęt RX
+    antenna: Antena
+    antenna_height: Wysokość anteny
+    remarks: Uwagi
+    optional_fields: Pokaż/Ukryj pola opcjonalne
+    submit: Wyślij dziennik
+    qso_records: Zapisy QSO
+  qso:
+    date: Data
+    time: Czas
+    call: Znak wywoławczy
+    mode: Emisja
+    sent: Wysłano
+    rcvd: Odebrano
+    wwl: WWL
+  validation:
+    callsign: Nieprawidłowy format znaku wywoławczego
+    wwl: Nieprawidłowy format lokatora WWL
+    tuesday: Data zawodów musi być wtorek
+    qso_required: Wymagane jest co najmniej jedno ważne QSO
+    qso_wwl: QSO z {call} nie ma lokatora WWL. Kontynuować? 

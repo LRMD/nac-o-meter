@@ -5,6 +5,9 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'lt'
+    mailjet.api_key: '%env(MAILJET_API_KEY)%'
+    mailjet.api_secret: '%env(MAILJET_API_SECRET)%'
+    mailjet.recipient_email: '%env(MAILJET_RECIPIENT_EMAIL)%'
 
 framework:
     cache:
@@ -37,3 +40,9 @@ services:
     cache.adapter.null:
         class: Symfony\Component\Cache\Adapter\NullAdapter
         arguments: [~]
+
+    App\Service\MailjetService:
+        arguments:
+            $apiKey: '%mailjet.api_key%'
+            $apiSecret: '%mailjet.api_secret%'
+            $recipientEmail: '%mailjet.recipient_email%'

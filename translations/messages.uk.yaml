@@ -47,7 +47,7 @@ menu:
   awards: Досягнення
   reports: Звіти
   archive: Архів
-
+  submit: Надіслати журнал
 searchform:
   placeholder: Введіть позивний
   submit: Вперед
@@ -58,4 +58,52 @@ term:
   round: Тур
   callsign: Позивний
   band: Діапазон
-  complete: Завершеність 
+  complete: Завершеність
+
+submit:
+  title: Надіслати журнал змагань
+  description: Надішліть свій журнал змагань NAC/LYAC у форматі REG1TEST. Журнал буде надіслано керівнику змагань електронною поштою.
+  success: Ваш файл журналу {filename} успішно надіслано!
+  error:
+    send: Не вдалося надіслати файл журналу. Спробуйте ще раз або зверніться до адміністратора.
+  form:
+    contest: Змагання
+    date: Дата
+    callsign: Ваш позивний
+    wwl: WWL локатор
+    band: Діапазон
+    section: Секція
+    manager: Керівник змагань
+    club: Назва клубу
+    address1: Адреса 1
+    address2: Адреса 2
+    postal: Поштовий індекс
+    city: Місто
+    country: Країна
+    phone: Телефон
+    bbs: BBS
+    operator1: Головний оператор
+    operator2: Другий оператор
+    tx_equipment: TX обладнання
+    power: Потужність
+    rx_equipment: RX обладнання
+    antenna: Антена
+    antenna_height: Висота антени
+    remarks: Примітки
+    optional_fields: Показати/Приховати додаткові поля
+    submit: Надіслати журнал
+    qso_records: QSO записи
+  qso:
+    date: Дата
+    time: Час
+    call: Позивний
+    mode: Режим
+    sent: Надіслано
+    rcvd: Отримано
+    wwl: WWL
+  validation:
+    callsign: Неправильний формат позивного
+    wwl: Неправильний формат WWL локатора
+    tuesday: Дата змагань має бути вівторок
+    qso_required: Потрібен принаймні один дійсний QSO
+    qso_wwl: QSO з {call} не має WWL локатора. Продовжити? 
