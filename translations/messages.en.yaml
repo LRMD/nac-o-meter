@@ -43,6 +43,7 @@ menu:
   reports: Reports
   archive: Archive
   rules: Rules
+  submit: Submit Log
 searchform:
   placeholder: Enter callsign
   submit: Submit
@@ -56,3 +57,50 @@ term:
 rules:
   title: Rules
   menu: Rules
+submit:
+  title: Submit Contest Log
+  description: Submit your NAC/LYAC contest log in REG1TEST format. The log will be sent to contest manager via email.
+  success: Your log file {filename} has been successfully submitted!
+  error:
+    send: Failed to send the log file. Please try again or contact the administrator.
+  form:
+    contest: Contest
+    date: Date
+    callsign: Your Callsign
+    wwl: WWL Locator
+    band: Band
+    section: Section
+    manager: Contest Manager
+    club: Club Name
+    address1: Address Line 1
+    address2: Address Line 2
+    postal: Postal Code
+    city: City
+    country: Country
+    phone: Phone
+    bbs: BBS
+    operator1: Main Operator
+    operator2: Second Operator
+    tx_equipment: TX Equipment
+    power: Power
+    rx_equipment: RX Equipment
+    antenna: Antenna
+    antenna_height: Antenna Height
+    remarks: Remarks
+    optional_fields: Show/Hide Optional Fields
+    submit: Submit Log
+    qso_records: QSO Records
+  qso:
+    date: Date
+    time: Time
+    call: Callsign
+    mode: Mode
+    sent: Sent
+    rcvd: Received
+    wwl: WWL
+  validation:
+    callsign: Invalid callsign format
+    wwl: Invalid WWL locator format
+    tuesday: Contest date must be Tuesday
+    qso_required: At least one valid QSO is required
+    qso_wwl: QSO with {call} has no WWL locator. Continue?

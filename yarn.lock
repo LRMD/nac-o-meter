@@ -1647,7 +1647,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/stimulus@npm:^3.2.2":
+"@hotwired/stimulus@npm:^3.0.0":
   version: 3.2.2
   resolution: "@hotwired/stimulus@npm:3.2.2"
   checksum: e0c13469df89f760f35cce0fd7af5f7eeabd4ff79c4ad2b05fe7d8d7b845818c6736c3cd515c1906e144aa27529d5a60377647937b756950b4f709be329c9046
@@ -1726,13 +1726,6 @@ __metadata:
     "@jridgewell/resolve-uri": ^3.1.0
     "@jridgewell/sourcemap-codec": ^1.4.14
   checksum: 9d3c40d225e139987b50c48988f8717a54a8c994d8a948ee42e1412e08988761d0754d7d10b803061cc3aebf35f92a5dbbab493bd0e1a9ef9e89a2130e83ba34
-  languageName: node
-  linkType: hard
-
-"@kurkle/color@npm:^0.3.0":
-  version: 0.3.4
-  resolution: "@kurkle/color@npm:0.3.4"
-  checksum: b95c6abe0241ba1745b3c84de3b464296b95ce577110b54f46e6c6dcc9a0966491533df43812bd6c66f92cf818e385d1390b280cd5851d4afb52fc37f8a6c0b9
   languageName: node
   linkType: hard
 
@@ -2316,13 +2309,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/Resources/assets::locator=root-workspace-0b6124%40workspace%3A.":
+"@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets::locator=root-workspace-0b6124%40workspace%3A.":
   version: 1.1.0
-  resolution: "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/Resources/assets#vendor/symfony/ux-chartjs/Resources/assets::hash=0af789&locator=root-workspace-0b6124%40workspace%3A."
+  resolution: "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets#vendor/symfony/ux-chartjs/assets::hash=f4559f&locator=root-workspace-0b6124%40workspace%3A."
   peerDependencies:
     "@hotwired/stimulus": ^3.0.0
     chart.js: ^3.4.1
-  checksum: d75a2123e8085e57fbae7cbedeae9c03b1913120829e782e27b705c112aa1a7532ba49dc7e95e40d08a2421b1f2a7d7f73f8f3e4439f3c9d43a0312665016d04
+  checksum: 96563f1beb04253c96a050d9493851262986a3e8180bae5499c20b210e7e3d480992a303523f7baf9de16364be8b1d15b57d6ab8a762bcc996428c96ffbffaec
   languageName: node
   linkType: hard
 
@@ -4233,12 +4226,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chart.js@npm:^4.4.7":
-  version: 4.4.7
-  resolution: "chart.js@npm:4.4.7"
-  dependencies:
-    "@kurkle/color": ^0.3.0
-  checksum: c0f0e9efd935b21a37286d1544046277bb607c08fb3e012b4c501104187a42a0c6541c8d7575782c7f1f3e0a91537b7d6a2eb9cd57122eb176609493838a9543
+"chart.js@npm:^3.4.1":
+  version: 3.9.1
+  resolution: "chart.js@npm:3.9.1"
+  checksum: 9ab0c0ac01215af0b3f020f2e313030fd6e347b48ed17d5484ee9c4e8ead45e78ae71bea16c397621c386b409ce0b14bf17f9f6c2492cd15b56c0f433efdfff6
   languageName: node
   linkType: hard
 
@@ -10698,13 +10689,13 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@fortawesome/fontawesome-free": ^6.7.2
-    "@hotwired/stimulus": ^3.2.2
+    "@hotwired/stimulus": ^3.0.0
     "@storybook/manager-webpack5": ^6.5.16
     "@symfony/stimulus-bridge": ^3.2.3
-    "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets"
+    "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/assets"
     "@symfony/webpack-encore": ^2.1.0
     bootstrap: ^5.3.3
-    chart.js: ^4.4.7
+    chart.js: ^3.4.1
     jquery: ^3.7.1
     node-sass: ^7.0.3
     ol: ^7.5.2

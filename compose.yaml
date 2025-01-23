@@ -15,6 +15,9 @@ services:
     environment:
       - APP_ENV=dev
       - DATABASE_URL=mysql://lyac:lyac@mysql/lyac
+      - MAILJET_RECIPIENT_EMAIL=ly2en@qrz.lt
+      - MAILJET_API_KEY=aaa
+      - MAILJET_API_SECRET=aaa
     command:
       - /bin/bash
       - -c

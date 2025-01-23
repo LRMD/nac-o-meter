@@ -1,0 +1,382 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'submit.title'|trans }}{% endblock %}
+
+{% block lwidth %}3{% endblock %}
+{% block rwidth %}9{% endblock %}
+
+{% block left %}
+<div class="card">
+    <div class="card-body">
+        <h4>{{ 'submit.title'|trans }}</h4>
+        <p>{{ 'submit.description'|trans }}</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% if logContent %}
+            <div class="card mt-3">
+                <div class="card-header">Generated REG1TEST File Contents</div>
+                <div class="card-body">
+                    <pre class="font-monospace" style="white-space: pre-wrap;">{{ logContent }}</pre>
+                </div>
+            </div>
+        {% endif %}
+
+        {{ form_start(form, {'attr': {'id': 'logForm', 'class': 'needs-validation'}}) }}
+            {% if form_errors(form) %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form) }}
+                </div>
+            {% endif %}
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form_row(form.TName) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.TDate) }}
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form_row(form.PCall) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.PWWLo) }}
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form_row(form.PBand) }}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button type="button" class="btn btn-secondary" id="toggleOptional">{{ 'submit.form.optional_fields'|trans }}</button>
+            </div>
+
+            <div class="optional-fields d-none">
+                <div class="row mb-3">
+                    <div class="col">
+                        {{ form_row(form.PSect) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.RCall) }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        {{ form_row(form.PClub) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.RAdr1) }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        {{ form_row(form.RAdr2) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.RPoCo) }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        {{ form_row(form.RCity) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.RCoun) }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        {{ form_row(form.RPhon) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.RHBBS) }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        {{ form_row(form.MOpe1) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.MOpe2) }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        {{ form_row(form.STXEq) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.SPowe) }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        {{ form_row(form.SRXEq) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.SAnte) }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        {{ form_row(form.SAntH) }}
+                    </div>
+                </div>
+            </div>
+
+            {{ form_row(form.Remarks) }}
+
+            <h4>{{ 'submit.form.qso_records'|trans }}</h4>
+            <div class="qso-header row mb-2">
+                <div class="col">{{ 'submit.qso.date'|trans }}</div>
+                <div class="col">{{ 'submit.qso.time'|trans }}</div>
+                <div class="col">{{ 'submit.qso.call'|trans }}</div>
+                <div class="col">{{ 'submit.qso.mode'|trans }}</div>
+                <div class="col">{{ 'submit.qso.sent'|trans }}</div>
+                <div class="col">{{ 'submit.qso.rcvd'|trans }}</div>
+                <div class="col">{{ 'submit.qso.wwl'|trans }}</div>
+            </div>
+            <div id="qsoContainer" 
+                data-prototype="{{ include('submit/_qso_prototype.html.twig', { 'form': form.qsos.vars.prototype })|e('html_attr') }}"
+                data-index="{{ form.qsos|length }}">
+                {% for qso in form.qsos %}
+                    <div class="qso-row row mb-2">
+                        <div class="col">{{ form_widget(qso.date) }}</div>
+                        <div class="col">{{ form_widget(qso.time) }}</div>
+                        <div class="col">{{ form_widget(qso.call) }}</div>
+                        <div class="col">{{ form_widget(qso.mode) }}</div>
+                        <div class="col">{{ form_widget(qso.sent) }}</div>
+                        <div class="col">{{ form_widget(qso.rcvd) }}</div>
+                        <div class="col">{{ form_widget(qso.wwl) }}</div>
+                    </div>
+                    {% if not qso.vars.valid %}
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(qso) }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-2">{{ 'submit.form.submit'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .qso-row { margin-bottom: 10px; }
+    .language { margin-bottom: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 5px; }
+    .qso-header { font-weight: bold; margin-bottom: 0.5rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-control { margin-bottom: 0; }
+    label { margin-bottom: 0.5rem; }
+    .qso-row .col { padding: 0 2px; }
+    .qso-row .form-control-sm { height: calc(1.5em + 0.5rem + 2px); }
+    .invalid-feedback { display: block; }
+</style>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load saved values from localStorage
+    const savedPCall = localStorage.getItem('PCall');
+    const savedPWWLo = localStorage.getItem('PWWLo');
+    const pcallInput = document.querySelector('input[name$="[PCall]"]');
+    const wwloInput = document.querySelector('input[name$="[PWWLo]"]');
+    
+    if (savedPCall && pcallInput) {
+        pcallInput.value = savedPCall;
+    }
+    if (savedPWWLo && wwloInput) {
+        wwloInput.value = savedPWWLo;
+    }
+
+    if (pcallInput) {
+        pcallInput.addEventListener('change', function() {
+            localStorage.setItem('PCall', this.value);
+        });
+    }
+    
+    if (wwloInput) {
+        wwloInput.addEventListener('change', function() {
+            localStorage.setItem('PWWLo', this.value);
+        });
+    }
+
+    const toggleButton = document.getElementById('toggleOptional');
+    if (toggleButton) {
+        toggleButton.addEventListener('click', function() {
+            document.querySelector('.optional-fields').classList.toggle('d-none');
+        });
+    }
+
+    const tnameSelect = document.querySelector('select[name$="[TName]"]');
+    if (tnameSelect) {
+        tnameSelect.addEventListener('change', function() {
+            const band = this.value.match(/\d+/)[0];
+            const pbandInput = document.querySelector('input[name$="[PBand]"]');
+            if (pbandInput) {
+                pbandInput.value = band + ' MHz';
+            }
+        });
+        tnameSelect.dispatchEvent(new Event('change'));
+    }
+
+    const qsoContainer = document.getElementById('qsoContainer');
+    let qsoIndex = parseInt(qsoContainer.dataset.index || '0');
+
+    function addQsoRow() {
+        const prototype = qsoContainer.dataset.prototype;
+        const newForm = prototype.replace(/__name__/g, qsoIndex);
+        const div = document.createElement('div');
+        div.innerHTML = newForm;
+        const newRow = div.firstElementChild;
+        qsoContainer.appendChild(newRow);
+        qsoIndex++;
+
+        // Set the date field to match TDate
+        const mainDate = document.querySelector('input[name$="[TDate]"]').value;
+        if (mainDate) {
+            const dateField = newRow.querySelector('input[type="date"]');
+            if (dateField) {
+                dateField.value = mainDate;
+                dateField.readOnly = true;
+            }
+        }
+
+        // Set current UTC time
+        const now = new Date();
+        const utcHours = String(now.getUTCHours()).padStart(2, '0');
+        const utcMinutes = String(now.getUTCMinutes()).padStart(2, '0');
+        const timeField = newRow.querySelector('input[type="time"]');
+        if (timeField) {
+            timeField.value = `${utcHours}:${utcMinutes}`;
+        }
+
+        // Set default signal reports
+        const modeField = newRow.querySelector('select');
+        if (modeField) {
+            const value = (modeField.value === 'CW') ? '599' : '59';
+            const sentField = newRow.querySelector('input[name$="[sent]"]');
+            const rcvdField = newRow.querySelector('input[name$="[rcvd]"]');
+            if (sentField) sentField.value = value;
+            if (rcvdField) rcvdField.value = value;
+
+            // Update signal reports when mode changes
+            modeField.addEventListener('change', function() {
+                const value = (this.value === 'CW') ? '599' : '59';
+                const row = this.closest('.qso-row');
+                const sent = row.querySelector('input[name$="[sent]"]');
+                const rcvd = row.querySelector('input[name$="[rcvd]"]');
+                if (sent) sent.value = value;
+                if (rcvd) rcvd.value = value;
+            });
+        }
+
+        // Add new QSO row when any field in this row gets input
+        const inputs = newRow.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                if (newRow === qsoContainer.lastElementChild && this.value.length > 0) {
+                    addQsoRow();
+                }
+            });
+        });
+
+        return newRow;
+    }
+
+    // Initialize first QSO row if none exist
+    if (qsoContainer && qsoContainer.children.length === 0) {
+        addQsoRow();
+    }
+
+    // Update QSO dates when TDate changes
+    const tdateInput = document.querySelector('input[name$="[TDate]"]');
+    if (tdateInput) {
+        tdateInput.addEventListener('change', function() {
+            const mainDate = this.value;
+            document.querySelectorAll('.qso-row input[type="date"]').forEach(dateField => {
+                dateField.value = mainDate;
+            });
+        });
+    }
+
+    // Form validation
+    const form = document.getElementById('logForm');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const pcall = document.querySelector('input[name$="[PCall]"]').value;
+            const pwwlo = document.querySelector('input[name$="[PWWLo]"]').value;
+            let validQsos = 0;
+            let qsosWithoutWWL = [];
+            
+            // Validate QSO entries
+            document.querySelectorAll('.qso-row').forEach(function(row) {
+                const call = row.querySelector('input[name$="[call]"]').value.trim();
+                const wwl = row.querySelector('input[name$="[wwl]"]').value.trim();
+                
+                if (call) {
+                    validQsos++;
+                    
+                    if (!wwl) {
+                        qsosWithoutWWL.push(call);
+                    }
+                }
+            });
+
+            // Check if we have at least one valid QSO
+            if (validQsos === 0) {
+                alert('{{ "submit.validation.qso_required"|trans }}');
+                e.preventDefault();
+                return;
+            }
+
+            // Ask for confirmation if there are QSOs without WWL
+            if (qsosWithoutWWL.length > 0) {
+                const confirmMessage = qsosWithoutWWL.map(call => 
+                    '{{ "submit.validation.qso_wwl"|trans }}'.replace('{call}', call)
+                ).join('\n');
+                
+                if (!confirm(confirmMessage)) {
+                    e.preventDefault();
+                    return;
+                }
+            }
+        });
+    }
+});
+</script>
+{% endblock %} 
