@@ -89,6 +89,7 @@ submit:
     remarks: Pastabos
     optional_fields: Rodyti/Slėpti papildomus laukus
     submit: Pateikti žurnalą
+    clear: Išvalyti žurnalą
     qso_records: QSO įrašai
   qso:
     date: Data
@@ -104,3 +105,4 @@ submit:
     tuesday: Varžybų data turi būti antradienį
     qso_required: Būtinas bent vienas galiojantis QSO
     qso_wwl: QSO su {call} neturi WWL lokatoriaus. Tęsti?
+    clear_confirm: Ar tikrai norite išvalyti visus QSO įrašus?

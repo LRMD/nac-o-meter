@@ -90,6 +90,7 @@ submit:
     optional_fields: Show/Hide Optional Fields
     submit: Submit Log
     qso_records: QSO Records
+    clear: Clear Log
   qso:
     date: Date
     time: Time

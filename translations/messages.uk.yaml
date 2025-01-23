@@ -92,6 +92,7 @@ submit:
     remarks: Примітки
     optional_fields: Показати/Приховати додаткові поля
     submit: Надіслати журнал
+    clear: Очистити журнал
     qso_records: QSO записи
   qso:
     date: Дата
@@ -106,4 +107,5 @@ submit:
     wwl: Неправильний формат WWL локатора
     tuesday: Дата змагань має бути вівторок
     qso_required: Потрібен принаймні один дійсний QSO
-    qso_wwl: QSO з {call} не має WWL локатора. Продовжити? 
+    qso_wwl: QSO з {call} не має WWL локатора. Продовжити?
+    clear_confirm: Ви дійсно хочете очистити всі QSO записи? 
