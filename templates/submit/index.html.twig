@@ -186,6 +186,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary mt-2">{{ 'submit.form.submit'|trans }}</button>
+            <button type="button" class="btn btn-danger mt-2 ms-2" id="clearLog">{{ 'submit.form.clear'|trans }}</button>
         {{ form_end(form) }}
     </div>
 </div>
@@ -213,6 +214,15 @@
         .qso-row:last-child {
             border-bottom: none;
         }
+    }
+
+    #clearLog {
+        background-color: #ff69b4;
+        border-color: #ff69b4;
+    }
+    #clearLog:hover {
+        background-color: #ff1493;
+        border-color: #ff1493;
     }
 </style>
 {% endblock %}
@@ -268,6 +278,46 @@ document.addEventListener('DOMContentLoaded', function() {
     const qsoContainer = document.getElementById('qsoContainer');
     let qsoIndex = parseInt(qsoContainer.dataset.index || '0');
 
+    // Load saved QSOs from sessionStorage
+    const savedQsos = sessionStorage.getItem('qsos');
+    if (savedQsos) {
+        const qsos = JSON.parse(savedQsos);
+        qsos.forEach(qso => {
+            const newRow = addQsoRow();
+            newRow.querySelector('input[type="date"]').value = qso.date;
+            newRow.querySelector('input[type="time"]').value = qso.time;
+            newRow.querySelector('input[name$="[call]"]').value = qso.call;
+            newRow.querySelector('select[name$="[mode]"]').value = qso.mode;
+            newRow.querySelector('input[name$="[sent]"]').value = qso.sent;
+            newRow.querySelector('input[name$="[rcvd]"]').value = qso.rcvd;
+            newRow.querySelector('input[name$="[wwl]"]').value = qso.wwl;
+        });
+        
+        // Add an empty row if the last QSO has a callsign
+        if (qsos.length > 0 && qsos[qsos.length - 1].call.trim()) {
+            addQsoRow();
+        }
+    }
+
+    function saveQsos() {
+        const qsos = [];
+        document.querySelectorAll('.qso-row').forEach(row => {
+            const qso = {
+                date: row.querySelector('input[type="date"]').value,
+                time: row.querySelector('input[type="time"]').value,
+                call: row.querySelector('input[name$="[call]"]').value,
+                mode: row.querySelector('select[name$="[mode]"]').value,
+                sent: row.querySelector('input[name$="[sent]"]').value,
+                rcvd: row.querySelector('input[name$="[rcvd]"]').value,
+                wwl: row.querySelector('input[name$="[wwl]"]').value
+            };
+            if (qso.call.trim()) {
+                qsos.push(qso);
+            }
+        });
+        sessionStorage.setItem('qsos', JSON.stringify(qsos));
+    }
+
     function addQsoRow() {
         const prototype = qsoContainer.dataset.prototype;
         const newForm = prototype.replace(/__name__/g, qsoIndex);
@@ -313,6 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const rcvd = row.querySelector('input[name$="[rcvd]"]');
                 if (sent) sent.value = value;
                 if (rcvd) rcvd.value = value;
+                saveQsos();
             });
         }
 
@@ -323,14 +374,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (newRow === qsoContainer.lastElementChild && this.value.length > 0) {
                     addQsoRow();
                 }
+                saveQsos();
             });
         });
 
         return newRow;
     }
 
-    // Initialize first QSO row if none exist
-    if (qsoContainer && qsoContainer.children.length === 0) {
+    // Initialize first QSO row if none exist and no saved QSOs
+    if (qsoContainer && qsoContainer.children.length === 0 && !savedQsos) {
         addQsoRow();
     }
 
@@ -342,10 +394,11 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.qso-row input[type="date"]').forEach(dateField => {
                 dateField.value = mainDate;
             });
+            saveQsos();
         });
     }
 
-    // Form validation
+    // Form validation and clear session storage on successful submit
     const form = document.getElementById('logForm');
     if (form) {
         form.addEventListener('submit', function(e) {
@@ -385,6 +438,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     e.preventDefault();
                     return;
                 }
+            }
+
+            // Clear session storage only if form submission is not prevented
+            if (!e.defaultPrevented) {
+                sessionStorage.removeItem('qsos');
+            }
+        });
+    }
+
+    // Clear log button handler
+    const clearLogButton = document.getElementById('clearLog');
+    if (clearLogButton) {
+        clearLogButton.addEventListener('click', function() {
+            if (confirm('{{ "submit.validation.clear_confirm"|trans }}')) {
+                sessionStorage.removeItem('qsos');
+                const qsoContainer = document.getElementById('qsoContainer');
+                qsoContainer.innerHTML = '';
+                addQsoRow();
             }
         });
     }

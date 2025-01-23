@@ -89,6 +89,7 @@ submit:
     remarks: Uwagi
     optional_fields: Pokaż/Ukryj pola opcjonalne
     submit: Wyślij dziennik
+    clear: Wyczyść dziennik
     qso_records: Zapisy QSO
   qso:
     date: Data
@@ -103,4 +104,5 @@ submit:
     wwl: Nieprawidłowy format lokatora WWL
     tuesday: Data zawodów musi być wtorek
     qso_required: Wymagane jest co najmniej jedno ważne QSO
-    qso_wwl: QSO z {call} nie ma lokatora WWL. Kontynuować? 
+    qso_wwl: QSO z {call} nie ma lokatora WWL. Kontynuować?
+    clear_confirm: Czy na pewno chcesz wyczyścić wszystkie zapisy QSO? 
