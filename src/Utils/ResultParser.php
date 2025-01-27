@@ -131,4 +131,61 @@ class ResultParser
         $finder = new Finder();
         return $finder->files()->in($this->result_dir)->name($pattern);
     }
+
+    public function getMultiplierForPosition(int $position): int 
+    {
+        if ($position === 1) return 10;
+        if ($position === 2) return 8;
+        if ($position === 3) return 6;
+        if ($position === 4) return 5;
+        if ($position === 5) return 4;
+        if ($position === 6) return 3;
+        if ($position === 7) return 2;
+        if ($position === 8) return 1;
+        return 0;
+    }
+
+    public function getTopScoresWithMults(?string $year = null, ?string $band = null): array
+    {
+        $bands = $band ? [$band] : ['144', '432', '1296', '2G4', '5G7', '10G'];
+        $scores = [];
+        
+        foreach ($bands as $currentBand) {
+            $bandScores = [];
+            $records = $this->getCSVRecords($year, $currentBand);
+            
+            if ($records) {
+                foreach ($records as $record) {
+                    $callsign = $record[array_keys($record)[0]];
+                    $score = $this->getBestNineScores($callsign, $year, $currentBand);
+                    if ($score !== null && preg_match('/^LY/', $callsign)) {
+                        $bandScores[] = [
+                            'callsign' => $callsign,
+                            'score' => $score,
+                            'mult' => 0
+                        ];
+                    }
+                }
+                
+                // Sort by score descending
+                usort($bandScores, function($a, $b) {
+                    return $b['score'] - $a['score'];
+                });
+                
+                // Take only top 10 scores
+                $bandScores = array_slice($bandScores, 0, 10);
+                
+                // Assign multipliers based on position
+                foreach ($bandScores as $index => $score) {
+                    $bandScores[$index]['mult'] = $this->getMultiplierForPosition($index + 1);
+                }
+            }
+            
+            if (!empty($bandScores)) {
+                $scores[$currentBand] = $bandScores;
+            }
+        }
+        
+        return $scores;
+    }
 }
