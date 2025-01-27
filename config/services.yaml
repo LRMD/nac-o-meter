@@ -46,3 +46,7 @@ services:
             $apiKey: '%mailjet.api_key%'
             $apiSecret: '%mailjet.api_secret%'
             $recipientEmail: '%mailjet.recipient_email%'
+
+    App\Utils\ResultParser:
+        arguments:
+            $root_dir: '%kernel.project_dir%'

@@ -106,3 +106,6 @@ submit:
     qso_required: Būtinas bent vienas galiojantis QSO
     qso_wwl: QSO su {call} neturi WWL lokatoriaus. Tęsti?
     clear_confirm: Ar tikrai norite išvalyti visus QSO įrašus?
+yearly_top: Metinis TOP
+top_scores:
+  title: Taškai ir daugikliai

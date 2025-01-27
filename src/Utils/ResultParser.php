@@ -61,6 +61,34 @@ class ResultParser
         return null;
     }
 
+    public function getBestNineScores($call, $year, $band)
+    {
+        $filepath = $this->getFilePath($year, $band);
+        if (!$filepath) {
+            return null;
+        }
+
+        $reader = $this->getCSVReader($filepath);
+        $scores = [];
+
+        foreach ($reader as $record) {
+            if ($record[array_keys($record)[0]] == $call) {
+                // Get all month scores except the first column (callsign)
+                $monthScores = array_slice($record, 1);
+                // Convert scores to integers and filter out empty values
+                $monthScores = array_map('intval', array_filter($monthScores, 'strlen'));
+                // Sort scores in descending order
+                rsort($monthScores);
+                // Take the best 9 scores (or all if less than 9)
+                $bestNine = array_slice($monthScores, 0, 9);
+                // Calculate sum
+                return array_sum($bestNine);
+            }
+        }
+        
+        return null;
+    }
+
     private function sortRounds($a,$b)
     {
         /* Check if round is microwave (has G in the name) */

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Top 9 - {{ year }} - {{ band }}{% endblock %}
+
+{% block lwidth %}3{% endblock %}
+{% block rwidth %}9{% endblock %}
+
+{% block left %}
+<div class="card">
+    <div class="card-body">
+        <h4>{{ 'top_scores.title'|trans }}</h4>
+        <p>Year: <a href="{{ path('results', {'year': year, 'band': band}) }}">{{ year }}/{{band}}</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h4>Top Scores for {{ year }} - {{ band }}</h4>
+        <p class="text-muted">{{ 'top_scores.title'|trans }}</p>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Callsign</th>
+                        <th class="text-end">Mult</th>
+                        <th class="text-end">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for score in scores %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>
+                                <a href="{{ path('call_search', {'callsign': score.callsign}) }}">
+                                    {{ score.callsign }}
+                                </a>
+                            </td>
+                            <td class="text-end">{{ score.mult }}</td>
+                            <td class="text-end">{{ score.score }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center">No scores found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %} 

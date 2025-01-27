@@ -105,4 +105,7 @@ submit:
     tuesday: Data zawodów musi być wtorek
     qso_required: Wymagane jest co najmniej jedno ważne QSO
     qso_wwl: QSO z {call} nie ma lokatora WWL. Kontynuować?
-    clear_confirm: Czy na pewno chcesz wyczyścić wszystkie zapisy QSO? 
+    clear_confirm: Czy na pewno chcesz wyczyścić wszystkie zapisy QSO?
+yearly_top: Roczny TOP
+top_scores:
+  title: Punkty i mnożniki 
