@@ -12,15 +12,14 @@ $kernel->boot();
 $container = $kernel->getContainer();
 
 $qsoRepository = $container->get('doctrine')->getRepository(\App\Entity\QsoRecord::class);
-$roundRepository = $container->get('doctrine')->getRepository(\App\Entity\Round::class);
-$lastRound = $roundRepository->findOneBy([], ['date' => 'DESC']);
 
-if (!$lastRound) {
-    echo "No last round found.\n";
-    exit(1);
-}
+// Find last Tuesday
+$today = new \DateTime();
+$lastTuesday = new \DateTime();
+$daysToSubtract = ($today->format('N') - 2 + 7) % 7;
+$lastTuesday->modify("-$daysToSubtract days");
+$dateStr = $lastTuesday->format('Y-m-d');
 
-$dateStr = $lastRound->getDate()->format('Y-m-d');
 $missingLogs = $qsoRepository->getLogsNotReceived($dateStr);
 
 if (empty($missingLogs)) {
