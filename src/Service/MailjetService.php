@@ -27,6 +27,52 @@ class MailjetService
         $this->logger = $logger;
     }
 
+    public function send(string $subject, string $content, string $recipientEmail): bool
+    {
+        $url = 'https://api.mailjet.com/v3.1/send';
+        $data = [
+            'Messages' => [
+                [
+                    'From' => [
+                        'Email' => 'noreply@logs.cqcq.lt',
+                        'Name' => 'LYAC Robot'
+                    ],
+                    'To' => [
+                        [
+                            'Email' => $recipientEmail,
+                            'Name' => 'LYAC Participant'
+                        ]
+                    ],
+                    'Subject' => $subject,
+                    'TextPart' => $content
+                ]
+            ]
+        ];
+
+        try {
+            $response = $this->client->request('POST', $url, [
+                'auth_basic' => [ $this->apiKey, $this->apiSecret ],
+                'json' => $data,
+            ]);
+
+            $statusCode = $response->getStatusCode();
+            $content = $response->toArray(false);
+            
+            $this->logger->debug('Mailjet API Response', [
+                'status_code' => $statusCode,
+                'response' => $content
+            ]);
+
+            return $statusCode === 200;
+        } catch (\Exception $e) {
+            $this->logger->error('Mailjet API Error', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            return false;
+        }
+    }
+
     public function sendLog(string $callsign, \DateTime $date, string $content, string $filename): bool
     {
         $url = 'https://api.mailjet.com/v3.1/send';
