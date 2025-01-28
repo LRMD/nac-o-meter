@@ -24,6 +24,12 @@
         <h4>{{ 'top_scores.headline'|trans }} {{ year }}{% if band %} - {{ band }}{% endif %}</h4>
         <p class="text-muted">{{ 'top_scores.title'|trans }}</p>
 
+        {% if hasEmptyLastMonth %}
+            <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle"></i> {{ 'top_scores.incomplete'|trans }}
+            </div>
+        {% endif %}
+
         {% if band %}
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -96,7 +102,6 @@
                     </thead>
                     <tbody>
                         {% for total in sorted_total_mults %}
-                        {% if total.mult > 0 %}
                             <tr>
                                 <td>{{ loop.index }}</td>
                                 <td>
@@ -107,7 +112,6 @@
                                 <td class="text-end">{{ total.mult }}</td>
                                 <td class="text-end">{{ total.score }}</td>
                             </tr>
-                        {% endif %}
                         {% else %}
                             <tr>
                                 <td colspan="4" class="text-center">No scores found</td>
