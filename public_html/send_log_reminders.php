@@ -21,8 +21,11 @@ $lastTuesday->modify("-$daysToSubtract days");
 $dateStr = $lastTuesday->format('Y-m-d');
 
 $missingLogs = $qsoRepository->getLogsNotReceived($dateStr);
+$missingCallsigns = array_map(function($log) {
+    return $log['callsign'];
+}, $missingLogs);
 
-if (empty($missingLogs)) {
+if (empty($missingCallsigns)) {
     echo "No missing logs found for date: $dateStr\n";
     exit(0);
 }
@@ -30,11 +33,7 @@ if (empty($missingLogs)) {
 // Database connection for email lookup
 $connection = DriverManager::getConnection([
     'driver' => 'pdo_mysql',
-    'host' => $_ENV['DATABASE_HOST'] ?? 'mysql',
-    'port' => $_ENV['DATABASE_PORT'] ?? 3306,
-    'dbname' => $_ENV['DATABASE_NAME'] ?? 'lyac',
-    'user' => $_ENV['DATABASE_USER'] ?? 'lyac',
-    'password' => $_ENV['DATABASE_PASSWORD'] ?? 'lyac',
+    'url' => $_ENV['DATABASE_URL'] ?? 'mysql://lyac:lyac@localhost:3306/lyac'
 ]);
 
 // Email template
@@ -46,7 +45,7 @@ Primename, kad žurnalus reikia pateikti per dvi savaites po turo.
 
 Žurnalą galite pateikti:
 1. Svetainėje: https://lyac.qrz.lt/submit
-2. Arba išsiųsti el. paštu REG1TEST (EDI) formatu
+2. Arba išsiųsti el. paštu REG1TEST (EDI) formatu lyac@qrz.lt
 
 Jei jau išsiuntėte žurnalą, atsiprašome už priminimą.
 
@@ -57,7 +56,7 @@ EOT;
 $emailsSent = [];
 $emailsFound = [];
 
-foreach ($missingLogs as $callsign) {
+foreach ($missingCallsigns as $callsign) {
     // Look up email for callsign
     $stmt = $connection->prepare('
         SELECT DISTINCT e.email
@@ -92,7 +91,7 @@ foreach ($missingLogs as $callsign) {
 
 // Output results
 echo "Date: $dateStr\n";
-echo "Missing logs: " . implode(', ', $missingLogs) . "\n\n";
+echo "Missing logs: " . implode(', ', $missingCallsigns) . "\n\n";
 
 if (!empty($emailsFound)) {
     echo "Found emails for:\n";
