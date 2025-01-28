@@ -6,6 +6,11 @@ use App\Kernel;
 use App\Service\MailjetService;
 use Symfony\Component\Dotenv\Dotenv;
 use Doctrine\DBAL\DriverManager;
+use Symfony\Component\HttpClient\HttpClient;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpClient\HttplugClient;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 $kernel = new Kernel($_SERVER['APP_ENV'] ?? 'dev', (bool) ($_SERVER['APP_DEBUG'] ?? true));
 $kernel->boot();
@@ -29,6 +34,22 @@ if (empty($missingCallsigns)) {
     echo "No missing logs found for date: $dateStr\n";
     exit(0);
 }
+
+// Create logger
+$logger = new Logger('mailjet');
+$logger->pushHandler(new StreamHandler(dirname(__DIR__) . '/var/log/mailjet.log', Logger::DEBUG));
+
+// Create HTTP client
+$httpClient = HttpClient::create();
+
+// Create MailjetService instance
+$mailjetService = new MailjetService(
+    $_ENV['MAILJET_API_KEY'] ?? '',
+    $_ENV['MAILJET_API_SECRET'] ?? '',
+    $_ENV['MAILJET_RECIPIENT_EMAIL'] ?? 'lyac@qrz.lt',
+    $httpClient,
+    $logger
+);
 
 // Database connection for email lookup
 $connection = DriverManager::getConnection([
@@ -73,10 +94,7 @@ foreach ($missingCallsigns as $callsign) {
 
         // Only send if "send=true" is in query params
         if (isset($_GET['send']) && $_GET['send'] === 'true') {
-            /** @var MailjetService $mailjet */
-            $mailjet = $container->get(MailjetService::class);
-            
-            $success = $mailjet->send(
+            $success = $mailjetService->send(
                 'LYAC Žurnalo priminimas - ' . $callsign,
                 str_replace('{date}', $dateStr, $emailTemplate),
                 $email
