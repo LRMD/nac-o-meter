@@ -21,6 +21,7 @@ lyac:
     lastusers: Latest log submissions:
     wheretosend: Please submit your LYAC/NAC logs in the REG1TEST format to the email address
     notreceived: Missing logs (LY only):
+    howtosubmit: You can also submit the log on the website
   callsign:
     title: Callsign information
     participant: Summary of
@@ -36,6 +37,9 @@ lyac:
     subtitle: By year
     participants: Reports
     qso: QSOs
+  news:
+    title: News
+    description: LYAC website updated with LYAC contest log submission and yearly top scores.
 menu:
   rounds: Rounds
   results: Results

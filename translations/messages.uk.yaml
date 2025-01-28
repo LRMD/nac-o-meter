@@ -25,6 +25,7 @@ lyac:
     lastusers: Останні учасники, які надали звіти роботу:
     wheretosend: Надсилайте ваш звіт формату Reg1Test (EDI) електронною поштою 
     notreceived: Неотримані звіти (LY):
+    howtosubmit: Ви також можете надіслати звіт на сайті
   callsign:
     title: Інформація про позивний
     participant: Інформація про
@@ -40,6 +41,9 @@ lyac:
     subtitle: Виберіть рік
     participants: Учасників
     qso: QSO
+  news:
+    title: LYAC новини
+    description: LYAC сайт 2025 року оновлено з LYAC змагань та річними результатами.
 
 menu:
   rounds: Тури
@@ -61,7 +65,7 @@ term:
   complete: Завершеність
 
 submit:
-  title: Надіслати журнал змагань
+  title: Надіслати журнал
   description: Надішліть свій журнал змагань NAC/LYAC у форматі REG1TEST. Журнал буде надіслано керівнику змагань електронною поштою.
   success: Ваш файл журналу {filename} успішно надіслано!
   error:
