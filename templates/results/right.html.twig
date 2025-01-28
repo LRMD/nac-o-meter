@@ -4,31 +4,35 @@
     <h5 class="card-title">{% trans %}lyac.results.title{% endtrans %}:</h5>
 
     {% if table is not empty %}
-    <h6 class="card-subtitle mb-2 text-muted">{{ year }}/{{ band }}</h6>
+    <div class="d-flex justify-content-between align-items-left mb-3">
+        <h4>{{ year }} - {{ band }}</h4>
+        <a href="{{ path('top_scores', {'year': year, 'band': band}) }}" class="btn btn-primary">
+            {% trans %}top_scores.headline{% endtrans %}
+        </a>
+    </div>
 
     <div class="table-responsive">
-        <table class="table table-sm">
+        <table class="table table-striped">
             <thead>
                 <tr>
-                <th scope="col">{% trans %}lyac.results.callsign{% endtrans %}</th>
+                <th>{{ 'lyac.results.callsign'|trans }}</th>
                 {% for m in 1..12 %}
-                <th>{{ m }}</th>
+                <th class="text-end">{{ m }}</th>
                 {% endfor %}
-                <th scope="col">{% trans %}lyac.results.total{% endtrans %}</th>
+                <th class="text-end">{{ 'lyac.results.total'|trans }}</th>
                 </tr>
             </thead>
             <tbody>
-            {% for t in table %}
-                <tr>
-                {% if t | first is not empty %}
-                    <td scope="row">
-                    <a href="{{ path( 'call_search', {'callsign': t|first } ) }}">{{ t | first }}</a></td>
-                    {% for m in t | slice(1,12) %}
-                        <td><small>{{ m }}</small></td>
+            {% for row in table %}
+                {% if not loop.first and row|first is not empty %}
+                    <tr>
+                    <td>
+                    <a href="{{ path('call_search', {'callsign': row|first}) }}">{{ row|first }}</a></td>
+                    {% for col in row|slice(1) %}
+                        <td class="text-end">{{ col }}</td>
                     {% endfor %}
-                    <td scope="row"><b><small>{{ t | last }}</small></b></td>
+                    </tr>
                 {% endif %}
-                </tr>
             {% endfor %}
             </tbody>
         </table>

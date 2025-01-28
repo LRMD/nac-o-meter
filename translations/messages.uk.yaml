@@ -108,4 +108,14 @@ submit:
     tuesday: Дата змагань має бути вівторок
     qso_required: Потрібен принаймні один дійсний QSO
     qso_wwl: QSO з {call} не має WWL локатора. Продовжити?
-    clear_confirm: Ви дійсно хочете очистити всі QSO записи? 
+    clear_confirm: Ви дійсно хочете очистити всі QSO записи?
+
+yearly_top: Річний ТОП
+top_scores:
+  title: Очки та множники
+  year: Рік
+  band: Діапазон
+  callsign: Позивний
+  score: Очки
+  mult: Множник
+  headline: Переможці за рік

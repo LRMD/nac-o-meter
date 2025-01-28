@@ -105,3 +105,12 @@ submit:
     tuesday: Contest date must be Tuesday
     qso_required: At least one valid QSO is required
     qso_wwl: QSO with {call} has no WWL locator. Continue?
+yearly_top: Yearly top
+top_scores:
+  title: Points and mults awarded
+  year: Year
+  band: Band
+  callsign: Callsign
+  score: Points
+  mult: Mult
+  headline: Yearly winners
