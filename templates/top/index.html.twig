@@ -10,7 +10,7 @@
     <div class="card-body">
         <h4>{{ 'top_scores.title'|trans }}</h4>
         <p>{{ 'top_scores.year'|trans }}:
-        <a href="{{ path('top_scores', {'year': year}) }}">{{ year }}</a>
+        <a href="{{ path('top_scores_all', {'year': year}) }}">{{ year }}</a>
         {% if band %}<a href="{{ path('top_scores', {'year': year, 'band': band}) }}">/{{band}}</a>
         {% endif %}
         </p>
@@ -56,6 +56,67 @@
                 </table>
             </div>
         {% else %}
+            {# Calculate total mults per callsign across all bands #}
+            {% set total_mults = {} %}
+            {% for currentBand, bandScores in scores %}
+                {% for score in bandScores %}
+                    {% if score.callsign not in total_mults|keys %}
+                        {% set total_mults = total_mults|merge({(score.callsign): {mult: 0, score: 0}}) %}
+                    {% endif %}
+                    {% set total_mults = total_mults|merge({
+                        (score.callsign): {
+                            mult: total_mults[score.callsign].mult + score.mult,
+                            score: total_mults[score.callsign].score + score.score
+                        }
+                    }) %}
+                {% endfor %}
+            {% endfor %}
+
+            {# Sort total mults by mult value descending #}
+            {% set sorted_total_mults = [] %}
+            {% for callsign, data in total_mults %}
+                {% set sorted_total_mults = sorted_total_mults|merge([{
+                    callsign: callsign,
+                    mult: data.mult,
+                    score: data.score
+                }]) %}
+            {% endfor %}
+            {% set sorted_total_mults = sorted_total_mults|sort((a, b) => b.mult <=> a.mult) %}
+
+            <h5>All bands</h5>
+            <div class="table-responsive mb-5">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'top_scores.callsign'|trans }}</th>
+                            <th class="text-end">{{ 'top_scores.mult'|trans }}</th>
+                            <th class="text-end">{{ 'top_scores.score'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for total in sorted_total_mults %}
+                        {% if total.mult > 0 %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>
+                                    <a href="{{ path('call_search', {'callsign': total.callsign}) }}">
+                                        {{ total.callsign }}
+                                    </a>
+                                </td>
+                                <td class="text-end">{{ total.mult }}</td>
+                                <td class="text-end">{{ total.score }}</td>
+                            </tr>
+                        {% endif %}
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center">No scores found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
             {% for currentBand, bandScores in scores %}
                 <h5 class="mt-4">{{ currentBand }} MHz</h5>
                 <div class="table-responsive">
