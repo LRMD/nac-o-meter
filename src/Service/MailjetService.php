@@ -56,11 +56,11 @@ class MailjetService
             ]);
 
             $statusCode = $response->getStatusCode();
-            $content = $response->toArray(false);
+            $responseData = $response->toArray(false);
             
             $this->logger->debug('Mailjet API Response', [
                 'status_code' => $statusCode,
-                'response' => $content
+                'response' => $responseData
             ]);
 
             return $statusCode === 200;
@@ -109,13 +109,11 @@ class MailjetService
             ]);
 
             $statusCode = $response->getStatusCode();
-            $content = $response->toArray(false);
+            $responseData = $response->toArray(false);
             
             $this->logger->debug('Mailjet API Response', [
-                'auth_basic' => [ $this->apiKey, $this->apiSecret ],
-                'request' => $data,
                 'status_code' => $statusCode,
-                'response' => $content,
+                'response' => $responseData,
                 'headers' => $response->getHeaders(false)
             ]);
 
