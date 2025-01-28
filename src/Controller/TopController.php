@@ -17,13 +17,13 @@ class TopController extends AbstractController
     public function index(string $year, ?string $band = null): Response
     {
         $resultParser = new ResultParser($this->getParameter('kernel.project_dir') . '/public_html/');
-
-        $scores = $resultParser->getTopScoresWithMults($year, $band);
+        $result = $resultParser->getTopScoresWithMults($year, $band);
         
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
 
         return $this->render('top/index.html.twig', [
-            'scores' => $scores,
+            'scores' => $result['scores'],
+            'hasEmptyLastMonth' => $result['hasEmptyLastMonth'],
             'year' => $year,
             'band' => $band,
             'callSearch' => $callsignSearchForm->createView()

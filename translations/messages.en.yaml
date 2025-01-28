@@ -118,3 +118,4 @@ top_scores:
   score: Points
   mult: Mult
   headline: Yearly winners
+  incomplete: The scores for the last month are not yet available. The final results may change.

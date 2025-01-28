@@ -150,6 +150,7 @@ class ResultParser
         $bands = $band ? [$band] : ['144', '432', '1296', '2G4', '5G7', '10G'];
         $scores = [];
         $microwaveScores = [];
+        $hasEmptyLastMonth = true;  // Start with true and set to false if any value found
         
         foreach ($bands as $currentBand) {
             $bandScores = [];
@@ -159,6 +160,13 @@ class ResultParser
                 foreach ($records as $record) {
                     $callsign = $record[array_keys($record)[0]];
                     $score = $this->getBestNineScores($callsign, $year, $currentBand);
+                    
+                    // Check if last month (12) has any value
+                    $values = array_values($record);
+                    if (isset($values[12]) && !empty(trim($values[12]))) {
+                        $hasEmptyLastMonth = false;  // Found a value, so last month is not empty
+                    }
+                    
                     if ($score !== null && preg_match('/^LY/', $callsign)) {
                         if (in_array($currentBand, ['2G4', '5G7', '10G'])) {
                             // For microwave bands, accumulate scores per callsign
@@ -226,6 +234,9 @@ class ResultParser
             }
         }
         
-        return $scores;
+        return [
+            'scores' => $scores,
+            'hasEmptyLastMonth' => $hasEmptyLastMonth
+        ];
     }
 }
