@@ -112,4 +112,10 @@ submit:
 
 yearly_top: Річний ТОП
 top_scores:
-  title: Очки та множники 
+  title: Очки та множники
+  year: Рік
+  band: Діапазон
+  callsign: Позивний
+  score: Очки
+  mult: Множник
+  headline: Переможці за рік

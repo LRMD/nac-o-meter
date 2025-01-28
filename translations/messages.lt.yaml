@@ -109,3 +109,9 @@ submit:
 yearly_top: Metinis TOP
 top_scores:
   title: Taškai ir daugikliai
+  year: Metai
+  band: Diapazonas
+  callsign: Šaukinys
+  score: Taškai
+  mult: Daugiklis
+  headline: Metų nugalėtojai

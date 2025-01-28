@@ -108,3 +108,9 @@ submit:
 yearly_top: Yearly top
 top_scores:
   title: Points and mults awarded
+  year: Year
+  band: Band
+  callsign: Callsign
+  score: Points
+  mult: Mult
+  headline: Yearly winners

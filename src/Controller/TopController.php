@@ -11,10 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class TopController extends AbstractController
 {
     /**
-     * @Route("/top/{year}", name="top_scores_all", defaults={"_locale"="lt"})
-     * @Route("/{_locale}/top/{year}", name="top_scores_all_localized", requirements={"_locale"="en|lt|pl|uk"})
-     * @Route("/top/{year}/{band}", name="top_scores", defaults={"_locale"="lt"})
-     * @Route("/{_locale}/top/{year}/{band}", name="top_scores_localized", requirements={"_locale"="en|lt|pl|uk"})
+     * @Route("/top/{year}", name="top_scores_all")
+     * @Route("/top/{year}/{band}", name="top_scores")
      */
     public function index(string $year, ?string $band = null): Response
     {

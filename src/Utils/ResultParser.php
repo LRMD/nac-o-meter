@@ -149,6 +149,7 @@ class ResultParser
     {
         $bands = $band ? [$band] : ['144', '432', '1296', '2G4', '5G7', '10G'];
         $scores = [];
+        $microwaveScores = [];
         
         foreach ($bands as $currentBand) {
             $bandScores = [];
@@ -159,30 +160,69 @@ class ResultParser
                     $callsign = $record[array_keys($record)[0]];
                     $score = $this->getBestNineScores($callsign, $year, $currentBand);
                     if ($score !== null && preg_match('/^LY/', $callsign)) {
-                        $bandScores[] = [
-                            'callsign' => $callsign,
-                            'score' => $score,
-                            'mult' => 0
-                        ];
+                        if (in_array($currentBand, ['2G4', '5G7', '10G'])) {
+                            // For microwave bands, accumulate scores per callsign
+                            if (!isset($microwaveScores[$callsign])) {
+                                $microwaveScores[$callsign] = 0;
+                            }
+                            $microwaveScores[$callsign] += $score;
+                        } else {
+                            $bandScores[] = [
+                                'callsign' => $callsign,
+                                'score' => $score,
+                                'mult' => 0
+                            ];
+                        }
                     }
                 }
                 
-                // Sort by score descending
-                usort($bandScores, function($a, $b) {
-                    return $b['score'] - $a['score'];
-                });
-                
-                // Take only top 10 scores
-                $bandScores = array_slice($bandScores, 0, 10);
-                
-                // Assign multipliers based on position
-                foreach ($bandScores as $index => $score) {
-                    $bandScores[$index]['mult'] = $this->getMultiplierForPosition($index + 1);
+                if (!in_array($currentBand, ['2G4', '5G7', '10G'])) {
+                    // Sort and process regular bands
+                    usort($bandScores, function($a, $b) {
+                        return $b['score'] - $a['score'];
+                    });
+                    
+                    // Take only top 10 scores
+                    $bandScores = array_slice($bandScores, 0, 10);
+                    
+                    // Assign multipliers based on position
+                    foreach ($bandScores as $index => $score) {
+                        $bandScores[$index]['mult'] = $this->getMultiplierForPosition($index + 1);
+                    }
+                    
+                    if (!empty($bandScores)) {
+                        $scores[$currentBand] = $bandScores;
+                    }
                 }
             }
+        }
+        
+        // Process microwave scores if any exist
+        if (!empty($microwaveScores)) {
+            $combinedScores = [];
+            foreach ($microwaveScores as $callsign => $score) {
+                $combinedScores[] = [
+                    'callsign' => $callsign,
+                    'score' => $score,
+                    'mult' => 0
+                ];
+            }
             
-            if (!empty($bandScores)) {
-                $scores[$currentBand] = $bandScores;
+            // Sort microwave scores
+            usort($combinedScores, function($a, $b) {
+                return $b['score'] - $a['score'];
+            });
+            
+            // Take only top 10 scores
+            $combinedScores = array_slice($combinedScores, 0, 10);
+            
+            // Assign multipliers based on position
+            foreach ($combinedScores as $index => $score) {
+                $combinedScores[$index]['mult'] = $this->getMultiplierForPosition($index + 1);
+            }
+            
+            if (!empty($combinedScores)) {
+                $scores['Microwave'] = $combinedScores;
             }
         }
         

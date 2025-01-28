@@ -108,4 +108,10 @@ submit:
     clear_confirm: Czy na pewno chcesz wyczyścić wszystkie zapisy QSO?
 yearly_top: Roczny TOP
 top_scores:
-  title: Punkty i mnożniki 
+  title: Punkty i mnożniki
+  year: Rok
+  band: Pasmo
+  callsign: Znak wywoławczy
+  score: Punkty
+  mult: Mnożnik
+  headline: Zwycięzcy roku

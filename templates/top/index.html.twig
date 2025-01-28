@@ -9,7 +9,7 @@
 <div class="card">
     <div class="card-body">
         <h4>{{ 'top_scores.title'|trans }}</h4>
-        <p>Year: <a href="{{ path('results', {'year': year, 'band': band}) }}">{{ year }}{% if band %}/{{band}}{% endif %}</a>
+        <p>{{ 'top_scores.year'|trans }}: <a href="{{ path('results', {'year': year, 'band': band}) }}">{{ year }}{% if band %}/{{band}}{% endif %}</a>
         </p>
     </div>
 </div>
@@ -18,7 +18,7 @@
 {% block content %}
 <div class="card">
     <div class="card-body">
-        <h4>Top Scores for {{ year }}{% if band %} - {{ band }}{% endif %}</h4>
+        <h4>{{ 'top_scores.headline'|trans }} {{ year }}{% if band %} - {{ band }}{% endif %}</h4>
         <p class="text-muted">{{ 'top_scores.title'|trans }}</p>
 
         {% if band %}
@@ -27,9 +27,9 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Callsign</th>
-                            <th class="text-end">Mult</th>
-                            <th class="text-end">Score</th>
+                            <th>{{ 'top_scores.callsign'|trans }}</th>
+                            <th class="text-end">{{ 'top_scores.mult'|trans }}</th>
+                            <th class="text-end">{{ 'top_scores.score'|trans }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,9 +60,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Callsign</th>
-                                <th class="text-end">Mult</th>
-                                <th class="text-end">Score</th>
+                                <th>{{ 'top_scores.callsign'|trans }}</th>
+                                <th class="text-end">{{ 'top_scores.mult'|trans }}</th>
+                                <th class="text-end">{{ 'top_scores.score'|trans }}</th>
                             </tr>
                         </thead>
                         <tbody>
