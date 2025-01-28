@@ -4,10 +4,10 @@
     <h5 class="card-title">{% trans %}lyac.results.title{% endtrans %}:</h5>
 
     {% if table is not empty %}
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-left mb-3">
         <h4>{{ year }} - {{ band }}</h4>
-        <a href="{{ path('top_scores', {'year': year, 'band': band}) }}" class="btn btn-outline-primary">
-            {% trans %}Yearly top{% endtrans %}
+        <a href="{{ path('top_scores', {'year': year, 'band': band}) }}" class="btn btn-primary">
+            {% trans %}top_scores.headline{% endtrans %}
         </a>
     </div>
 

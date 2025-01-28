@@ -9,7 +9,10 @@
 <div class="card">
     <div class="card-body">
         <h4>{{ 'top_scores.title'|trans }}</h4>
-        <p>{{ 'top_scores.year'|trans }}: <a href="{{ path('results', {'year': year, 'band': band}) }}">{{ year }}{% if band %}/{{band}}{% endif %}</a>
+        <p>{{ 'top_scores.year'|trans }}:
+        <a href="{{ path('top_scores', {'year': year}) }}">{{ year }}</a>
+        {% if band %}<a href="{{ path('top_scores', {'year': year, 'band': band}) }}">/{{band}}</a>
+        {% endif %}
         </p>
     </div>
 </div>
