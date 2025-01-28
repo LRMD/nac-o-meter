@@ -21,6 +21,7 @@ lyac:
     lastusers: Ostatnio przesłane logi:
     wheretosend: Prosimy o przesyłanie logów LYAC/NAC w formacie REG1TEST na adres email
     notreceived: Brakujące logi (tylko LY):
+    howtosubmit: Możesz również przesłać log na stronie
   callsign:
     title: Informacje o znaku
     participant: Podsumowanie
@@ -36,6 +37,9 @@ lyac:
     subtitle: Według roku
     participants: Raporty
     qso: QSO
+  news:
+    title: Aktualności
+    description: Szybki link do wyników z poprzedniego roku
 menu:
   rounds: Tury
   results: Wyniki

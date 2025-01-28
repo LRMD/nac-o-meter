@@ -1,4 +1,22 @@
 <div class="card">
+<div class="card-body">
+  <h5 class="card-title">{% trans %}lyac.news.title{% endtrans %}</h5>
+  <div class="card-body">
+    <p class="card-text">{% trans %}lyac.news.description{% endtrans %}</p>
+        <p><a href="{{ path('top_scores_all', {'year': currentYear -1 }) }}" class="btn btn-outline-primary">
+            {{ 'yearly_top'|trans }} {{ currentYear-1 }}
+        </a> 
+        <a href="{{ path('submit') }}" class="btn btn-primary">
+            {{ 'submit.title'|trans }}
+        </a></p>  
+    </div>
+  </div>
+</div>
+
+<p></p>
+
+
+<div class="card">
 
   <div class="card-body">
     <h5 class="card-title">{% trans %}lyac.month.title{% endtrans %}</h5>
@@ -45,6 +63,7 @@
     </h5>
 
     <div class="card-text mb-2">{% trans %}lyac.month.wheretosend{% endtrans %}: <b>lyac@qrz.lt</b>.</div>
+    <div class="card-text mb-2">{% trans %}lyac.month.howtosubmit{% endtrans %}: <a href="{{ path('submit') }}">{{ 'submit.title'|trans }}</a>.</div>
   </div>
 </div>
 <p></p>

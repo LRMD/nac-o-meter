@@ -21,6 +21,7 @@ lyac:
     lastusers: Paskutiniai ataskaitas robotui pateikę dalyviai:
     wheretosend: LYAC ataskaitas REG1TEST formatu kviečiame siųsti robotui el. paštu
     notreceived: Negautos LYAC ataskaitos:
+    howtosubmit: Ataskaitą galite pateikti ir svetainėje
   callsign:
     title: Šaukinio informacija
     participant: Dalyvio
@@ -36,6 +37,9 @@ lyac:
     subtitle: Pagal metus
     participants: Dalyvių
     qso: Ryšių
+  news:
+    title: Naujienos
+    description: Svetainė 2025 m. papildyta LYAC varžybų žurnalo pateikimo funkcija ir LYAC metų topais.
 menu:
   rounds: Turai
   results: Rezultatai
@@ -106,7 +110,7 @@ submit:
     qso_required: Būtinas bent vienas galiojantis QSO
     qso_wwl: QSO su {call} neturi WWL lokatoriaus. Tęsti?
     clear_confirm: Ar tikrai norite išvalyti visus QSO įrašus?
-yearly_top: Metinis TOP
+yearly_top: Metų TOP
 top_scores:
   title: Taškai ir daugikliai
   year: Metai
