@@ -104,19 +104,18 @@ class LogSubmitType extends AbstractType
                     ])
                 ]
             ])
-            ->add('PBand', ChoiceType::class, [
+            ->add('PBand', TextType::class, [
                 'required' => true,
                 'label' => 'submit.form.band',
-                'choices' => [
-                    '2.4 GHz' => '2.4 GHz',
-                    '5.7 GHz' => '5.7 GHz',
-                    '10 GHz' => '10 GHz',
-                    '24 GHz' => '24 GHz'
-                ],
-                'placeholder' => 'Select band',
                 'attr' => [
                     'class' => 'form-control',
-                    'disabled' => 'disabled'
+                    'readonly' => true
+                ],
+                'constraints' => [
+                    new Assert\Regex([
+                        'pattern' => '/^(\d[,.\d]\d*)\s*([MGmg][Hh][Zz])\s*$/',
+                        'message' => 'Invalid band format'
+                    ])
                 ]
             ])
             ->add('PSect', TextType::class, [

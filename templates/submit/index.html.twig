@@ -266,18 +266,47 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Handle TName and PBand interaction
-    if (tnameSelect && pbandSelect) {
+    if (tnameSelect) {
+        const pbandInput = document.querySelector('input[name$="[PBand]"]');
+        const microwaveSelect = document.createElement('select');
+        microwaveSelect.className = 'form-control';
+        microwaveSelect.style.display = 'none';
+        
+        // Add microwave band options
+        const options = [
+            { value: '', text: 'Select band' },
+            { value: '2.4 GHz', text: '2.4 GHz' },
+            { value: '5.7 GHz', text: '5.7 GHz' },
+            { value: '10 GHz', text: '10 GHz' },
+            { value: '24 GHz', text: '24 GHz' }
+        ];
+        
+        options.forEach(opt => {
+            const option = document.createElement('option');
+            option.value = opt.value;
+            option.text = opt.text;
+            microwaveSelect.appendChild(option);
+        });
+        
+        pbandInput.parentNode.insertBefore(microwaveSelect, pbandInput.nextSibling);
+        
+        microwaveSelect.addEventListener('change', function() {
+            pbandInput.value = this.value;
+        });
+
         tnameSelect.addEventListener('change', function() {
             if (this.value === 'MICROWAVE') {
-                pbandSelect.disabled = false;
-                pbandSelect.required = true;
+                pbandInput.style.display = 'none';
+                microwaveSelect.style.display = '';
+                pbandInput.readOnly = false;
             } else {
-                pbandSelect.disabled = true;
-                pbandSelect.required = false;
+                pbandInput.style.display = '';
+                microwaveSelect.style.display = 'none';
+                pbandInput.readOnly = true;
                 // Set PBand value based on TName selection
                 const match = this.value.match(/(\d+)/);
                 if (match) {
-                    pbandSelect.value = match[1] + ' MHz';
+                    pbandInput.value = match[1] + ' MHz';
                 }
             }
         });
