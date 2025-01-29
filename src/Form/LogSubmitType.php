@@ -104,12 +104,19 @@ class LogSubmitType extends AbstractType
                     ])
                 ]
             ])
-            ->add('PBand', TextType::class, [
+            ->add('PBand', ChoiceType::class, [
                 'required' => true,
                 'label' => 'submit.form.band',
+                'choices' => [
+                    '2.4 GHz' => '2.4 GHz',
+                    '5.7 GHz' => '5.7 GHz',
+                    '10 GHz' => '10 GHz',
+                    '24 GHz' => '24 GHz'
+                ],
+                'placeholder' => 'Select band',
                 'attr' => [
                     'class' => 'form-control',
-                    'readonly' => false
+                    'disabled' => 'disabled'
                 ]
             ])
             ->add('PSect', TextType::class, [

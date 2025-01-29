@@ -236,6 +236,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedPWWLo = localStorage.getItem('PWWLo');
     const pcallInput = document.querySelector('input[name$="[PCall]"]');
     const wwloInput = document.querySelector('input[name$="[PWWLo]"]');
+    const tnameSelect = document.querySelector('select[name$="[TName]"]');
+    const pbandSelect = document.querySelector('select[name$="[PBand]"]');
     
     if (savedPCall && pcallInput) {
         pcallInput.value = savedPCall;
@@ -263,15 +265,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const tnameSelect = document.querySelector('select[name$="[TName]"]');
-    if (tnameSelect) {
+    // Handle TName and PBand interaction
+    if (tnameSelect && pbandSelect) {
         tnameSelect.addEventListener('change', function() {
-            const band = this.value.match(/\d+/)[0];
-            const pbandInput = document.querySelector('input[name$="[PBand]"]');
-            if (pbandInput) {
-                pbandInput.value = band + ' MHz';
+            if (this.value === 'MICROWAVE') {
+                pbandSelect.disabled = false;
+                pbandSelect.required = true;
+            } else {
+                pbandSelect.disabled = true;
+                pbandSelect.required = false;
+                // Set PBand value based on TName selection
+                const match = this.value.match(/(\d+)/);
+                if (match) {
+                    pbandSelect.value = match[1] + ' MHz';
+                }
             }
         });
+        
+        // Initial state
         tnameSelect.dispatchEvent(new Event('change'));
     }
 
