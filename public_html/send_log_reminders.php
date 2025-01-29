@@ -82,8 +82,10 @@ foreach ($missingCallsigns as $callsign) {
     $stmt = $connection->prepare('
         SELECT DISTINCT e.email
         FROM emails e
-        JOIN activities a ON e.emailID = a.emailID
-        JOIN callsigns c ON a.listID = c.callsignID
+        JOIN messages m ON e.emailID = m.emailID
+        JOIN attachments a ON m.messageID = a.sourceID
+        JOIN logs l ON a.attachmentID = l.attachmentID
+        JOIN callsigns c ON l.callsignID = c.callsignID
         WHERE c.callsign = ?
     ');
     $result = $stmt->executeQuery([$callsign]);
