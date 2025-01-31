@@ -73,8 +73,8 @@ class ResultParser
 
         foreach ($reader as $record) {
             if ($record[array_keys($record)[0]] == $call) {
-                // Get all month scores except the first column (callsign)
-                $monthScores = array_slice($record, 1);
+                // Get all month scores except the first column (callsign) and last column (total)
+                $monthScores = array_slice($record, 1, 12);
                 // Convert scores to integers and filter out empty values
                 $monthScores = array_map('intval', array_filter($monthScores, 'strlen'));
                 // Sort scores in descending order
