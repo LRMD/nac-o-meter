@@ -63,7 +63,7 @@ rules:
   menu: 'Taisyklės'
 submit:
   title: Pateikti varžybų žurnalą
-  description: Pateikite savo NAC/LYAC varžybų žurnalą REG1TEST formatu. Žurnalas bus išsiųstas varžybų vadovui el. paštu.
+  description: Pateikite savo NAC/LYAC varžybų žurnalą REG1TEST formatu. Žurnalas bus išsiųstas varžybų teisėjų kolegijai el. paštu.
   success: Jūsų žurnalo failas {filename} sėkmingai išsiųstas!
   error:
     send: Nepavyko išsiųsti žurnalo failo. Bandykite dar kartą arba susisiekite su administratoriumi.
@@ -74,7 +74,7 @@ submit:
     wwl: WWL lokatorius
     band: Diapazonas
     section: Sekcija
-    manager: Varžybų vadovas
+    manager: Varžybų teisėjų kolegija
     club: Klubo pavadinimas
     address1: Adresas 1
     address2: Adresas 2
@@ -119,4 +119,4 @@ top_scores:
   score: Taškai
   mult: Daugiklis
   headline: Metų nugalėtojai
-  incomplete: Paskutinio mėnesio rezultatai dar nepateikti. Galutiniai rezultatai gali keistis.
+  incomplete: Šioje lentelėje atvaizduojami einamų metų rezultatai, kurie yra atnaujinami kas mėnesį. Galutiniai rezultatai ir nugalėtojai bus nustatyti tik po visų 12 mėnesių rezultatų.
