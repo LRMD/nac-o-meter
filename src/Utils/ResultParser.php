@@ -147,7 +147,7 @@ class ResultParser
 
     public function getTopScoresWithMults(?string $year = null, ?string $band = null): array
     {
-        $bands = $band ? [$band] : ['144', '432', '1296', '2G4', '5G7', '10G'];
+        $bands = $band ? [$band] : ['144', '432', '1296', '1G3', '2G4', '5G7', '10G'];
         $scores = [];
         $microwaveScores = [];
         $hasEmptyLastMonth = true;  // Start with true and set to false if any value found
