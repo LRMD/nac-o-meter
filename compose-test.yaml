@@ -1,61 +1,42 @@
-version: '3.8'
-
-networks:
-  - "lyac"
-
 services:
-  app:
+  test:
     build:
       context: .
-      dockerfile: Containerfile.app
-    ports:
-      - "8080:8080"
+      dockerfile: Containerfile.test
     volumes:
       - ./:/app:Z
     environment:
-      - APP_ENV=dev
-      - DATABASE_URL=mysql://lyac:lyac@mysql/lyac
-      - MAILJET_RECIPIENT_EMAIL=ly2en@qrz.lt
-      - MAILJET_API_KEY=aaa
-      - MAILJET_API_SECRET=aaa
+      - APP_ENV=test
+      - DATABASE_URL=mysql://lyac:lyac@mysql/lyac_test
+      - MAILJET_RECIPIENT_EMAIL=test@example.com
+      - MAILJET_API_KEY=test
+      - MAILJET_API_SECRET=test
     command:
       - /bin/bash
       - -c
       - |
-        composer install
-        corepack enable
-        yarn install
-        yarn encore dev
-        php -S 0.0.0.0:8080 -t public_html
+        rm -rf bin/.phpunit
+        composer install --no-interaction
+        php bin/console doctrine:database:create --if-not-exists --env=test
+        php bin/console doctrine:migrations:migrate --no-interaction --env=test
+        vendor/bin/phpunit --testdox
     depends_on:
       mysql:
         condition: service_healthy
-
 
   mysql:
     image: mariadb:lts
     command: --default-authentication-plugin=caching_sha2_password --log-bin-trust-function-creators=1
     volumes:
       - ./sql/lyac.sql:/docker-entrypoint-initdb.d/lyac.sql:Z
-      - mysql_data:/var/lib/mysql:Z
     environment:
       MYSQL_ROOT_PASSWORD: lyac
       MYSQL_USER: lyac
       MYSQL_PASSWORD: lyac
-      MYSQL_DATABASE: lyac
+      MYSQL_DATABASE: lyac_test
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       start_period: 10s
       interval: 10s
       timeout: 5s
       retries: 3
-    restart: unless-stopped
-    ports:
-      - "3306:3306"
-
-volumes:
-  mysql_data: 
-
-networks:
-  lyac:
-    driver: bridge
