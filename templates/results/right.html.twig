@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             {% for row in table %}
-                {% if not loop.first and row|first is not empty %}
+                {% if row|first is not empty %}
                     <tr>
                     <td>
                     <a href="{{ path('call_search', {'callsign': row|first}) }}">{{ row|first }}</a></td>
