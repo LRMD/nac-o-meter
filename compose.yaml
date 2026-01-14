@@ -28,19 +28,28 @@ services:
         yarn encore dev
         php -S 0.0.0.0:8080 -t public_html
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
+
 
   mysql:
-    image: mysql:8
+    image: mariadb:lts
     command: --default-authentication-plugin=caching_sha2_password --log-bin-trust-function-creators=1
     volumes:
-      - ./sql:/docker-entrypoint-initdb.d:Z
+      - ./sql/lyac.sql:/docker-entrypoint-initdb.d/lyac.sql:Z
       - mysql_data:/var/lib/mysql:Z
     environment:
       MYSQL_ROOT_PASSWORD: lyac
       MYSQL_USER: lyac
       MYSQL_PASSWORD: lyac
       MYSQL_DATABASE: lyac
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
 
 volumes:
   mysql_data: 
