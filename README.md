@@ -53,8 +53,8 @@ podman compose up
 Set your environment to production:
 
 ```
-podman compose exec app composer install --no-dev --optimize-autoloader
-podman compose exec app yarn encore production
+podman-compose down
+podman-compose -f compose-prod.yaml up
 ```
 
 Example lftp script to upload :

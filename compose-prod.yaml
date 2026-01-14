@@ -1,0 +1,31 @@
+version: '3.8'
+
+networks:
+  - "lyac"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Containerfile.app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/app:Z
+    environment:
+      - APP_ENV=prod
+      - DATABASE_URL=mysql://lyac:lyac@mysql/lyac
+      - MAILJET_RECIPIENT_EMAIL=ly2en@qrz.lt
+      - MAILJET_API_KEY=aaa
+      - MAILJET_API_SECRET=aaa
+    command:
+      - /bin/bash
+      - -c
+      - |
+        composer install --no-dev --optimize-autoloader
+        corepack enable
+        yarn encore production
+
+networks:
+  lyac:
+    driver: bridge
