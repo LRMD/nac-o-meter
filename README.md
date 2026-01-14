@@ -48,6 +48,31 @@ Just run:
 podman compose up
 ```
 
+#### Testing:
+
+Run the test suite using the dedicated test compose file:
+
+```bash
+podman compose -f compose-test.yaml up --build --abort-on-container-exit
+```
+
+This will:
+- Build a test container with PHP and required extensions
+- Start a MariaDB database with test data
+- Run PHPUnit with all tests
+
+To clean up after tests:
+
+```bash
+podman compose -f compose-test.yaml down -v
+```
+
+The test suite includes:
+- **Controller tests**: Homepage, Results, Rules pages
+- **Entity tests**: Callsign, Log entities
+- **Repository tests**: LogRepository database queries
+- **Unit tests**: ResultParser utility class
+
 #### Production:
 
 Set your environment to production:

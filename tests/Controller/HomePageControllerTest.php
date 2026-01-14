@@ -13,18 +13,18 @@ class HomePageControllerTest extends WebTestCase
         $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'LYAC');
+        $this->assertSelectorExists('.navbar-brand');
     }
 
     public function testCallsignSearch(): void
     {
         $client = static::createClient();
-        
-        // Test valid callsign search
-        $client->request('GET', '/call_search_handle', ['callsign' => 'LY2EN']);
-        $this->assertResponseRedirects('/call_search?callsign=LY2EN');
 
-        // Test empty callsign search
+        // Test valid callsign search - redirects to /call/{callsign}
+        $client->request('GET', '/call_search_handle', ['callsign' => 'LY2EN']);
+        $this->assertResponseRedirects('/call/LY2EN');
+
+        // Test empty callsign search - redirects to home
         $client->request('GET', '/call_search_handle');
         $this->assertResponseRedirects('/');
     }

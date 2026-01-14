@@ -16,7 +16,7 @@ class CallsignTest extends TestCase
 
     public function testCallsignInitialState(): void
     {
-        $this->assertNull($this->callsign->getId());
+        $this->assertNull($this->callsign->getCallsignid());
         $this->assertNull($this->callsign->getCallsign());
     }
 
