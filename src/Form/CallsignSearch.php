@@ -17,10 +17,16 @@ class CallsignSearch extends AbstractType
             ->add('callsign', TextType::class, array(
                 'label' => false,
                 'required' => true,
+                'row_attr' => array(
+                    'data-controller' => 'autocomplete',
+                    'data-autocomplete-url-value' => '/api/callsigns'
+                ),
                 'attr' => array(
                     'placeholder' => 'searchform.placeholder',
                     'class' => 'form-control me-2',
-                    'autofocus' => true
+                    'autofocus' => true,
+                    'autocomplete' => 'off',
+                    'data-autocomplete-target' => 'input'
                 )))
             ->add('save', SubmitType::class, array(
                 'label' => 'searchform.submit',

@@ -18,5 +18,19 @@ class CallsignRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Callsign::class);
     }
-    
+
+    /**
+     * Get all unique callsigns that have submitted at least one log
+     *
+     * @return string[]
+     */
+    public function getAllCallsigns(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('DISTINCT c.callsign')
+            ->innerJoin('App\Entity\Log', 'l', 'WITH', 'l.callsignid = c.callsignid')
+            ->orderBy('c.callsign', 'ASC')
+            ->getQuery()
+            ->getSingleColumnResult();
+    }
 }
