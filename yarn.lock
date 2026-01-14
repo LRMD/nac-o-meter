@@ -2306,11 +2306,8 @@ __metadata:
 
 "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets::locator=root-workspace-0b6124%40workspace%3A.":
   version: 1.1.0
-  resolution: "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets#vendor/symfony/ux-chartjs/assets::hash=f4559f&locator=root-workspace-0b6124%40workspace%3A."
-  peerDependencies:
-    "@hotwired/stimulus": ^3.0.0
-    chart.js: ^3.4.1
-  checksum: 96563f1beb04253c96a050d9493851262986a3e8180bae5499c20b210e7e3d480992a303523f7baf9de16364be8b1d15b57d6ab8a762bcc996428c96ffbffaec
+  resolution: "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets#vendor/symfony/ux-chartjs/assets::hash=ca51a4&locator=root-workspace-0b6124%40workspace%3A."
+  checksum: 124e30546ad8da3d400ccac004ab2e549f123b85e3501772f11e29a61e61eb55abd3c9e34aa719fc40e16e5d4070bc80a21d413874b49a0153dc62832cb5e417
   languageName: node
   linkType: hard
 
@@ -11425,9 +11422,9 @@ __metadata:
   linkType: hard
 
 "store2@npm:^2.12.0":
-  version: 2.14.3
-  resolution: "store2@npm:2.14.3"
-  checksum: 971a47aa479ff5491f89ee3fcbaf4ddafe0cfb55ac2f4cf4b4fc7b21d349fa3a761f79368d1573b9f65af08b3cf0f6973eed56a213b8bb4cb7e820ac048d1613
+  version: 2.14.4
+  resolution: "store2@npm:2.14.4"
+  checksum: b151d18f44a0cc9a8e2d943df29b90e59889eb3dc55adcd5db656ff7f900ca7d18bd6ee214f883d39c230297e8e2d269b8274e78556fb7c7953d39e8c18d624d
   languageName: node
   linkType: hard
 
