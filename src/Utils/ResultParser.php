@@ -132,7 +132,41 @@ class ResultParser
         return $finder->files()->in($this->result_dir)->name($pattern);
     }
 
-    public function getMultiplierForPosition(int $position): int 
+    public function isFMBand(string $band): bool
+    {
+        return $band === 'FM';
+    }
+
+    public function getFMResults(string $year): ?array
+    {
+        $filepath = $this->getFilePath($year, 'FM');
+        if (!$filepath) {
+            return null;
+        }
+
+        $reader = Reader::createFromPath($filepath, 'r')
+            ->setHeaderOffset(null)
+            ->setDelimiter(';');
+
+        $results = [];
+        foreach ($reader as $index => $record) {
+            // Skip the first line (title)
+            if ($index === 0) {
+                continue;
+            }
+
+            $results[] = [
+                'position' => (int) $record[0],
+                'callsign' => $record[1],
+                'points' => (float) $record[2],
+                'remarks' => $record[3] ?? ''
+            ];
+        }
+
+        return $results;
+    }
+
+    public function getMultiplierForPosition(int $position): int
     {
         if ($position === 1) return 10;
         if ($position === 2) return 8;
