@@ -1477,11 +1477,8 @@ __metadata:
 
 "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets::locator=root-workspace-0b6124%40workspace%3A.":
   version: 2.35.0
-  resolution: "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets#vendor/symfony/ux-chartjs/assets::hash=5fea54&locator=root-workspace-0b6124%40workspace%3A."
-  peerDependencies:
-    "@hotwired/stimulus": ^3.0.0
-    chart.js: ^3.4.1 || ^4.0
-  checksum: c3e0fac8f2e56ab09219de725a47c126afab7e0da54240cfd49fcfb34a645b9b83dc60daa29b6e876966dd88a5d593d19eb6a8c270962af21ec8d0cd3f99af4a
+  resolution: "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets#vendor/symfony/ux-chartjs/assets::hash=3e08b1&locator=root-workspace-0b6124%40workspace%3A."
+  checksum: fe89c77697745bb1bebf69a7ad8d193d970f984f4137f4ea18784835e4530ad07e0d0799d5b599bb7b30ae9128f485607c40fdfae77b4a7a9d1054a63d7e5050
   languageName: node
   linkType: hard
 
@@ -5961,15 +5958,15 @@ __metadata:
   linkType: hard
 
 "tar@npm:^7.5.4":
-  version: 7.5.15
-  resolution: "tar@npm:7.5.15"
+  version: 7.5.19
+  resolution: "tar@npm:7.5.19"
   dependencies:
     "@isaacs/fs-minipass": ^4.0.0
     chownr: ^3.0.0
     minipass: ^7.1.2
     minizlib: ^3.1.0
     yallist: ^5.0.0
-  checksum: b00ede0737f262691b18bd60aebdd15663c7cdabd40adce64dde0b69f65b7afb91cf31a4cae3bc184e2358aa14371fb0b56d6f7c0c0cc8b0238df1242c0e07ca
+  checksum: 72bedc26089d2b3372f5c833f2e69b1ce9a2e8138a461cbb4b2eab48bef2453b3a12e17d47f6a1883a6929cdc348c622179b016ffed765ce21da51e43f2f4209
   languageName: node
   linkType: hard
 
