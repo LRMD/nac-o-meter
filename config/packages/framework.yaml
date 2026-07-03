@@ -1,8 +1,7 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     secret: '%env(APP_SECRET)%'
-    # NOTE: annotations stay enabled until entities move to attributes (Phase 5),
-    # doctrine.yaml maps them with type: annotation
+    annotations: false
     http_method_override: false
     handle_all_throwables: true
 

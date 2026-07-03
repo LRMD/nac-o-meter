@@ -9,7 +9,7 @@ doctrine:
     dbal:
         # configure these for your database server
         driver: 'pdo_mysql'
-        server_version: '5.7'
+        server_version: '5.7.44'
         charset: utf8mb4
         default_table_options:
             charset: utf8mb4
@@ -26,15 +26,12 @@ doctrine:
         enable_lazy_ghost_objects: true
         report_fields_where_declared: true
         validate_xml_mapping: true
-        # NOTE: keep "underscore" (not underscore_number_aware) — changing the
-        # naming strategy would remap columns of existing entities
-        naming_strategy: doctrine.orm.naming_strategy.underscore
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
             App:
                 is_bundle: false
-                # switch to type: attribute in Phase 5 when entities drop annotations
-                type: annotation
+                type: attribute
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App

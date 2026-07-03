@@ -34,8 +34,9 @@ your own antennae for a particular radio band.
 
 ### Requirements
 
-* PHP > 7.4
+* PHP > 8.4
 * MySQL or MariaDB protocol version 10
+* NodeJS 20
 * Yarn > 3.2
 
 ### Deployment

@@ -6,25 +6,22 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Mode
- *
- * @ORM\Table(name="modes")
- * @ORM\Entity(repositoryClass="App\Repository\ModeRepository")
  */
+#[ORM\Table(name: 'modes')]
+#[ORM\Entity(repositoryClass: \App\Repository\ModeRepository::class)]
 class Mode
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="modeID", type="smallint", nullable=false, options={"unsigned"=true,"comment"="Mode ID"})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[ORM\Column(name: 'modeID', type: 'smallint', nullable: false, options: ['unsigned' => true, 'comment' => 'Mode ID'])]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     private $modeid;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="mode", type="string", length=16, nullable=false, options={"comment"="Mode"})
      */
+    #[ORM\Column(name: 'mode', type: 'string', length: 16, nullable: false, options: ['comment' => 'Mode'])]
     private $mode;
 }
