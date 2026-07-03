@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Log;
 use App\Entity\Round;
 use App\Entity\QsoRecord;
@@ -11,14 +12,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RoundController extends AbstractController
 {
-    /**
-     * @Route("/rounds/{year}", name="rounds", defaults={"year"=""})
-     */
+    public function __construct(private ManagerRegistry $doctrine)
+    {
+    }
+
+    #[Route('/rounds/{year}', name: 'rounds', defaults: ['year' => ''])]
     public function index($year)
     {
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
-        $logRepository = $this->getDoctrine()->getRepository(Log::class);
-        $roundRepository = $this->getDoctrine()->getRepository(Round::class);
+        $logRepository = $this->doctrine->getRepository(Log::class);
+        $roundRepository = $this->doctrine->getRepository(Round::class);
 
         $allRoundYears = $roundRepository->findAllRoundYears();
         $lastYear = substr($logRepository->findLastDate()[1],0,4);
@@ -53,7 +56,7 @@ class RoundController extends AbstractController
 
     private function roundCompleteness($date)
     {
-        $qsoRepository = $this->getDoctrine()->getRepository(QsoRecord::class);
+        $qsoRepository = $this->doctrine->getRepository(QsoRecord::class);
         $column = 'callsign';
 
         $roundLogsReceived = array_column(
@@ -76,8 +79,8 @@ class RoundController extends AbstractController
 
     private function validateRound($date)
     {
-        $roundRepository = $this->getDoctrine()->getRepository(Round::class);
-        $logRepository = $this->getDoctrine()->getRepository(Log::class);
+        $roundRepository = $this->doctrine->getRepository(Round::class);
+        $logRepository = $this->doctrine->getRepository(Log::class);
         $roundCheck = $roundRepository->findBy(
             array('date' => new \DateTime($date) )
         );
@@ -90,9 +93,7 @@ class RoundController extends AbstractController
         return $roundCheck;
     }
 
-    /**
-     * @Route("/round/{date}/{callsign}", name="round_details", defaults={"date"=""})
-     */
+    #[Route('/round/{date}/{callsign}', name: 'round_details', defaults: ['date' => ''])]
     public function getRoundLogsByCall($date,$callsign)
     {
         $dateCheck = $this->validateRound($date);
@@ -100,9 +101,9 @@ class RoundController extends AbstractController
             return $dateCheck;
         }
 
-        $roundRepository = $this->getDoctrine()->getRepository(Round::class);
+        $roundRepository = $this->doctrine->getRepository(Round::class);
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
-        $qsoRecordRepository = $this->getDoctrine()->getRepository(QsoRecord::class);
+        $qsoRecordRepository = $this->doctrine->getRepository(QsoRecord::class);
 
         $roundName = $dateCheck[0]->getName();
         $allRoundYears = $roundRepository->findAllRoundYears();
@@ -123,9 +124,7 @@ class RoundController extends AbstractController
 
     }
 
-    /**
-     * @Route("/round/{date}", name="round", defaults={"date"=""})
-     */
+    #[Route('/round/{date}', name: 'round', defaults: ['date' => ''])]
     public function getRoundLogs($date)
     {
         $roundCheck = $this->validateRound($date);
@@ -133,8 +132,8 @@ class RoundController extends AbstractController
             return $roundCheck;
         }
 
-        $roundRepository = $this->getDoctrine()->getRepository(Round::class);
-        $logRepository = $this->getDoctrine()->getRepository(Log::class);
+        $roundRepository = $this->doctrine->getRepository(Round::class);
+        $logRepository = $this->doctrine->getRepository(Log::class);
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
 
         $roundName = $roundCheck[0]->getName();

@@ -10,10 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TopController extends AbstractController
 {
-    /**
-     * @Route("/top/{year}", name="top_scores_all")
-     * @Route("/top/{year}/{band}", name="top_scores")
-     */
+    #[Route('/top/{year}', name: 'top_scores_all')]
+    #[Route('/top/{year}/{band}', name: 'top_scores')]
     public function index(string $year, ?string $band = null): Response
     {
         $resultParser = new ResultParser($this->getParameter('kernel.project_dir') . '/public_html/');

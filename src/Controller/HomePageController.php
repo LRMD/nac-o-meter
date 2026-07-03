@@ -2,6 +2,7 @@
 // src/Controller/HomePageController.php
 namespace App\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Log;
 use App\Entity\Round;
 use App\Entity\Message;
@@ -14,20 +15,21 @@ use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomePageController extends AbstractController
 {
-    /**
-     * @Route("/", name="home")
-     */
+    public function __construct(private ManagerRegistry $doctrine)
+    {
+    }
+
+    #[Route('/', name: 'home')]
     public function index(Request $request, ChartBuilderInterface $chartBuilder)
     {
-        $logRepository = $this->getDoctrine()->getRepository(Log::class);
-        $qsoRepository = $this->getDoctrine()->getRepository(QsoRecord::class);
-        $roundRepository = $this->getDoctrine()->getRepository(Round::class);
-        $msgRepository = $this->getDoctrine()->getRepository(Message::class);
+        $logRepository = $this->doctrine->getRepository(Log::class);
+        $qsoRepository = $this->doctrine->getRepository(QsoRecord::class);
+        $roundRepository = $this->doctrine->getRepository(Round::class);
+        $msgRepository = $this->doctrine->getRepository(Message::class);
 
         $lastCallsigns = $logRepository->findLastCallsigns(5);
         $lastMsgDate = $msgRepository->getLastEntity()->getDate();
@@ -137,9 +139,7 @@ class HomePageController extends AbstractController
         ));
     }
 
-    /**
-     * @Route("/call_search_handle", name="call_search_handle", methods={"GET", "POST"})
-     */
+    #[Route('/call_search_handle', name: 'call_search_handle', methods: ['GET', 'POST'])]
     public function handleCallSearch(Request $request)
     {
         $callsignSearchForm = $this->createForm(CallsignSearch::class);

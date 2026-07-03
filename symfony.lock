@@ -2,18 +2,6 @@
     "beberlei/doctrineextensions": {
         "version": "v1.2.3"
     },
-    "composer/package-versions-deprecated": {
-        "version": "1.11.99.5"
-    },
-    "doctrine/annotations": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "cb4152ebcadbe620ea2261da1a1c5a9b8cea7672"
-        }
-    },
     "doctrine/cache": {
         "version": "v1.8.0"
     },
@@ -70,9 +58,6 @@
     },
     "knplabs/knp-time-bundle": {
         "version": "v1.20.0"
-    },
-    "laminas/laminas-code": {
-        "version": "4.5.1"
     },
     "league/csv": {
         "version": "9.1.4"
@@ -357,6 +342,15 @@
     },
     "symfony/service-contracts": {
         "version": "v1.1.7"
+    },
+    "symfony/stimulus-bundle": {
+        "version": "2.36",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.8",
+            "ref": "9e33a8a3794b603fb4be6c04ee5ecab901ce549e"
+        }
     },
     "symfony/stopwatch": {
         "version": "v4.1.7"

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Log;
 use App\Entity\Round;
 use App\Entity\Callsign;
@@ -12,9 +13,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class SitemapController extends AbstractController
 {
-    /**
-     * @Route("/sitemap", name="sitemap", defaults={"_format"="xml"})
-     */
+    public function __construct(private ManagerRegistry $doctrine)
+    {
+    }
+
+    #[Route('/sitemap', name: 'sitemap', defaults: ['_format' => 'xml'])]
     public function index(): Response
     {
         $urls = [];
@@ -29,7 +32,7 @@ class SitemapController extends AbstractController
         $urls[] = ['loc' => $hostname . '/submit', 'priority' => '0.6', 'changefreq' => 'monthly'];
 
         // Round years
-        $roundRepository = $this->getDoctrine()->getRepository(Round::class);
+        $roundRepository = $this->doctrine->getRepository(Round::class);
         $allRoundYears = $roundRepository->findAllRoundYears();
         foreach ($allRoundYears as $yearRow) {
             $urls[] = [
@@ -51,8 +54,8 @@ class SitemapController extends AbstractController
         }
 
         // Callsign pages (only those with logs)
-        $logRepository = $this->getDoctrine()->getRepository(Log::class);
-        $callsignRepository = $this->getDoctrine()->getRepository(Callsign::class);
+        $logRepository = $this->doctrine->getRepository(Log::class);
+        $callsignRepository = $this->doctrine->getRepository(Callsign::class);
 
         $callsignsWithLogs = $callsignRepository->createQueryBuilder('c')
             ->select('DISTINCT c.callsign')

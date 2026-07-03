@@ -3,73 +3,64 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * Logs
- *
- * @ORM\Table(name="logs", indexes={@ORM\Index(name="date", columns={"date"})})
- * @ORM\Entity(repositoryClass="App\Repository\LogRepository")
  */
+#[ORM\Table(name: 'logs')]
+#[ORM\Index(name: 'date', columns: ['date'])]
+#[ORM\Entity(repositoryClass: \App\Repository\LogRepository::class)]
 class Log
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="logID", type="integer", nullable=false, options={"unsigned"=true,"comment"="Log ID"})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[ORM\Column(name: 'logID', type: 'integer', nullable: false, options: ['unsigned' => true, 'comment' => 'Log ID'])]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     private $logid;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="attachmentID", type="integer", nullable=false, options={"unsigned"=true,"comment"="Attachment ID"})
      */
+    #[ORM\Column(name: 'attachmentID', type: 'integer', nullable: false, options: ['unsigned' => true, 'comment' => 'Attachment ID'])]
     private $attachmentid;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="callsignID", type="smallint", nullable=false, options={"unsigned"=true,"comment"="Contest participant"})
      */
+    #[ORM\Column(name: 'callsignID', type: 'smallint', nullable: false, options: ['unsigned' => true, 'comment' => 'Contest participant'])]
     private $callsignid;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="date", nullable=false, options={"comment"="Date of contest"})
      */
+    #[ORM\Column(name: 'date', type: 'date', nullable: false, options: ['comment' => 'Date of contest'])]
     private $date;
 
     /**
      * @var bool
-     *
      * @ManyToOne(targetEntity="Bands")
-     * @ORM\Column(name="bandID", type="boolean", nullable=false, options={"comment"="Band ID"})
      */
+    #[ORM\Column(name: 'bandID', type: 'boolean', nullable: false, options: ['comment' => 'Band ID'])]
     private $bandid;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="wwlID", type="smallint", nullable=false, options={"unsigned"=true,"comment"="WWL ID"})
      */
+    #[ORM\Column(name: 'wwlID', type: 'smallint', nullable: false, options: ['unsigned' => true, 'comment' => 'WWL ID'])]
     private $wwlid;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="section", type="string", length=64, nullable=true, options={"comment"="Psect"})
      */
+    #[ORM\Column(name: 'section', type: 'string', length: 64, nullable: true, options: ['comment' => 'Psect'])]
     private $section;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="club", type="string", length=64, nullable=true, options={"comment"="Pclub"})
      */
+    #[ORM\Column(name: 'club', type: 'string', length: 64, nullable: true, options: ['comment' => 'Pclub'])]
     private $club;
 
     public function getLogid(): ?int

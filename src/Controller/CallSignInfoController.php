@@ -2,6 +2,7 @@
 // src/Controller/LuckyController.php
 namespace App\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Callsign;
 use App\Entity\Log;
 use App\Form\CallsignSearch;
@@ -13,14 +14,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CallSignInfoController extends AbstractController
 {
-    /**
-     * @Route("/call/{callsign}/{year}", name="call_search", defaults={"callsign"="","year"=""}, requirements={"callsign"=".+"})
-     */
+    public function __construct(private ManagerRegistry $doctrine)
+    {
+    }
+
+    #[Route('/call/{callsign}/{year}', name: 'call_search', defaults: ['callsign' => '','year' => ''], requirements: ['callsign' => '.+'])]
     public function callsignSearch($callsign, ChartBuilderInterface $chartBuilder)
     {
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
-        $logRepository = $this->getDoctrine()->getRepository(Log::class);
-        $callsignRepository = $this->getDoctrine()->getRepository(Callsign::class);
+        $logRepository = $this->doctrine->getRepository(Log::class);
+        $callsignRepository = $this->doctrine->getRepository(Callsign::class);
 
         $callsignCheck = $callsignRepository->findBy(array('callsign' => $callsign));
         if (empty($callsignCheck) && !empty($callsign)) {
