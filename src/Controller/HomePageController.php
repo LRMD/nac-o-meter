@@ -63,31 +63,6 @@ class HomePageController extends AbstractController
           ],
         ]);
 
-        foreach ($lastMonthSquareStats as $squareStatItem) {
-          $squareStatLabels[] = $squareStatItem['square'];
-          $squareStatData[] = $squareStatItem['count'];
-        }
-
-        $lastMonthSquareStatsChart = $chartBuilder->createChart(Chart::TYPE_BAR);
-        $lastMonthSquareStatsChart->setOptions([
-          'maintainAspectRatio' => false,
-          'scales' => [
-            'y' => [
-              'ticks' => ['precision' => 0]
-            ]
-          ]
-        ]);
-        $lastMonthSquareStatsChart->setData([
-          'labels' => $squareStatLabels,
-          'datasets' => [
-            [
-              'label' => 'Operators per square last month',
-              'backgroundColor' => 'rgb(54, 162, 235)',
-              'data' => $squareStatData,
-            ],
-          ],
-        ]);
-
         $logsNotReceived = [];
         $topFiveScores = [];
 
@@ -123,7 +98,7 @@ class HomePageController extends AbstractController
           'lastDate' => $lastMsgDate->format('Y-m-d H:i'),
           'lastRounds' => $lastRounds,
           'lastMonthStatsChart' => $lastMonthStatsChart,
-          'lastMonthSquareStatsChart' => $lastMonthSquareStatsChart,
+          'lastMonthSquareStats' => $lastMonthSquareStats,
           'upcomingRounds' => $upcomingRounds,
           'lastCallsigns' => $lastCallsigns,
           'logsNotReceived' => $logsNotReceived,

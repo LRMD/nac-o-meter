@@ -36,8 +36,10 @@
       <div class="card-text col-sm m-2">
 
       <div class="chart-container" style="position: relative; height:300px; width:300px">
-        {{ render_chart(lastMonthSquareStatsChart) }}
+        <div id="squares-map" class="squares-map" data-squares="{{ lastMonthSquareStats|json_encode }}"></div>
       </div>
+      {{ encore_entry_link_tags('squares_map') }}
+      {{ encore_entry_script_tags('squares_map') }}
 
       </div>
 
