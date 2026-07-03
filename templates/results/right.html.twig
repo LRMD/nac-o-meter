@@ -17,7 +17,7 @@
                 <tr>
                 <th>{{ 'lyac.results.callsign'|trans }}</th>
                 {% for m in 1..12 %}
-                <th class="text-end">{{ m }}</th>
+                <th class="text-end" title="{{ ('months.m' ~ m)|trans }}">{{ ('months.m' ~ m)|trans|slice(0, 3) }}</th>
                 {% endfor %}
                 <th class="text-end">{{ 'lyac.results.total'|trans }}</th>
                 </tr>

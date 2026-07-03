@@ -58,6 +58,7 @@ term:
   callsign: Callsign
   band: Band
   complete: Complete
+  percentage_logs: Percentage of logs received
 rules:
   title: Rules
   menu: Rules
@@ -119,3 +120,16 @@ top_scores:
   mult: Mult
   headline: Yearly winners
   incomplete: This table displays the results for the current year, which are updated monthly. The final results and winners will only be determined after all 12 months of results have been compiled.
+months:
+  m1: January
+  m2: February
+  m3: March
+  m4: April
+  m5: May
+  m6: June
+  m7: July
+  m8: August
+  m9: September
+  m10: October
+  m11: November
+  m12: December

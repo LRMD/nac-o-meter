@@ -58,6 +58,7 @@ term:
   callsign: Znak wywoławczy
   band: Pasmo
   complete: Ukończone
+  percentage_logs: Procent otrzymanych dzienników
 rules:
   title: Regulamin
   menu: Regulamin
@@ -120,3 +121,16 @@ top_scores:
   mult: Mnożnik
   headline: Zwycięzcy roku
   incomplete: Poniższa tabela przedstawia wyniki za bieżący rok, które są aktualizowane co miesiąc. Ostateczne wyniki i zwycięzcy zostaną wyłonieni dopiero po upływie wszystkich 12 miesięcy wyników.
+months:
+  m1: Styczeń
+  m2: Luty
+  m3: Marzec
+  m4: Kwiecień
+  m5: Maj
+  m6: Czerwiec
+  m7: Lipiec
+  m8: Sierpień
+  m9: Wrzesień
+  m10: Październik
+  m11: Listopad
+  m12: Grudzień
