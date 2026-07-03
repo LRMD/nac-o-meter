@@ -98,15 +98,15 @@ class ResultParser
         /* if both are G, check the first part until G */
         if ($ag && $bg) {
             return (
-                (int) preg_split('/G/',$a)[0] >
+                (int) preg_split('/G/',$a)[0] <=>
                 (int) preg_split('/G/',$b)[0]
             );
         }
         /* VUSHF always less than Gigahertz */
         elseif ($ag || $bg) {
-            return $ag;
+            return $ag ? 1 : -1;
         }
-        else return ($a > $b);
+        else return ($a <=> $b);
     }
 
     public function getAllYears()
