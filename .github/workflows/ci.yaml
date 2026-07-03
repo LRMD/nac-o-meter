@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  lint:
+    name: PHP 8.4 lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: ctype, iconv, pdo_mysql
+          coverage: none
+
+      - name: Syntax-check PHP files
+        run: find src tests -name '*.php' -print0 | xargs -0 -n1 -P4 php -l > /dev/null
+
+      - name: Validate composer.json
+        run: composer validate --no-check-publish --no-check-lock
+
+  tests:
+    name: Unit tests (PHP 8.4)
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mariadb:lts
+        env:
+          MYSQL_ROOT_PASSWORD: lyac
+          MYSQL_USER: lyac
+          MYSQL_PASSWORD: lyac
+          MYSQL_DATABASE: lyac
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-start-period=10s
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: ctype, iconv, pdo_mysql
+          coverage: none
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-${{ runner.os }}-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      # phpunit.xml.dist points DATABASE_URL at host "mysql" (the podman
+      # compose service name) — alias it to the CI service container
+      - name: Alias mysql hostname
+        run: echo "127.0.0.1 mysql" | sudo tee -a /etc/hosts
+
+      - name: Load database dump
+        run: mysql --host 127.0.0.1 --port 3306 -u root -plyac lyac < sql/lyac.sql
+
+      - name: Run tests
+        run: php bin/phpunit --testdox
