@@ -33,49 +33,19 @@ class HomePageController extends AbstractController
         $lastMsgDate = $msgRepository->getLastEntity()->getDate();
         $lastDate = $logRepository->findLastDate()[1];
         $lastMonthStats = $logRepository->findLastMonthStats($lastDate);
-        $lastMonthModeStats = $logRepository->findLastMonthModeStats($lastDate);
+        $lastMonthSquareStats = $logRepository->findLastMonthSquareStats($lastDate);
 
         $lastRounds = $roundRepository->findLastRoundDates($lastDate);
         $upcomingRounds = $roundRepository->findNextRoundDates();
         
         $locale = $this->getParameter('kernel.default_locale') == $request->getLocale();
 
-        foreach ($lastMonthModeStats as $modeStatItem) {
-          $modeStatLabels[] = $modeStatItem['mode'];
-          $modeStatData[] = $modeStatItem['count'];
-        }
-
-        foreach ($modeStatLabels as $k => $v) {
-          if ($v == 'RTTY') $modeStatLabels[$k] = 'FT8';
-        }
-
-        $lastMonthModeStatsChart = $chartBuilder->createChart(Chart::TYPE_PIE);
-        $lastMonthModeStatsChart->setData([
-          'labels' => $modeStatLabels,
-          'datasets' => [
-            [
-              'label' => 'Mode stats',
-              'backgroundColor' => [
-                  'rgb(255, 99, 132)',
-                  'rgb(54, 162, 235)',
-                  'rgb(255, 205, 86)',
-                  'rgb(34, 139, 34)',
-                  'rgb(148, 0, 211)'
-              ],
-              'data' => $modeStatData,
-            ],
-          ],
-        ]);
-
         foreach ($lastMonthStats as $logStatItem) {
           $logStatLabels[] = $logStatItem['bandFreq'];
           $logStatData[] = $logStatItem['count'];
         }
 
-        $lastMonthStatsChart = $chartBuilder->createChart(Chart::TYPE_BAR);
-        $lastMonthStatsChart->setOptions([
-          'maintainAspectRatio' => false
-        ]);
+        $lastMonthStatsChart = $chartBuilder->createChart(Chart::TYPE_PIE);
         $lastMonthStatsChart->setData([
           'labels' => $logStatLabels,
           'datasets' => [
@@ -89,6 +59,31 @@ class HomePageController extends AbstractController
                   'rgb(148, 0, 211)'
               ],
               'data' => $logStatData,
+            ],
+          ],
+        ]);
+
+        foreach ($lastMonthSquareStats as $squareStatItem) {
+          $squareStatLabels[] = $squareStatItem['square'];
+          $squareStatData[] = $squareStatItem['count'];
+        }
+
+        $lastMonthSquareStatsChart = $chartBuilder->createChart(Chart::TYPE_BAR);
+        $lastMonthSquareStatsChart->setOptions([
+          'maintainAspectRatio' => false,
+          'scales' => [
+            'y' => [
+              'ticks' => ['precision' => 0]
+            ]
+          ]
+        ]);
+        $lastMonthSquareStatsChart->setData([
+          'labels' => $squareStatLabels,
+          'datasets' => [
+            [
+              'label' => 'Operators per square last month',
+              'backgroundColor' => 'rgb(54, 162, 235)',
+              'data' => $squareStatData,
             ],
           ],
         ]);
@@ -128,7 +123,7 @@ class HomePageController extends AbstractController
           'lastDate' => $lastMsgDate->format('Y-m-d H:i'),
           'lastRounds' => $lastRounds,
           'lastMonthStatsChart' => $lastMonthStatsChart,
-          'lastMonthModeStatsChart' => $lastMonthModeStatsChart,
+          'lastMonthSquareStatsChart' => $lastMonthSquareStatsChart,
           'upcomingRounds' => $upcomingRounds,
           'lastCallsigns' => $lastCallsigns,
           'logsNotReceived' => $logsNotReceived,

@@ -115,16 +115,16 @@ class LogRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findLastMonthModeStats($date)
+    public function findLastMonthSquareStats($date)
     {
         return $this->createQueryBuilder('l')
-            ->select('count(q.qsoid) as count')
-            ->leftJoin('App\Entity\QsoRecord','q','WITH', 'q.logid=l.logid')
-            ->leftJoin('App\Entity\Mode', 'm', 'WITH', 'q.modeid=m.modeid')
-            ->addSelect('m.mode')
+            ->select('SUBSTRING(w.wwl,1,4) as square')
+            ->addSelect('count(DISTINCT l.callsignid) as count')
+            ->leftJoin('App\Entity\Wwl', 'w', 'WITH', 'w.wwlid=l.wwlid')
             ->where('l.date > :since')
             ->setParameter('since', $this->subtractOneMonth($date))
-            ->groupBy('m.modeid')
+            ->groupBy('square')
+            ->orderBy('count', 'DESC')
             ->getQuery()
             ->getResult()
         ;
