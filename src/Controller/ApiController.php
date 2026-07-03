@@ -9,9 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
 {
-    /**
-     * @Route("/api/callsigns", name="api_callsigns", methods={"GET"})
-     */
+    #[Route('/api/callsigns', name: 'api_callsigns', methods: ['GET'])]
     public function getCallsigns(CallsignRepository $callsignRepository): JsonResponse
     {
         $callsigns = $callsignRepository->getAllCallsigns();

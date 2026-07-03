@@ -32,7 +32,7 @@ class ResultParser
     }
 
     private function getCSVReader($filepath) {
-        return Reader::createFromPath($filepath, 'r')
+        return Reader::from($filepath, 'r')
                     ->setHeaderOffset(0)
                     ->setDelimiter(';')
         ;

@@ -22,9 +22,7 @@ class SubmitController extends AbstractController
         $this->translator = $translator;
     }
 
-    /**
-     * @Route("/submit", name="submit")
-     */
+    #[Route('/submit', name: 'submit')]
     public function index(Request $request): Response
     {
         $form = $this->createForm(LogSubmitType::class);

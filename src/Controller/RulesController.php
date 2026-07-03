@@ -10,9 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RulesController extends AbstractController
 {
-    /**
-     * @Route("/{_locale}/rules", name="rules", requirements={"_locale"="en|lt|uk"})
-     */
+    #[Route('/{_locale}/rules', name: 'rules', requirements: ['_locale' => 'en|lt|uk'])]
     public function index(Request $request): Response
     {
         $callsignSearchForm = $this->createForm(CallsignSearch::class);

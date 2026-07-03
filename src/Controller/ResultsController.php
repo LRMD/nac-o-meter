@@ -9,9 +9,7 @@ use App\Utils\ResultParser;
 
 class ResultsController extends AbstractController
 {
-    /**
-     * @Route("/results/{year}/{band}", name="results", defaults={"year"="","band"=""})
-     */
+    #[Route('/results/{year}/{band}', name: 'results', defaults: ['year' => '','band' => ''])]
 
     public function index($year, $band)
     {
