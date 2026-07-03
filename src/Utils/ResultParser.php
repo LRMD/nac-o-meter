@@ -20,7 +20,7 @@ class ResultParser
 
     private function getFilePath($year, $band)
     {
-        $filename = "${year}_${band}.csv";
+        $filename = "{$year}_{$band}.csv";
         $files = $this->getFilesByPattern($filename);
         if (!sizeof($files)) {
             return false;
