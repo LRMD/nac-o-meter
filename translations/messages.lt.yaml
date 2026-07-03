@@ -58,6 +58,7 @@ term:
   callsign: Šaukinys
   band: Diapazonas
   complete: Aktyvumas
+  percentage_logs: Gautų žurnalų procentas
 rules:
   title: 'Varžybų taisyklės'
   menu: 'Taisyklės'
@@ -120,3 +121,16 @@ top_scores:
   mult: Daugiklis
   headline: Metų nugalėtojai
   incomplete: Šioje lentelėje atvaizduojami einamų metų rezultatai, kurie yra atnaujinami kas mėnesį. Galutiniai rezultatai ir nugalėtojai bus nustatyti tik po visų 12 mėnesių rezultatų.
+months:
+  m1: Sausis
+  m2: Vasaris
+  m3: Kovas
+  m4: Balandis
+  m5: Gegužė
+  m6: Birželis
+  m7: Liepa
+  m8: Rugpjūtis
+  m9: Rugsėjis
+  m10: Spalis
+  m11: Lapkritis
+  m12: Gruodis
