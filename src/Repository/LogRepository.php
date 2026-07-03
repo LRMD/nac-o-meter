@@ -38,7 +38,14 @@ class LogRepository extends ServiceEntityRepository
 
     private static function subtractOneMonth($date)
     {
-        $_d = new \DateTime($date);
+        if ($date instanceof \DateTimeInterface) {
+            $_d = clone $date;
+            if (!($_d instanceof \DateTime)) {
+                $_d = new \DateTime($date->format('Y-m-d H:i:s'));
+            }
+        } else {
+            $_d = new \DateTime($date);
+        }
         return $_d->modify('-4 weeks');
     }
 

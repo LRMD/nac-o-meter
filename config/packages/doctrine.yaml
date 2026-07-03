@@ -45,9 +45,3 @@ doctrine:
             datetime_functions:
                 date_format: DoctrineExtensions\Query\Mysql\DateFormat
                 year: DoctrineExtensions\Query\Mysql\Year
-
-when@test:
-    doctrine:
-        dbal:
-            # "TEST_TOKEN" is typically set by ParaTest
-            dbname_suffix: '_test%env(default::TEST_TOKEN)%'

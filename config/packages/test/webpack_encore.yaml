@@ -1,0 +1,3 @@
+webpack_encore:
+    # tests render templates without a webpack build being present
+    strict_mode: false
