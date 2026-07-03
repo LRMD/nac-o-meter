@@ -10,8 +10,10 @@
         <ini name="display_errors" value="1" />
         <ini name="error_reporting" value="-1" />
         <server name="APP_ENV" value="test" force="true" />
+        <env name="APP_ENV" value="test" force="true" />
         <server name="KERNEL_CLASS" value="App\Kernel" />
-        <server name="DATABASE_URL" value="mysql://lyac:lyac@mysql:3306/lyac_test" />
+        <!-- fallback only (e.g. CI); compose stacks inject the real DATABASE_URL -->
+        <env name="DATABASE_URL" value="mysql://lyac:lyac@mysql:3306/lyac" />
         <server name="SHELL_VERBOSITY" value="-1" />
         <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
         <server name="SYMFONY_PHPUNIT_VERSION" value="9.5" />
