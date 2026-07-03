@@ -37,6 +37,9 @@ lyac:
     subtitle: By year
     participants: Reports
     qso: QSOs
+  stats:
+    qso_per_year: QSOs per year
+    qso_per_year_subtitle: "Total QSO records split by LY prefix vs DX"
   news:
     title: News
     description: LYAC website updated with LYAC contest log submission and yearly top scores.

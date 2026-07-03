@@ -95,6 +95,40 @@ class HomePageController extends AbstractController
           ],
         ]);
 
+        // --- QSOs per year chart (LY vs others) ---
+        $qsoPerYear = $qsoRepository->getQsoCountPerYearByPrefix();
+        $qsoYearLabels = array_column($qsoPerYear, 'year');
+        $qsoLyData     = array_column($qsoPerYear, 'ly');
+        $qsoOtherData  = array_column($qsoPerYear, 'other');
+
+        $qsoPerYearChart = $chartBuilder->createChart(Chart::TYPE_BAR);
+        $qsoPerYearChart->setOptions([
+            'maintainAspectRatio' => false,
+            'scales' => [
+                'x' => ['stacked' => true],
+                'y' => ['stacked' => true],
+            ],
+            'plugins' => [
+                'legend' => ['position' => 'bottom'],
+            ],
+        ]);
+        $qsoPerYearChart->setData([
+            'labels' => $qsoYearLabels,
+            'datasets' => [
+                [
+                    'label'           => 'LY',
+                    'backgroundColor' => 'rgba(0, 87, 184, 0.8)',
+                    'data'            => $qsoLyData,
+                ],
+                [
+                    'label'           => 'DX',
+                    'backgroundColor' => 'rgba(255, 205, 86, 0.8)',
+                    'data'            => $qsoOtherData,
+                ],
+            ],
+        ]);
+        // --- end QSOs per year chart ---
+
         $logsNotReceived = [];
         $topFiveScores = [];
 
@@ -131,6 +165,7 @@ class HomePageController extends AbstractController
           'lastRounds' => $lastRounds,
           'lastMonthStatsChart' => $lastMonthStatsChart,
           'lastMonthModeStatsChart' => $lastMonthModeStatsChart,
+          'qsoPerYearChart' => $qsoPerYearChart,
           'upcomingRounds' => $upcomingRounds,
           'lastCallsigns' => $lastCallsigns,
           'logsNotReceived' => $logsNotReceived,

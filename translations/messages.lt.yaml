@@ -37,6 +37,9 @@ lyac:
     subtitle: Pagal metus
     participants: Dalyvių
     qso: Ryšių
+  stats:
+    qso_per_year: QSO per metus
+    qso_per_year_subtitle: "Visi QSO įrašai pagal LY / DX"
   news:
     title: Naujienos
     description: Svetainė 2025 m. papildyta LYAC varžybų žurnalo pateikimo funkcija ir LYAC metų topais.

@@ -149,5 +149,38 @@ class QsoRecordRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-}
+    }
+
+    /**
+     * Returns total QSO counts per year split into two categories:
+     * operators with an LY prefix and all others.
+     *
+     * Each row: ['year' => int, 'ly' => int, 'other' => int]
+     *
+     * @return array<int, array{year: int, ly: int, other: int}>
+     */
+    public function getQsoCountPerYearByPrefix(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = <<<SQL
+            SELECT
+                YEAR(l.date)                                         AS year,
+                SUM(CASE WHEN c.callsign LIKE 'LY%' THEN 1 ELSE 0 END) AS ly,
+                SUM(CASE WHEN c.callsign NOT LIKE 'LY%' THEN 1 ELSE 0 END) AS other
+            FROM qsorecords q
+            INNER JOIN logs      l ON l.logID      = q.logID
+            INNER JOIN callsigns c ON c.callsignID = l.callsignID
+            GROUP BY YEAR(l.date)
+            ORDER BY year ASC
+        SQL;
+
+        $rows = $conn->executeQuery($sql)->fetchAllAssociative();
+
+        return array_map(static fn(array $row) => [
+            'year'  => (int) $row['year'],
+            'ly'    => (int) $row['ly'],
+            'other' => (int) $row['other'],
+        ], $rows);
+    }
 }

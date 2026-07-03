@@ -86,3 +86,15 @@
   {# include "progress.html.twig" #}
 
 </div>
+
+<p></p>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{% trans %}lyac.stats.qso_per_year{% endtrans %}</h5>
+    <h6 class="card-subtitle mb-3 text-muted">{% trans %}lyac.stats.qso_per_year_subtitle{% endtrans %}</h6>
+    <div class="chart-container" style="position: relative; height: 300px;">
+      {{ render_chart(qsoPerYearChart) }}
+    </div>
+  </div>
+</div>

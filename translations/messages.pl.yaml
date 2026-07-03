@@ -37,6 +37,9 @@ lyac:
     subtitle: Według roku
     participants: Raporty
     qso: QSO
+  stats:
+    qso_per_year: QSO per rok
+    qso_per_year_subtitle: "Wszystkie QSO podzielone wg prefiksu LY / DX"
   news:
     title: Aktualności
     description: Szybki link do wyników z poprzedniego roku

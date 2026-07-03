@@ -41,6 +41,9 @@ lyac:
     subtitle: Виберіть рік
     participants: Учасників
     qso: QSO
+  stats:
+    qso_per_year: QSO за рік
+    qso_per_year_subtitle: "Усі QSO за префіксом LY / DX"
   news:
     title: LYAC новини
     description: LYAC сайт 2025 року оновлено з LYAC змагань та річними результатами.
