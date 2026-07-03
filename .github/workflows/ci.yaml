@@ -72,4 +72,4 @@ jobs:
         run: mysql --host 127.0.0.1 --port 3306 -u root -plyac lyac < sql/lyac.sql
 
       - name: Run tests
-        run: php bin/phpunit --testdox
+        run: php bin/phpunit
