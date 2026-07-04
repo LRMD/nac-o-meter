@@ -1,15 +1,16 @@
-<div class="card">
+<div class="card sidebar-sticky">
 
   <div class="card-body">
     <h5 class="card-title">{% trans %}lyac.rounds.title{% endtrans %}</h5>
-    <p class="card-text">{% trans %}lyac.rounds.subtitle{% endtrans %}:</p>
-    <small class="card-text">&nbsp;</small>
-      <ul>
+    <p class="card-text small text-muted">{% trans %}lyac.rounds.subtitle{% endtrans %}:</p>
+    <nav class="sidebar-nav">
       {% for year in round_years %}
-      <li><h5 class="card-subtitle mb-4">
-      <a href="{{ path('rounds', { 'year': year['y'] } )}}">{{ year['y'] }}</a>
-      <small class="card-subtitle mb-2 text-muted">({{ year['c'] }})</small></h5></li>
+      <a class="nav-link {% if year['y'] == current_year|default(null) %}active{% endif %}"
+         href="{{ path('rounds', { 'year': year['y'] } )}}">
+        {{ year['y'] }}
+        <small class="text-muted">({{ year['c'] }})</small>
+      </a>
       {% endfor %}
-      </ul>
+    </nav>
   </div>
 </div>

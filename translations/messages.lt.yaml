@@ -123,6 +123,9 @@ top_scores:
   score: Taškai
   mult: Daugiklis
   headline: Metų nugalėtojai
+  empty: Rezultatų nerasta
+  empty_any: Rezultatų nerasta jokiam diapazonui
+  all_bands: Visi diapazonai
   incomplete: Šioje lentelėje atvaizduojami einamų metų rezultatai, kurie yra atnaujinami kas mėnesį. Galutiniai rezultatai ir nugalėtojai bus nustatyti tik po visų 12 mėnesių rezultatų.
 months:
   m1: Sausis

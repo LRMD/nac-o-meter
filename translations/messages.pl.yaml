@@ -123,6 +123,9 @@ top_scores:
   score: Punkty
   mult: Mnożnik
   headline: Zwycięzcy roku
+  empty: Nie znaleziono wyników
+  empty_any: Nie znaleziono wyników dla żadnego pasma
+  all_bands: Wszystkie pasma
   incomplete: Poniższa tabela przedstawia wyniki za bieżący rok, które są aktualizowane co miesiąc. Ostateczne wyniki i zwycięzcy zostaną wyłonieni dopiero po upływie wszystkich 12 miesięcy wyników.
 months:
   m1: Styczeń

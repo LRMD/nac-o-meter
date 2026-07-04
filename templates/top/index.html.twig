@@ -6,22 +6,13 @@
 {% block rwidth %}9{% endblock %}
 
 {% block left %}
-<div class="card">
-    <div class="card-body">
-        <h4>{{ 'top_scores.title'|trans }}</h4>
-        <p>{{ 'top_scores.year'|trans }}:
-        <a href="{{ path('top_scores_all', {'year': year}) }}">{{ year }}</a>
-        {% if band %}<a href="{{ path('top_scores', {'year': year, 'band': band}) }}">/{{band}}</a>
-        {% endif %}
-        </p>
-    </div>
-</div>
+{% include 'results/left.html.twig' %}
 {% endblock %}
 
 {% block content %}
 <div class="card">
     <div class="card-body">
-        <h4>{{ 'top_scores.headline'|trans }} {{ year }}{% if band %} - {{ band }}{% endif %}</h4>
+        <h5 class="card-title">{{ 'top_scores.headline'|trans }} {{ year }}{% if band %} - {{ band }}{% endif %}</h5>
         <p class="text-muted">{{ 'top_scores.title'|trans }}</p>
 
         {% if hasEmptyLastMonth %}
@@ -32,7 +23,7 @@
 
         {% if band %}
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-sm table-striped table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -55,7 +46,7 @@
                             </tr>
                         {% else %}
                             <tr>
-                                <td colspan="4" class="text-center">No scores found</td>
+                                <td colspan="4" class="text-center">{{ 'top_scores.empty'|trans }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -89,9 +80,9 @@
             {% endfor %}
             {% set sorted_total_mults = sorted_total_mults|sort((a, b) => b.mult <=> a.mult) %}
 
-            <h5>All bands</h5>
+            <h6 class="card-section-title mt-3">{{ 'top_scores.all_bands'|trans }}</h6>
             <div class="table-responsive mb-5">
-                <table class="table table-striped">
+                <table class="table table-sm table-striped table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -114,7 +105,7 @@
                             </tr>
                         {% else %}
                             <tr>
-                                <td colspan="4" class="text-center">No scores found</td>
+                                <td colspan="4" class="text-center">{{ 'top_scores.empty'|trans }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -122,9 +113,9 @@
             </div>
 
             {% for currentBand, bandScores in scores %}
-                <h5 class="mt-4">{{ currentBand }} MHz</h5>
+                <h6 class="card-section-title mt-3">{{ currentBand }} MHz</h6>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-sm table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -147,14 +138,14 @@
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="4" class="text-center">No scores found</td>
+                                    <td colspan="4" class="text-center">{{ 'top_scores.empty'|trans }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
             {% else %}
-                <div class="alert alert-info">No scores found for any band</div>
+                <div class="alert alert-info">{{ 'top_scores.empty_any'|trans }}</div>
             {% endfor %}
         {% endif %}
     </div>

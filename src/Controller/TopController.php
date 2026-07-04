@@ -16,7 +16,7 @@ class TopController extends AbstractController
     {
         $resultParser = new ResultParser($this->getParameter('kernel.project_dir') . '/public_html/');
         $result = $resultParser->getTopScoresWithMults($year, $band);
-        
+
         $callsignSearchForm = $this->createForm(CallsignSearch::class);
 
         return $this->render('top/index.html.twig', [
@@ -24,6 +24,7 @@ class TopController extends AbstractController
             'hasEmptyLastMonth' => $result['hasEmptyLastMonth'],
             'year' => $year,
             'band' => $band,
+            'years' => $resultParser->getAllYears(),
             'callSearch' => $callsignSearchForm->createView()
         ]);
     }

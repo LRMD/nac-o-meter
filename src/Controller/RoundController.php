@@ -48,6 +48,7 @@ class RoundController extends AbstractController
         return $this->render('rounds/index.html.twig', [
             'round_years' => $allRoundYears,
             'year' => $year,
+            'current_year' => $validYear,
             'rounds_this_year' => $roundsThisYear,
             'controller_name' => 'RoundController',
             'callSearch' => $callsignSearchForm->createView(),
@@ -115,7 +116,8 @@ class RoundController extends AbstractController
 
         return $this->render('rounds/log.html.twig', [
             'round_years' => $allRoundYears,
-            'round_name' > $roundName,
+            'current_year' => substr($date, 0, 4),
+            'round_name' => $roundName,
             'round_callsign' => $callsign,
             'round_log' => $roundLog,
             'round_date' => $date,
@@ -144,6 +146,7 @@ class RoundController extends AbstractController
 
         return $this->render('rounds/round.html.twig', [
             'round_years' => $roundYears,
+            'current_year' => substr($date, 0, 4),
             'round_name' => $roundName,
             'round_participants' => $roundParticipants,
             'round_date' => $date,

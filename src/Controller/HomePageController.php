@@ -52,6 +52,9 @@ class HomePageController extends AbstractController
         }
 
         $lastMonthModeStatsChart = $chartBuilder->createChart(Chart::TYPE_PIE);
+        $lastMonthModeStatsChart->setOptions([
+          'maintainAspectRatio' => false
+        ]);
         $lastMonthModeStatsChart->setData([
           'labels' => $modeStatLabels,
           'datasets' => [

@@ -122,6 +122,9 @@ top_scores:
   score: Points
   mult: Mult
   headline: Yearly winners
+  empty: No scores found
+  empty_any: No scores found for any band
+  all_bands: All bands
   incomplete: This table displays the results for the current year, which are updated monthly. The final results and winners will only be determined after all 12 months of results have been compiled.
 months:
   m1: January
