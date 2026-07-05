@@ -66,6 +66,27 @@ rules:
   title: Rules
   menu: Rules
 submit:
+  placeholder:
+    contest: Select contest band
+    date: Contest date (Tuesday)
+    callsign: Your callsign
+    wwl: Your WWL locator (e.g. KO24AA)
+    manager: Contest manager callsign
+    club: Club name
+    address1: Address line 1
+    address2: Address line 2
+    postal: Postal code
+    city: City
+    country: Country
+    phone: Phone number
+    operator1: Main operator callsign
+    operator2: Second operator callsign
+    tx_equipment: Transmitter equipment
+    power: Power
+    rx_equipment: Receiver equipment
+    antenna: Antenna (e.g. 35W/IC-7000/13x el DK7ZB)
+    antenna_height: Antenna height
+    remarks: Additional comments
   title: Submit Contest Log
   description: Submit your NAC/LYAC contest log in REG1TEST format. The log will be sent to contest manager via email.
   success: Your log file {filename} has been successfully submitted!
@@ -113,6 +134,7 @@ submit:
     tuesday: Contest date must be Tuesday
     qso_required: At least one valid QSO is required
     qso_wwl: QSO with {call} has no WWL locator. Continue?
+    clear_confirm: Are you sure you want to clear all QSO records?
 yearly_top: Yearly top
 top_scores:
   title: Points and mults awarded
@@ -122,6 +144,9 @@ top_scores:
   score: Points
   mult: Mult
   headline: Yearly winners
+  empty: No scores found
+  empty_any: No scores found for any band
+  all_bands: All bands
   incomplete: This table displays the results for the current year, which are updated monthly. The final results and winners will only be determined after all 12 months of results have been compiled.
 months:
   m1: January

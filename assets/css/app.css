@@ -1,12 +1,89 @@
 body {
   padding-top: 5rem;
-}
-.starter-template {
-  padding: 3rem 1.5rem;
-  text-align: center;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-/* Autocomplete dropdown styles */
+/* ─── Design tokens ─────────────────────────────────────────────────────── */
+:root {
+  --lyac-accent:     #0057B8;   /* LY flag blue  */
+  --lyac-accent-alt: #FFD700;   /* LY flag yellow */
+  --lyac-radius:     0.5rem;
+  --lyac-card-gap:   1.25rem;
+  --lyac-chart-h:    300px;
+}
+
+/* ─── Card spacing (replaces bare <p></p> spacers) ──────────────────────── */
+.card + .card {
+  margin-top: var(--lyac-card-gap);
+}
+
+/* ─── Responsive chart wrapper ───────────────────────────────────────────── */
+.chart-responsive {
+  position: relative;
+  width: 100%;
+  height: var(--lyac-chart-h);
+}
+
+/* ─── Consistent card section sub-heading ────────────────────────────────── */
+.card-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* ─── Progress bar — accent colour ────────────────────────────────────────── */
+.progress-bar {
+  background-color: var(--lyac-accent);
+}
+
+/* Opt-in: always-visible minimum width (round completeness bar). Kept off the
+   rounds-calendar QSO bars, whose widths are compared against each other. */
+.progress-bar-min {
+  min-width: 4px;
+}
+
+/* ─── Active navbar link ──────────────────────────────────────────────────── */
+.navbar .nav-link.active {
+  font-weight: 700;
+  border-bottom: 2px solid var(--lyac-accent-alt);
+}
+
+/* ─── Sidebar nav (left panel) ───────────────────────────────────────────── */
+.sidebar-nav .nav-link {
+  padding: 0.25rem 0;
+  color: inherit;
+}
+.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-link.active {
+  color: var(--lyac-accent);
+  font-weight: 600;
+}
+
+/* ─── Sidebar dropdown buttons (results year menu) ───────────────────────────
+   Match the light card-border scheme instead of btn-outline-secondary's
+   dark border; accent colour on hover like the rest of the sidebar nav. */
+.sidebar-dropdowns .btn {
+  --bs-btn-color: var(--bs-body-color);
+  --bs-btn-border-color: var(--bs-border-color, #dee2e6);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--lyac-accent);
+  --bs-btn-hover-border-color: var(--lyac-accent);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--lyac-accent);
+  --bs-btn-active-border-color: var(--lyac-accent);
+}
+
+/* ─── Sticky sidebar on wide screens ─────────────────────────────────────── */
+@media (min-width: 768px) {
+  .sidebar-sticky {
+    position: sticky;
+    /* must equal body padding-top: anything larger engages sticky at zero
+       scroll and pushes the card below the adjacent column's content */
+    top: 5rem;
+  }
+}
+
+/* ─── Autocomplete dropdown ───────────────────────────────────────────────── */
 .autocomplete-dropdown {
   position: absolute;
   top: 100%;
@@ -30,6 +107,6 @@ body {
 
 .autocomplete-item:hover,
 .autocomplete-item.selected {
-  background-color: #007bff;
+  background-color: var(--lyac-accent);
   color: #fff;
 }
