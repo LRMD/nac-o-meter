@@ -39,7 +39,7 @@ class QsoType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'class' => 'form-control form-control-sm',
-                    'placeholder' => 'Callsign',
+                    'placeholder' => 'submit.qso.call',
                     'pattern' => '[A-Za-z0-9\/]+',
                     'title' => 'Valid callsign required'
                 ],

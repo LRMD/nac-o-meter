@@ -56,7 +56,7 @@ class LogSubmitType extends AbstractType
                 ],
                 'required' => true,
                 'label' => 'submit.form.contest',
-                'placeholder' => 'Select contest band',
+                'placeholder' => 'submit.placeholder.contest',
                 'data' => $defaultContest,
                 'attr' => ['class' => 'form-control']
             ])
@@ -67,7 +67,7 @@ class LogSubmitType extends AbstractType
                 'data' => $lastTuesday,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Contest date (Tuesday)'
+                    'placeholder' => 'submit.placeholder.date'
                 ]
             ])
             ->add('PCall', TextType::class, [
@@ -76,7 +76,7 @@ class LogSubmitType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'pattern' => '[A-Za-z0-9/]+',
-                    'placeholder' => 'Your callsign',
+                    'placeholder' => 'submit.placeholder.callsign',
                     'title' => 'Valid callsign required'
                 ],
                 'constraints' => [
@@ -93,7 +93,7 @@ class LogSubmitType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'pattern' => '[A-Ra-r][A-Ra-r][0-9][0-9][A-Xa-x][A-Xa-x]',
-                    'placeholder' => 'Your WWL locator (e.g. KO24AA)',
+                    'placeholder' => 'submit.placeholder.wwl',
                     'title' => 'Valid WWL locator required'
                 ],
                 'constraints' => [
@@ -131,7 +131,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.manager',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Contest manager callsign'
+                    'placeholder' => 'submit.placeholder.manager'
                 ]
             ])
             ->add('PClub', TextType::class, [
@@ -139,7 +139,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.club',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Club name'
+                    'placeholder' => 'submit.placeholder.club'
                 ]
             ])
             ->add('RAdr1', TextType::class, [
@@ -147,7 +147,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.address1',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Address line 1'
+                    'placeholder' => 'submit.placeholder.address1'
                 ]
             ])
             ->add('RAdr2', TextType::class, [
@@ -155,7 +155,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.address2',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Address line 2'
+                    'placeholder' => 'submit.placeholder.address2'
                 ]
             ])
             ->add('RPoCo', TextType::class, [
@@ -163,7 +163,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.postal',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Postal code'
+                    'placeholder' => 'submit.placeholder.postal'
                 ]
             ])
             ->add('RCity', TextType::class, [
@@ -171,7 +171,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.city',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'City'
+                    'placeholder' => 'submit.placeholder.city'
                 ]
             ])
             ->add('RCoun', TextType::class, [
@@ -179,7 +179,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.country',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Country'
+                    'placeholder' => 'submit.placeholder.country'
                 ]
             ])
             ->add('RPhon', TextType::class, [
@@ -187,7 +187,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.phone',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Phone number'
+                    'placeholder' => 'submit.placeholder.phone'
                 ]
             ])
             ->add('RHBBS', TextType::class, [
@@ -203,7 +203,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.operator1',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Main operator callsign'
+                    'placeholder' => 'submit.placeholder.operator1'
                 ]
             ])
             ->add('MOpe2', TextType::class, [
@@ -211,7 +211,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.operator2',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Second operator callsign'
+                    'placeholder' => 'submit.placeholder.operator2'
                 ]
             ])
             ->add('STXEq', TextType::class, [
@@ -219,7 +219,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.tx_equipment',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Transmitter equipment'
+                    'placeholder' => 'submit.placeholder.tx_equipment'
                 ]
             ])
             ->add('SPowe', TextType::class, [
@@ -227,7 +227,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.power',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Power'
+                    'placeholder' => 'submit.placeholder.power'
                 ]
             ])
             ->add('SRXEq', TextType::class, [
@@ -235,7 +235,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.rx_equipment',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Receiver equipment'
+                    'placeholder' => 'submit.placeholder.rx_equipment'
                 ]
             ])
             ->add('SAnte', TextType::class, [
@@ -243,7 +243,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.antenna',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Antenna (e.g. 35W/IC-7000/13x el DK7ZB)'
+                    'placeholder' => 'submit.placeholder.antenna'
                 ]
             ])
             ->add('SAntH', TextType::class, [
@@ -251,7 +251,7 @@ class LogSubmitType extends AbstractType
                 'label' => 'submit.form.antenna_height',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Antenna height'
+                    'placeholder' => 'submit.placeholder.antenna_height'
                 ]
             ])
             ->add('Remarks', TextareaType::class, [
@@ -260,7 +260,7 @@ class LogSubmitType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'rows' => 3,
-                    'placeholder' => 'Additional comments'
+                    'placeholder' => 'submit.placeholder.remarks'
                 ]
             ])
             ->add('qsos', CollectionType::class, [

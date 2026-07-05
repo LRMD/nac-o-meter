@@ -66,6 +66,27 @@ rules:
   title: Regulamin
   menu: Regulamin
 submit:
+  placeholder:
+    contest: Wybierz pasmo zawodów
+    date: Data zawodów (wtorek)
+    callsign: Twój znak wywoławczy
+    wwl: Twój lokator WWL (np. KO24AA)
+    manager: Znak kierownika zawodów
+    club: Nazwa klubu
+    address1: Adres 1
+    address2: Adres 2
+    postal: Kod pocztowy
+    city: Miasto
+    country: Kraj
+    phone: Numer telefonu
+    operator1: Znak głównego operatora
+    operator2: Znak drugiego operatora
+    tx_equipment: Sprzęt nadawczy
+    power: Moc
+    rx_equipment: Sprzęt odbiorczy
+    antenna: Antena (np. 35W/IC-7000/13x el DK7ZB)
+    antenna_height: Wysokość anteny
+    remarks: Dodatkowe uwagi
   title: Wyślij dziennik zawodów
   description: Wyślij swój dziennik zawodów NAC/LYAC w formacie REG1TEST. Dziennik zostanie wysłany do kierownika zawodów e-mailem.
   success: Twój plik dziennika {filename} został pomyślnie wysłany!
