@@ -1614,11 +1614,8 @@ __metadata:
 
 "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets::locator=root-workspace-0b6124%40workspace%3A.":
   version: 2.35.0
-  resolution: "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets#vendor/symfony/ux-chartjs/assets::hash=5fea54&locator=root-workspace-0b6124%40workspace%3A."
-  peerDependencies:
-    "@hotwired/stimulus": ^3.0.0
-    chart.js: ^3.4.1 || ^4.0
-  checksum: c3e0fac8f2e56ab09219de725a47c126afab7e0da54240cfd49fcfb34a645b9b83dc60daa29b6e876966dd88a5d593d19eb6a8c270962af21ec8d0cd3f99af4a
+  resolution: "@symfony/ux-chartjs@file:vendor/symfony/ux-chartjs/assets#vendor/symfony/ux-chartjs/assets::hash=3e08b1&locator=root-workspace-0b6124%40workspace%3A."
+  checksum: fe89c77697745bb1bebf69a7ad8d193d970f984f4137f4ea18784835e4530ad07e0d0799d5b599bb7b30ae9128f485607c40fdfae77b4a7a9d1054a63d7e5050
   languageName: node
   linkType: hard
 
@@ -6110,8 +6107,8 @@ __metadata:
   linkType: hard
 
 "svgo@npm:^2.7.0":
-  version: 2.8.2
-  resolution: "svgo@npm:2.8.2"
+  version: 2.8.4
+  resolution: "svgo@npm:2.8.4"
   dependencies:
     commander: ^7.2.0
     css-select: ^4.1.3
@@ -6121,8 +6118,8 @@ __metadata:
     sax: ^1.5.0
     stable: ^0.1.8
   bin:
-    svgo: ./bin/svgo
-  checksum: 6294a2a1cd7b324c5aa7a087d6eb91aa5a0c62ca604ef39271bf830c790cda3cc3bd97b7ada2e0ed2a5b3609367bb0739e1e799e8f777d6117601c30ed90bd22
+    svgo: bin/svgo
+  checksum: 1775cd386e9f4fddeaac4f88ba9e3f046eb0cf521561362cfcb844b9c07c44ad775b7e62908fa7a2062529f391f0d5a6549af7ac5c18b2096830cb4513465dfc
   languageName: node
   linkType: hard
 
